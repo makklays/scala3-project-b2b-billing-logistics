@@ -1,0 +1,6 @@
+# ====================================================================
+# API Routes Configuration
+# ====================================================================
+
+POST   /api/v1/companies   com.techmatrix18.companies.infrastructure.http.CompanyController.create()
+
