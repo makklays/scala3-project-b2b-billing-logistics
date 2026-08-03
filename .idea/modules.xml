@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala3-project-b2b-billing-logistics.iml" filepath="$PROJECT_DIR$/.idea/modules/scala3-project-b2b-billing-logistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala3-project-b2b-billing-logistics-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scala3-project-b2b-billing-logistics-build.iml" />
     </modules>
   </component>
 </project>
