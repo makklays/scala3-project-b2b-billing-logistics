@@ -1,4 +1,4 @@
-# Project B2B Billing Logistics 🚢🚛📦🇪🇸💶️ Scala 3, Play
+# Project B2B Billing Logistics 🚢🚛📦🇪🇸💶️ Scala 3, Play Framework
 
 A high-performance, fault-tolerant reactive backend engine simulating automated multi-tenant warehouse provisioning, real-time yard management, and automated time-slot billing. The project is highly inspired by the complex supply chain challenges, toll systems, and high-throughput distribution hubs powering the Spanish logistics corridors 🇪🇸.
 
