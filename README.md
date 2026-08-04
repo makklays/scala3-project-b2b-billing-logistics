@@ -39,7 +39,6 @@ The project is strictly separated into three layers according to Hexagonal Archi
 *   **Token Bucket / Leaky Bucket Rate Limiter:** Monitors incoming B2B API call frequency from warehouse IoT sensors in real-time inside the `CapacityMonitorActor` to prevent system denial-of-service and handle burst traffic.
 *   **Interval Tree / Range Overlap Algorithm:** Validates time-slot bookings at the domain service level to prevent dock booking collisions, ensuring no two trucks are scheduled to occupy the same physical gate simultaneously.
 
-
 ## 📁 Project Directory Structure (DDD)
 
 ```text
