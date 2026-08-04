@@ -50,9 +50,9 @@ src/main/scala/com/techmatrix18/
 │   ├── domain/                   # Pure entities (Hub, StorageZone, CargoBalance) & repository traits (Ports)
 │   ├── application/              # Use Cases (ProvisionHub, CheckInCargo) & CapacityMonitorActor
 │   └── infrastructure/           # Play controllers (HubRouter), MySQL mappings (Slick/Anorm), & Redis Sync
-├── docks/                        # YARD & DOCK MANAGEMENT MODULE (Loading gates & time-slot bookings)
-│   ├── domain/                   # Entities (Dock, DockBooking) & core traffic rules
-│   ├── application/              # Use Cases (BookSlot, ArriveAtDock) & DockTrackerActor
+├── gates/                        # YARD & GATE MANAGEMENT MODULE (Loading gates & time-slot bookings)
+│   ├── domain/                   # Entities (Gate, GateBooking) & core traffic rules
+│   ├── application/              # Use Cases (BookSlot, ArriveAtGate) & GateTrackerActor
 │   └── infrastructure/           # IoT/HTTP controllers for gates, Redis state management
 └── billing_transactions/         # AUTOMATED BILLING & FINANCIAL ENGINE MODULE
     ├── domain/                   # Core invoice entities, billing transaction records, & math formulas
