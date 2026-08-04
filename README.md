@@ -45,6 +45,8 @@ The project is strictly separated into three layers according to Hexagonal Archi
 ```text
 src/main/scala/com/techmatrix18/
 ├── Main.scala                    # Application Entry Point (initializes Play Framework server)
+├── conf/                         # Play Framework configuration files (application.conf, logback.xml)
+│   └── routes                    # Play Framework HTTP route definitions
 ├── hubs/                         # HUB & WAREHOUSE INVENTORY MODULE (Multi-tenant structure & Cargo Balances)
 │   ├── domain/                   # Pure entities (Hub, StorageZone, CargoBalance) & repository traits (Ports)
 │   ├── application/              # Use Cases (ProvisionHub, CheckInCargo) & CapacityMonitorActor
