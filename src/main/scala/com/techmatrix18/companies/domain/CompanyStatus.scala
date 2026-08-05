@@ -8,9 +8,10 @@ package com.techmatrix18.companies.domain
  * @version 0.0.1
  * @since 04.08.2026
  */
-enum CompanyStatus {
-  case Active
-  case Inactive
-  case Deleted
+
+enum CompanyStatus(val code: String) {
+  case Active   extends CompanyStatus("ACTIVE")   // Компания активна, баланс положительный, доступ к хабам открыт
+  case Inactive extends CompanyStatus("INACTIVE") // Компания временно заблокирована (например, баланс ушел в минус)
+  case Deleted  extends CompanyStatus("DELETED")  // Компания мягко удалена (архивный статус для истории транзакций)
 }
 

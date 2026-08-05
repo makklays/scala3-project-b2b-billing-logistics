@@ -8,15 +8,15 @@ package com.techmatrix18.hubs.domain
  * @version 0.0.1
  * @since 04.08.2026
  */
-enum HubType {
-  case LAND_TERMINAL
-  case SEA_PORT
-  case AIRPORT
-  case SPACEPORT
-  case RAILWAY_STATION
-  case BUS_TERMINAL
-  case FERRY_TERMINAL
-  case CARGO_TERMINAL
-  case LOGISTICS_CENTER
+enum HubType(val code: String) {
+  case LandTerminal     extends HubType("LAND_TERMINAL")
+  case SeaPort          extends HubType("SEA_PORT")
+  case Airport          extends HubType("AIRPORT")
+  case Spaceport        extends HubType("SPACEPORT")
+  case RailwayStation   extends HubType("RAILWAY_STATION")
+  case BusTerminal      extends HubType("BUS_TERMINAL")
+  case FerryTerminal    extends HubType("FERRY_TERMINAL")
+  case CargoTerminal    extends HubType("CARGO_TERMINAL")
+  case LogisticsCenter  extends HubType("LOGISTICS_CENTER")
 }
 

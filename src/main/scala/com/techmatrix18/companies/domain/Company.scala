@@ -11,12 +11,16 @@ import java.time.Instant
  * @version 0.0.1
  * @since 04.08.2026
  */
+
 case class Company(
   id: CompanyId,
+
   title: String,
   taxNumber: String,
   balance: BigDecimal,
   status: CompanyStatus,
+
+  // System audit (managed by the system, not by the user)
   createdAt: Instant,
   updatedAt: Instant
 )
