@@ -15,7 +15,7 @@ case class Hub(
   id: HubId,             // Строгий типобезопасный ID хаба
   companyId: CompanyId,  // Связь с компанией-владельцем (Foreign Key)
   title: String,         // Название (синхронизировано с вашей миграцией)
-  description: String,   // Описание (может быть пустым)
+  description: Option[String],   // Описание (может быть пустым)
   hubType: HubType,
   status: HubStatus,
 
@@ -24,8 +24,8 @@ case class Hub(
   city: String,          // Например, "Valencia"
   postalCode: String,
   addressLine: String,
-  latitude: Double,      // Точные координаты
-  longitude: Double,
+  latitude: BigDecimal,      // Точные координаты
+  longitude: BigDecimal,
 
   // Системный аудит (управляется бэкендом)
   createdAt: Instant,

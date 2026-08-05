@@ -12,5 +12,6 @@ enum HubStatus {
   case Active
   case Inactive
   case Suspended
+  case Maintenance
 }
 
