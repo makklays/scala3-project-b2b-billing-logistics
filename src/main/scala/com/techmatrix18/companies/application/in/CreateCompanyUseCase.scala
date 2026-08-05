@@ -1,5 +1,10 @@
 package com.techmatrix18.companies.application.in
 
+import com.techmatrix18.companies.domain.{Company, CompanyId, CompanyStatus}
+import com.techmatrix18.companies.application.out.CompanyRepository
+import java.time.Instant
+import scala.concurrent.{ExecutionContext, Future}
+
 /**
  * CreateCompanyUseCase
  *
