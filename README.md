@@ -40,7 +40,7 @@ The project is strictly separated into three layers according to Hexagonal Archi
 *   **Interval Tree / Range Overlap Algorithm:** Validates time-slot bookings at the domain service level to prevent dock booking collisions, ensuring no two trucks are scheduled to occupy the same physical gate simultaneously.
 
 <p align="left">
-  <img src="doc/images/b2b-billing-logistics5.png" width="400" alt="Bank Core 1" />
+  <img src="doc/images/b2b-billing-logistics8.png" width="400" alt="Bank Core 1" />
   <img src="doc/images/b2b-billing-logistics6.png" width="400" alt="Bank Core 2" />
 </p>
 

@@ -9,7 +9,7 @@ package com.techmatrix18.hubs.application.in
  * @since 05.08.2026
  */
 
-case class PutHubUnderMaintenance(
+case class PutHubUnderMaintenanceCommand(
   hubId: HubId
 )
 
