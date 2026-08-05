@@ -13,6 +13,7 @@ import java.util.UUID
  * @version 0.0.1
  * @since 04.08.2026
  */
+
 case class CompanyRow(
   id: UUID,
   title: String,

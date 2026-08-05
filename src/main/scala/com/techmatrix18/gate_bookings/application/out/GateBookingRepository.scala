@@ -37,5 +37,9 @@ trait GateBookingRepository {
   // Позволяет делать выборки по временным окнам, конкретным компаниям или номерам фур.
   def findByFilter(filter: GateBookingFilter): Future[List[GateBooking]]
 
+  // Динамически извлекает CompanyId для конкретного бронирования.
+  // Позволяет раскрутить логистическую цепочку (GateBooking -> Gate -> Hub -> Company)
+  // на уровне эффективного JOIN-запроса в PostgreSQL без денормализации бд
+  def getCompanyIdForBooking(bookingId: GateBookingId): Future[Option[CompanyId]]
 }
 
