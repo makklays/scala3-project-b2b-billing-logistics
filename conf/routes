@@ -2,5 +2,64 @@
 # API Routes Configuration
 # ====================================================================
 
-POST   /api/v1/companies   com.techmatrix18.companies.infrastructure.http.CompanyController.create()
+# === 1. B2B Companies & Billing Context ===
+POST    /api/v1/companies                         com.techmatrix18.companies.infrastructure.http.CompanyController.create()
+PUT     /api/v1/companies/:id/profile             com.techmatrix18.companies.infrastructure.http.CompanyController.updateProfile(id: String)
+POST    /api/v1/companies/:id/deposit             com.techmatrix18.companies.infrastructure.http.CompanyController.deposit(id: String)
+POST    /api/v1/companies/:id/deduct              com.techmatrix18.companies.infrastructure.http.CompanyController.deduct(id: String)
+POST    /api/v1/companies/:id/activate            com.techmatrix18.companies.infrastructure.http.CompanyController.activate(id: String)
+POST    /api/v1/companies/:id/suspend             com.techmatrix18.companies.infrastructure.http.CompanyController.suspend(id: String)
+DELETE  /api/v1/companies/:id                     com.techmatrix18.companies.infrastructure.http.CompanyController.delete(id: String)
+
+# === 2. Logistics Hubs Context ===
+POST    /api/v1/hubs                              com.techmatrix18.hubs.infrastructure.http.HubController.create()
+PUT     /api/v1/hubs/:id/profile                  com.techmatrix18.hubs.infrastructure.http.HubController.updateProfile(id: String)
+PUT     /api/v1/hubs/:id/gps                      com.techmatrix18.hubs.infrastructure.http.HubController.updateGps(id: String)
+POST    /api/v1/hubs/:id/activate                 com.techmatrix18.hubs.infrastructure.http.HubController.activate(id: String)
+POST    /api/v1/hubs/:id/maintenance              com.techmatrix18.hubs.infrastructure.http.HubController.putUnderMaintenance(id: String)
+POST    /api/v1/hubs/:id/suspend                  com.techmatrix18.hubs.infrastructure.http.HubController.suspend(id: String)
+DELETE  /api/v1/hubs/:id                          com.techmatrix18.hubs.infrastructure.http.HubController.delete(id: String)
+
+# === 3. Warehouse Loading Gates Context ===
+POST    /api/v1/gates                             com.techmatrix18.gates.infrastructure.delivery.http.GateController.create()
+PUT     /api/v1/gates/:id/configuration           com.techmatrix18.gates.infrastructure.delivery.http.GateController.updateConfiguration(id: String)
+PUT     /api/v1/gates/:id/rates                   com.techmatrix18.gates.infrastructure.delivery.http.GateController.updateRates(id: String)
+POST    /api/v1/gates/:id/occupy                  com.techmatrix18.gates.infrastructure.delivery.http.GateController.occupy(id: String)
+POST    /api/v1/gates/:id/release                 com.techmatrix18.gates.infrastructure.delivery.http.GateController.release(id: String)
+POST    /api/v1/gates/:id/maintenance             com.techmatrix18.gates.infrastructure.delivery.http.GateController.putUnderMaintenance(id: String)
+POST    /api/v1/gates/:id/activate                com.techmatrix18.gates.infrastructure.delivery.http.GateController.activate(id: String)
+DELETE  /api/v1/gates/:id                          com.techmatrix18.gates.infrastructure.delivery.http.GateController.delete(id: String)
+
+# === 4. Transport Slot Bookings Context (Checkpoints & IoT) ===
+POST    /api/v1/bookings                          com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.create()
+POST    /api/v1/bookings/:id/arrive               com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.arriveTruck(id: String)
+POST    /api/v1/bookings/:id/depart               com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.departTruck(id: String)
+POST    /api/v1/bookings/:id/cancel               com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.cancel(id: String)
+POST    /api/v1/bookings/:id/reschedule           com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.reschedule(id: String)
+POST    /api/v1/bookings/:id/no-show              com.techmatrix18.gate_bookings.infrastructure.http.GateBookingController.markAsNoShow(id: String)
+
+# === 5. Hub Internal Sections Context ===
+POST    /api/v1/sections                          com.techmatrix18.hub_sections.infrastructure.http.HubSectionController.create()
+PUT     /api/v1/sections/:id/capacity             com.techmatrix18.hub_sections.infrastructure.http.HubSectionController.updateCapacity(id: String)
+PUT     /api/v1/sections/:id/rename               com.techmatrix18.hub_sections.infrastructure.http.HubSectionController.rename(id: String)
+DELETE  /api/v1/sections/:id                      com.techmatrix18.hub_sections.infrastructure.http.HubSectionController.delete(id: String)
+
+# === 6. Financial Section Tariffs Context ===
+POST    /api/v1/tariffs                           com.techmatrix18.section_tariffs.infrastructure.http.SectionTariffController.create()
+PUT     /api/v1/tariffs/:id/rates                 com.techmatrix18.section_tariffs.infrastructure.http.SectionTariffController.updateRates(id: String)
+POST    /api/v1/tariffs/:id/extend                com.techmatrix18.section_tariffs.infrastructure.http.SectionTariffController.extendValidity(id: String)
+POST    /api/v1/tariffs/:id/cancel                com.techmatrix18.section_tariffs.infrastructure.http.SectionTariffController.cancel(id: String)
+
+# === 7. WMS Warehouse Cargo Balances Context ===
+POST    /api/v1/cargo-balances                    com.techmatrix18.cargo_balances.infrastructure.http.CargoBalanceController.initialize()
+POST    /api/v1/cargo-balances/:id/add            com.techmatrix18.cargo_balances.infrastructure.http.CargoBalanceController.addPayload(id: String)
+POST    /api/v1/cargo-balances/:id/remove         com.techmatrix18.cargo_balances.infrastructure.http.CargoBalanceController.removePayload(id: String)
+
+# === 8. Read-Only Cargo Transactions Ledger Context (Audit & Reports) ===
+GET     /api/v1/cargo-transactions                com.techmatrix18.cargo_transactions.infrastructure.http.CargoTransactionController.list()
+GET     /api/v1/cargo-transactions/:id            com.techmatrix18.cargo_transactions.infrastructure.http.CargoTransactionController.getById(id: String)
+
+# === 9. Read-Only Financial Billing Transactions Ledger Context (Tax & Accounting) ===
+GET     /api/v1/billing-transactions              com.techmatrix18.billing_transactions.infrastructure.http.BillingTransactionController.list()
+GET     /api/v1/billing-transactions/:id          com.techmatrix18.billing_transactions.infrastructure.http.BillingTransactionController.getById(id: String)
 
