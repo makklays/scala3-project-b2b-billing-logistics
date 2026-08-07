@@ -11,6 +11,7 @@ import java.time.Instant
  * @version 0.0.1
  * @since 08.08.2026
  */
+
 case class User(
   id: UserId,
 
