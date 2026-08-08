@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users
     id          BIGSERIAL PRIMARY KEY,
     username    VARCHAR(255) UNIQUE NOT NULL,
     email       VARCHAR(200) UNIQUE NOT NULL,
-    roles       VARCHAR(200) DEFAULT 'USER',
+    role        VARCHAR(200) DEFAULT 'USER',
     mobile      VARCHAR(20),
 
     gender      VARCHAR(50),
