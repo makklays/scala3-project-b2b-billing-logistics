@@ -1,4 +1,4 @@
-package com.techmatrix18.token.domain
+package com.techmatrix18.users.domain
 
 import java.time.Instant
 

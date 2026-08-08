@@ -20,6 +20,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class CargoBalanceController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                    // проверка idempotency
   initializeUseCase: InitializeCargoBalanceUseCase,
   addPayloadUseCase: AddCargoPayloadUseCase,
   removePayloadUseCase: RemoveCargoPayloadUseCase

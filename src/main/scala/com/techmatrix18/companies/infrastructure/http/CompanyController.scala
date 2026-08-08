@@ -22,6 +22,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class CompanyController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                         // Проверка idempotency
   createCompanyUseCase: CreateCompanyUseCase,
   updateCompanyProfileUseCase: UpdateCompanyProfileUseCase,
   depositFundsUseCase: DepositFundsUseCase,

@@ -1,10 +1,8 @@
 package com.techmatrix18.users.application.in
 
 import com.techmatrix18.users.application.in.RefreshTokenCommand
-import com.techmatrix18.users.application.out.UserRepository
-import com.techmatrix18.token.application.out.AuthTokenRepository
-import com.techmatrix18.users.domain.{User, UserId}
-import com.techmatrix18.token.domain.{AuthToken, TokenId}
+import com.techmatrix18.users.application.out.{AuthTokenRepository, UserRepository}
+import com.techmatrix18.users.domain.{AuthToken, TokenId, User, UserId}
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.UUID

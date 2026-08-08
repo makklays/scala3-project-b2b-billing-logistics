@@ -20,6 +20,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class HubSectionController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                                  // Проверка idempotency
   createHubSectionUseCase: CreateHubSectionUseCase,
   updateHubSectionCapacityUseCase: UpdateHubSectionCapacityUseCase,
   renameHubSectionUseCase: RenameHubSectionUseCase,

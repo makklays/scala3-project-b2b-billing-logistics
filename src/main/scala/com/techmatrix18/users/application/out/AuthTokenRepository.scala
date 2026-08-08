@@ -1,7 +1,7 @@
-package com.techmatrix18.token.application.out
+package com.techmatrix18.users.application.out
 
-import com.techmatrix18.users.domain.UserId
-import com.techmatrix18.token.domain.{AuthToken, TokenId}
+import com.techmatrix18.users.domain.{AuthToken, TokenId, UserId}
+
 import scala.concurrent.Future
 
 /**

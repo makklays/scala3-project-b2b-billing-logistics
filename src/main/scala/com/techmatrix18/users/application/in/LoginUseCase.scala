@@ -1,9 +1,9 @@
 package com.techmatrix18.users.application.in
 
 import com.techmatrix18.users.application.in.LoginCommand
-import com.techmatrix18.users.application.out.UserRepository
-import com.techmatrix18.token.application.out.{AuthTokenRepository, JwtService}
-import com.techmatrix18.token.domain.{AuthToken, TokenId}
+import com.techmatrix18.users.application.out.{AuthTokenRepository, UserRepository}
+import com.techmatrix18.token.application.out.JwtService
+import com.techmatrix18.users.domain.{AuthToken, TokenId}
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.UUID

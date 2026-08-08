@@ -1,14 +1,11 @@
-package com.techmatrix18.token.infrastructure.db
+package com.techmatrix18.users.infrastructure.db
 
 import com.techmatrix18.users.application.out.AuthTokenRepository
-import com.techmatrix18.users.domain.UserId
-import com.techmatrix18.token.domain.{AuthToken, TokenId}
-import javax.inject.{Inject, Singleton}
+import com.techmatrix18.users.domain.{AuthToken, TokenId, UserId}
 import play.api.db.Database
-import anorm.*
-import anorm.SqlParser.*
-import scala.concurrent.{ExecutionContext, Future}
 import java.time.Instant
+import javax.inject.{Inject, Singleton}
+import scala.concurrent.{ExecutionContext, Future}
 
 /**
  * PostgresAuthTokenRepository - Реализация работы с JWT-сессиями через Anorm

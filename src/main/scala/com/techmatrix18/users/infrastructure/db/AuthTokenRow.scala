@@ -1,8 +1,8 @@
-package com.techmatrix18.token.infrastructure.db
+package com.techmatrix18.users.infrastructure.db
+
+import com.techmatrix18.users.domain.{AuthToken, TokenId, UserId}
 
 import java.time.Instant
-import anorm.{RowParser, ~, get}
-import com.techmatrix18.users.domain.{AuthToken, TokenId, UserId}
 
 /**
  * AuthTokenRow - Отражение структуры таблицы tokens в СУБД для Anorm

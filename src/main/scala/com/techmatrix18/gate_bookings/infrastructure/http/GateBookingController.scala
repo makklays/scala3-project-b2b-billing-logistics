@@ -20,6 +20,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class GateBookingController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                    // Проверка idempotency
   createBookingUseCase: CreateGateBookingUseCase,
   arriveTruckUseCase: ArriveTruckUseCase,
   departTruckUseCase: DepartTruckUseCase,

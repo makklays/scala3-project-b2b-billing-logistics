@@ -20,6 +20,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class GateController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                            // Проверка idempotency
   createGateUseCase: CreateGateUseCase,
   updateConfigurationUseCase: UpdateGateConfigurationUseCase,
   updateRatesUseCase: UpdateGateRatesUseCase,

@@ -21,7 +21,8 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class CargoTransactionController @Inject()(
   val controllerComponents: ControllerComponents,
-  transactionRepository: CargoTransactionRepository // Напрямую читаем из репозитория для Read-Only эндпоинтов
+  idempotencyAction: IdempotencyAction,                    // Проверка idempotency
+  transactionRepository: CargoTransactionRepository        // Напрямую читаем из репозитория для Read-Only эндпоинтов
 )(using ec: ExecutionContext) extends BaseController {
 
   /**

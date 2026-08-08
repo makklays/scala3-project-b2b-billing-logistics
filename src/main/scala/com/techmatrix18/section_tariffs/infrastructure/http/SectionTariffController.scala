@@ -20,6 +20,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class SectionTariffController @Inject()(
   val controllerComponents: ControllerComponents,
+  idempotencyAction: IdempotencyAction,                          // Проверка idempotency
   createTariffUseCase: CreateSectionTariffUseCase,
   updateRatesUseCase: UpdateSectionTariffRatesUseCase,
   extendValidityUseCase: ExtendSectionTariffValidityUseCase,

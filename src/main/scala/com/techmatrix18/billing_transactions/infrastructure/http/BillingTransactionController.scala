@@ -23,7 +23,8 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class BillingTransactionController @Inject()(
   val controllerComponents: ControllerComponents,
-  transactionRepository: BillingTransactionRepository // Напрямую читаем из репозитория для Read-Only эндпоинтов
+  transactionRepository: BillingTransactionRepository,   // Напрямую читаем из репозитория для Read-Only эндпоинтов
+  idempotencyAction: IdempotencyAction                   // проверка idempotency
 )(using ec: ExecutionContext) extends BaseController {
 
   /**
