@@ -9,6 +9,7 @@ import play.api.libs.streams.Accumulator
 import akka.util.ByteString // Если используется Pekko, замените на org.apache.pekko.util.ByteString
 import java.security.MessageDigest
 import scala.concurrent.{ExecutionContext, Future}
+import org.slf4j.MDC
 
 /**
  * IdempotencyAction - Кастомный Action Refiner для Play Framework.
@@ -17,7 +18,7 @@ import scala.concurrent.{ExecutionContext, Future}
  * @author Alexander Kuziv <makklays@gmail.com>
  * @company TechMatrix18
  * @version 0.0.1
- * @since 08.08.2026
+ * @since 09.08.2026
  */
 
 @Singleton
@@ -40,45 +41,54 @@ class IdempotencyAction @Inject()(
 
       case Some(rawKey) =>
         val key = IdempotencyKey(rawKey)
-        val bodyStr = request.body match {
-          case anyContent: AnyContent => anyContent.asJson.map(_.toString).getOrElse(anyContent.toString)
-          case other => other.toString
-        }
-        val currentHash = calculateHash(bodyStr)
 
-        // Атомарный барьер в БД
-        repository.findOrInsert(key, currentHash).flatMap {
+        // 1. Помещаем ключ идемпотентности в диагностический контекст логирования
+        MDC.put("traceId", key.raw)
 
-          // ОБНАРУЖЕН ДУБЛИКАТ ЗАПРОСА: Возвращаем закешированный или конфликтный HTTP-ответ
-          case Left(existingRecord) =>
-            if (existingRecord.requestPayloadHash != currentHash) {
-              Future.successful(Results.BadRequest(Json.obj(
-                "error" -> "Idempotency Conflict",
-                "details" -> "Ключ уже использован, но тело текущего запроса изменено"
-              )))
+        try {
+          val bodyStr = request.body match {
+            case anyContent: AnyContent => anyContent.asJson.map(_.toString).getOrElse(anyContent.toString)
+            case other => other.toString
+          }
+          val currentHash = calculateHash(bodyStr)
 
-            } else {
-              existingRecord.status match {
-                case IdempotencyStatus.Completed =>
-                  val code = existingRecord.responseCode.getOrElse(200)
-                  val body = existingRecord.responseBody.getOrElse("{}")
-                  Future.successful(Results.Status(code)(Json.parse(body)))
+          // Атомарный барьер в БД
+          repository.findOrInsert(key, currentHash).flatMap {
 
-                case IdempotencyStatus.Started | IdempotencyStatus.Processing =>
-                  Future.successful(Results.Status(409)(Json.obj(
-                    "error" -> "Conflict",
-                    "details" -> "Запрос обрабатывается параллельным потоком. Пожалуйста, подождите"
-                  )))
+            // ОБНАРУЖЕН ДУБЛИКАТ ЗАПРОСА: Возвращаем закешированный или конфликтный HTTP-ответ
+            case Left(existingRecord) =>
+              if (existingRecord.requestPayloadHash != currentHash) {
+                Future.successful(Results.BadRequest(Json.obj(
+                  "error" -> "Idempotency Conflict",
+                  "details" -> "Ключ уже использован, но тело текущего запроса изменено"
+                )))
 
-                case IdempotencyStatus.Failed =>
-                  // Разрешаем повторную попытку при предыдущем краше
-                  runAndCache(key, request, block)
+              } else {
+                existingRecord.status match {
+                  case IdempotencyStatus.Completed =>
+                    val code = existingRecord.responseCode.getOrElse(200)
+                    val body = existingRecord.responseBody.getOrElse("{}")
+                    Future.successful(Results.Status(code)(Json.parse(body)))
+
+                  case IdempotencyStatus.Started | IdempotencyStatus.Processing =>
+                    Future.successful(Results.Status(409)(Json.obj(
+                      "error" -> "Conflict",
+                      "details" -> "Запрос обрабатывается параллельным потоком. Пожалуйста, подождите"
+                    )))
+
+                  case IdempotencyStatus.Failed =>
+                    // Разрешаем повторную попытку при предыдущем краше
+                    runAndCache(key, request, block)
+                }
               }
-            }
 
-          // ПЕРВИЧНЫЙ ЗАПРОС: Выполняем контроллер и кешируем результат
-          case Right(_) =>
-            runAndCache(key, request, block)
+            // ПЕРВИЧНЫЙ ЗАПРОС: Выполняем контроллер и кешируем результат
+            case Right(_) =>
+              runAndCache(key, request, block)
+          }
+        } finally {
+          // 2. Обязательно очищаем контекст после завершения потока, чтобы не отравить другие запросы
+          MDC.remove("traceId")
         }
     }
   }

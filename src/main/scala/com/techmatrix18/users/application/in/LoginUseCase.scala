@@ -17,14 +17,15 @@ import play.api.libs.json.{Json, OFormat}
  * @author Alexander Kuziv <makklays@gmail.com>
  * @company TechMatrix18
  * @version 1.0.0
- * @since 08.08.2026
+ * @since 09.08.2026
  */
 
 @Singleton
 class LoginUseCase @Inject()(
   userRepository: UserRepository,
   tokenRepository: AuthTokenRepository,
-  jwtService: JwtService
+  jwtService: JwtService,
+  passwordHasher: PasswordHasher
 )(using ec: ExecutionContext) {
 
   // Временный метод проверки пароля (далее заменим на BCrypt компонент)
@@ -42,7 +43,7 @@ class LoginUseCase @Inject()(
         Future.successful(Left("Неверные учетные данные пользователя"))
 
       case Some(user) =>
-        if (!checkPassword(command.passwordRaw, user.passwordHash)) {
+        if (!passwordHasher.check(command.passwordRaw, user.passwordHash)) {
           Future.successful(Left("Неверные учетные данные пользователя"))
         } else {
           val now = Instant.now()

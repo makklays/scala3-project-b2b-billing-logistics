@@ -15,8 +15,9 @@ import pdi.jwt.{JwtJson, JwtAlgorithm}
  * @author Alexander Kuziv <makklays@gmail.com>
  * @company TechMatrix18
  * @version 1.0.0
- * @since 08.08.2026
+ * @since 09.08.2026
  */
+
 @Singleton
 class JwtServiceImpl @Inject()(
   config: Configuration

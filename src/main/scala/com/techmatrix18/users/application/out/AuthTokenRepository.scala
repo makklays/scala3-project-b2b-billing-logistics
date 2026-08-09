@@ -10,7 +10,7 @@ import scala.concurrent.Future
  * @author Alexander Kuziv <makklays@gmail.com>
  * @company TechMatrix18
  * @version 0.0.1
- * @since 08.08.2026
+ * @since 09.08.2026
  */
 
 trait AuthTokenRepository {
@@ -26,6 +26,5 @@ trait AuthTokenRepository {
 
   // Отзыв всех сессий пользователя (например, при смене пароля — «Выйти на всех устройствах»)
   def revokeAllUserTokens(userId: UserId): Future[Unit]
-
 }
 
