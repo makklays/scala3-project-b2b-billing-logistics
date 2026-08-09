@@ -76,3 +76,91 @@ src/main/scala/com/techmatrix18/
 *   **Logging:** Play Logger & Logback Classic 1.5.6 (Integrated via SLF4J)
 *   **Testing Framework:** ScalaTest 3.2.19 & Play TestKit (Support for automated route and integration testing)
 
+--- 
+
+## 🚀 Quick Start with Docker (Local Stack Deployment)
+
+The entire environment (PostgreSQL database + compilation and execution of the Scala application) is spun up with a single command.
+
+### 1. Start the Platform
+Run the following command in the root directory of the project:
+```bash 
+docker-compose up --build -d
+```
+
+During the initial startup, Docker will automatically:
+* Download the PostgreSQL 15 image and initialize the database using the `init.sql` script.
+* Trigger a Multi-stage build for the Scala application, execute `sbt dist`, and deploy a lightweight JRE runtime image.
+* Bootstrap the database schema and expose the REST API on port `9000`.
+
+### 2. Verify Container Status and Logs
+Ensure that all services are up and running correctly:
+```bash
+# Check the status of running containers
+docker-compose ps
+
+# Stream application logs in real-time
+docker-compose logs -f auth_app
+
+# Stop and remove all active containers and networks
+docker-compose down
+```
+
+---
+
+## 🛠️ Development without Docker (Local sbt)
+
+If you are running the database in Docker but prefer to compile and debug the Scala code directly within your IDE (IntelliJ IDEA):
+
+1. Spin up only the database container:
+   ```bash
+   docker-compose up postgres_db -d
+   ```
+2. Run the application locally via sbt:
+   ```bash
+   sbt run
+   ```
+   *The `application.conf` configuration will automatically fallback to the default `jdbc:postgresql://localhost:5432/billing_logistics_db`.*
+
+---
+
+## 📂 API Contract Structure
+
+### 🔑 1. Authentication (Login)
+* **Endpoint**: `POST /api/v1/auth/login`
+* **Required Header**: `X-Idempotency-Key: <UUID>`
+* **Request Body (JSON)**:
+  ```json
+  {
+    "usernameOrEmail": "driver_john",
+    "passwordRaw": "secure_password"
+  }
+  ```
+
+### 🔄 2. Token Rotation (Refresh)
+* **Endpoint**: `POST /api/v1/auth/refresh`
+* **Required Header**: `X-Idempotency-Key: <UUID>`
+* **Request Body (JSON)**:
+  ```json
+  {
+    "refreshToken": "4a7b9e02..."
+  }
+  ```
+
+and for example:
+
+### 💸 3. Billing Transaction / Payment 
+* **Endpoint**: `GET /api/v1/billing-transactions`
+* **Required Header**:
+    * `X-Idempotency-Key: <UUID>` *(Guarantees that the money will not be deducted twice in case of network retries)*
+    * `Authorization: Bearer <access_token>`
+* **Request Body (JSON)**:
+  ```json
+  {
+    "accountId": 10582,
+    "amount": 250.00,
+    "currency": "USD",
+    "paymentMethod": "CREDIT_CARD"
+  }
+  ```
+
