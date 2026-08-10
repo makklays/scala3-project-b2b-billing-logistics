@@ -1,5 +1,7 @@
 package com.techmatrix18.cargo_balances.application.in
 
+import com.techmatrix18.cargo_balances.domain.CargoBalanceId
+
 /**
  * RemoveCargoPayloadCommand
  * Отгрузка товаров со склада

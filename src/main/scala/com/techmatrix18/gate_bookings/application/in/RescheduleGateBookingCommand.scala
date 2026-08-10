@@ -1,6 +1,7 @@
 package com.techmatrix18.gate_bookings.application.in
 
 import com.techmatrix18.gate_bookings.domain.GateBookingId
+import java.time.Instant
 
 /**
  * Command to reschedule a gate booking.

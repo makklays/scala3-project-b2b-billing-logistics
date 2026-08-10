@@ -18,6 +18,7 @@ import scala.concurrent.{ExecutionContext, Future}
  * @version 0.0.1
  * @since 06.08.2026
  */
+
 class CreateGateBookingUseCase(
   bookingRepository: GateBookingRepository,
   gateRepository: GateRepository

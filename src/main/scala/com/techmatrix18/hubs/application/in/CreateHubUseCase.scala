@@ -3,6 +3,7 @@ package com.techmatrix18.hubs.application.in
 import com.techmatrix18.hubs.domain.{Hub, HubId, HubStatus}
 import com.techmatrix18.hubs.application.out.HubRepository
 import java.time.Instant
+import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
 
 /**
@@ -58,7 +59,7 @@ class CreateHubUseCase(
       )
 
       // 4. Сохранение сущности в PostgreSQL через Out-порт репозитория
-      hubRepository.save(newHub).map { _ =>
+      hubRepository.create(newHub).map { _ =>
         Right(CreateHubResponse(
           hubId = newHub.id.value, // Извлекаем String через наш метод расширения
           title = newHub.title,

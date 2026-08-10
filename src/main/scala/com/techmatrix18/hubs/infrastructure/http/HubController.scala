@@ -4,9 +4,11 @@ import com.techmatrix18.hubs.application.in.*
 import com.techmatrix18.hubs.infrastructure.http.HubJsonFormats.given
 import play.api.libs.json.*
 import play.api.mvc.*
-
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction
+import com.techmatrix18.hubs.application.in.ActiveHubUseCase
+import com.techmatrix18.hubs.application.in.UpdateHubUseCase
 
 /**
  * HubController - Driving HTTP Adapter for Logistics Hubs Domain.
@@ -23,7 +25,7 @@ class HubController @Inject()(
   val controllerComponents: ControllerComponents,
   idempotencyAction: IdempotencyAction,                                 // Проверка idempotency
   createHubUseCase: CreateHubUseCase,
-  updateHubProfileUseCase: UpdateHubProfileUseCase,
+  updateHubUseCase: UpdateHubUseCase,
   updateHubGpsCoordinatesUseCase: UpdateHubGpsCoordinatesUseCase,
   activateHubUseCase: ActivateHubUseCase,
   putHubUnderMaintenanceUseCase: PutHubUnderMaintenanceUseCase,
@@ -59,7 +61,7 @@ class HubController @Inject()(
         if (command.hubId.value != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path param ID mismatch")))
         } else {
-          updateHubProfileUseCase.execute(command).map {
+          updateHubUseCase.execute(command).map {
             case Left(businessError) => BadRequest(Json.obj("status" -> "Fail", "message" -> businessError))
             case Right(response)     => Ok(Json.toJson(response))
           }

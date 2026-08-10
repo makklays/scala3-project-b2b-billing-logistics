@@ -7,6 +7,7 @@ import com.techmatrix18.companies.domain.CompanyId
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.gate_bookings.application.out.GateBookingRepository
 
 /**
  * ReleaseGateUseCase - Inbound Driving Service for truck departure and automated billing calculation

@@ -1,6 +1,7 @@
 package com.techmatrix18.gate_bookings.application.in
 
 import com.techmatrix18.gates.domain.GateId
+import java.time.Instant
 
 /**
  * Command to create a new gate booking.

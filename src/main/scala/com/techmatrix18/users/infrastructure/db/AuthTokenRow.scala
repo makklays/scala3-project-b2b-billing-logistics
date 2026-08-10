@@ -1,7 +1,6 @@
 package com.techmatrix18.users.infrastructure.db
 
 import com.techmatrix18.users.domain.{AuthToken, TokenId, UserId}
-
 import java.time.Instant
 
 /**

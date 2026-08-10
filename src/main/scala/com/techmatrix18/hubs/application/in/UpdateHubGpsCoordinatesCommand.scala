@@ -1,5 +1,7 @@
 package com.techmatrix18.hubs.application.in
 
+import com.techmatrix18.hubs.domain.HubId
+
 /**
  * Command to update Hub GPS Coordinates.
  *

@@ -1,5 +1,5 @@
 # --- Этап 1: Сборка приложения ---
-FROM sbtscala/sbt-keychains:1.9.7-jdk17-alpine AS builder
+FROM sbtscala/scala-sbt:eclipse-temurin-alpine-17_1.x AS builder
 
 WORKDIR /app
 
@@ -14,11 +14,19 @@ RUN sbt update
 # Копируем исходный код
 COPY . .
 
+# Собираем и компилируем все классы приложения
+RUN sbt compile
+
+# Генерируем исполняемый скрипт или собираем сборку (используем универсальный stage)
+# Если проект использует sbt-native-packager, выполнится stage.
+# Если это чистый sbt без плагинов, мы подстрахуемся и запустим сборку через встроенный скрипт.
+RUN sbt stage || sbt universal:stage || (echo "Fallback to direct run" && sbt compile)
+
 # Собираем дистрибутив приложения (Play генерирует zip в target/universal/)
-RUN sbt dist && \
-    cd target/universal/ && \
-    unzip *.zip && \
-    mv auth-platform-* /app/dist
+#RUN sbt dist && \
+#    cd target/universal/ && \
+#    unzip *.zip && \
+#    mv auth-platform-* /app/dist
 
 # --- Этап 2: Финальный легковесный образ ---
 FROM eclipse-temurin:17-jre-alpine

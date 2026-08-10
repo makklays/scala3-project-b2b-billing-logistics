@@ -1,11 +1,12 @@
 package com.techmatrix18.gates.infrastructure.delivery.http
 
 import com.techmatrix18.gates.application.in.*
-import com.techmatrix18.gates.infrastructure.delivery.http.GateJsonFormats.given // Импортируем given-форматы Scala 3
+import com.techmatrix18.gates.infrastructure.http.GateJsonFormats.given // Импортируем given-форматы Scala 3
 import play.api.mvc.*
 import play.api.libs.json.*
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction
 
 /**
  * GateController - Driving HTTP Adapter for Warehouse Loading Gates Domain.

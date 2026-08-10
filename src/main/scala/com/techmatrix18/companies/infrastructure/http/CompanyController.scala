@@ -8,6 +8,8 @@ import play.api.libs.json.*
 import java.util.UUID
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction
+import com.techmatrix18.companies.application.in.UpdateCompanyUseCase
 
 /**
  * CompanyController - Driving HTTP Adapter for Company and Billing Domain.
@@ -24,7 +26,7 @@ class CompanyController @Inject()(
   val controllerComponents: ControllerComponents,
   idempotencyAction: IdempotencyAction,                         // Проверка idempotency
   createCompanyUseCase: CreateCompanyUseCase,
-  updateCompanyProfileUseCase: UpdateCompanyProfileUseCase,
+  updateCompanyUseCase: UpdateCompanyUseCase,
   depositFundsUseCase: DepositFundsUseCase,
   deductFundsUseCase: DeductFundsUseCase,
   activateCompanyUseCase: ActivateCompanyUseCase,
@@ -61,7 +63,7 @@ class CompanyController @Inject()(
         if (command.companyId.value != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path parameter ID must match JSON entity body identifier")))
         } else {
-          updateCompanyProfileUseCase.execute(command).map {
+          updateCompanyUseCase.execute(command).map {
             case Left(businessError) => BadRequest(Json.obj("status" -> "Fail", "message" -> businessError))
             case Right(response)     => Ok(Json.toJson(response))
           }

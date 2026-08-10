@@ -1,8 +1,8 @@
 package com.techmatrix18.users.infrastructure.http
 
 import com.techmatrix18.users.application.in.{LoginCommand, RefreshTokenCommand}
-import com.techmatrix18.users.application.service.{LoginUseCase, RefreshTokenUseCase}
-import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction // Наш экшн-заслон
+import com.techmatrix18.users.application.in.{LoginUseCase, RefreshTokenUseCase}
+import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction
 import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{Json, JsError, JsSuccess, OFormat}
 import play.api.mvc.{AbstractController, ControllerComponents, Action, AnyContent, Request}

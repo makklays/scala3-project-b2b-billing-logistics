@@ -1,7 +1,6 @@
 package com.techmatrix18.users.domain
 
 import com.techmatrix18.users.domain.UserId
-
 import java.time.Instant
 
 /**

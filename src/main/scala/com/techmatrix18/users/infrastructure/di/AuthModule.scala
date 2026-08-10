@@ -1,9 +1,10 @@
 package com.techmatrix18.users.infrastructure.di
 
+import com.techmatrix18.users.application.out.{UserRepository, AuthTokenRepository, JwtService, PasswordHasher}
+import com.techmatrix18.users.infrastructure.scheduler.DatabaseCleanupScheduler
+import com.techmatrix18.users.infrastructure.db.{PostgresUserRepository, PostgresAuthTokenRepository}
+import com.techmatrix18.users.infrastructure.security.{JwtServiceImpl, BCryptPasswordHasher}
 import com.google.inject.AbstractModule
-import com.techmatrix18.auth.application.out.{UserRepository, TokenRepository, JwtService, PasswordHasher}
-import com.techmatrix18.auth.infrastructure.db.{PostgresUserRepository, PostgresTokenRepository}
-import com.techmatrix18.auth.infrastructure.security.{JwtServiceImpl, BCryptPasswordHasher}
 
 /**
  * AuthModule - Главный конфигурационный файл внедрения зависимостей контура Auth.
@@ -24,7 +25,7 @@ class AuthModule extends AbstractModule {
 
     // 2. Связываем репозитории работы с базой данных PostgreSQL (Anorm)
     bind(classOf[UserRepository]).to(classOf[PostgresUserRepository])
-    bind(classOf[TokenRepository]).to(classOf[PostgresTokenRepository])
+    bind(classOf[AuthTokenRepository]).to(classOf[PostgresAuthTokenRepository])
 
     // Принудительно запускаем шедулер очистки БД при старте приложения
     bind(classOf[DatabaseCleanupScheduler]).asEagerSingleton()

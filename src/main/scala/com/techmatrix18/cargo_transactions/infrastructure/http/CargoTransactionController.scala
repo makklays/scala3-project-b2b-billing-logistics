@@ -7,6 +7,7 @@ import play.api.mvc.*
 import play.api.libs.json.*
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.idempotency.infrastructure.presentation.IdempotencyAction
 
 /**
  * CargoTransactionController - Driving HTTP Adapter for Read-Only Cargo Ledger Audit Trail.

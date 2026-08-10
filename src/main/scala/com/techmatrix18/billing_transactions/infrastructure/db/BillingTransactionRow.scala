@@ -31,7 +31,7 @@ case class BillingTransactionRow(
   // Конвертация сырой строки PostgreSQL в чистый доменный агрегат (DDD)
   def toDomain: BillingTransaction = BillingTransaction(
     id = BillingTransactionId(id.toString), // Заворачиваем UUID в наш opaque-тип (String)
-    companyId = CompanyId(companyId),
+    companyId = CompanyId(companyId.toString),
     amount = amount,
     currency = currency,
     category = category,

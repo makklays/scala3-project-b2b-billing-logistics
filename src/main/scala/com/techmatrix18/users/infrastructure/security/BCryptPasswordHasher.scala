@@ -1,6 +1,6 @@
 package com.techmatrix18.users.infrastructure.security
 
-import com.techmatrix18.auth.application.out.PasswordHasher
+import com.techmatrix18.users.application.out.PasswordHasher
 import org.mindrot.jbcrypt.BCrypt
 import javax.inject.{Inject, Singleton}
 

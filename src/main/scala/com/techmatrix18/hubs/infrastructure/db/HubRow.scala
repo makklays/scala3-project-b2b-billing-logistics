@@ -14,7 +14,13 @@ import scala.concurrent.{ExecutionContext, Future}
 /**
  * HubRow - Вспомогательная структура данных строки таблицы hubs.
  * Полностью изолирует инфраструктурный слой от доменных моделей.
+ *
+ * @author Alexander Kuziv <makklays@gmail.com>
+ * @company TechMatrix18
+ * @version 0.0.1
+ * @since 08.08.2026
  */
+
 private case class HubRow(
   id: UUID,
   companyId: UUID,
@@ -31,8 +37,8 @@ private case class HubRow(
 ) {
   // Конвертация строки базы данных в чистый доменный агрегат (DDD)
   def toDomain: Hub = Hub(
-    id = HubId(id),
-    companyId = CompanyId(companyId),
+    id = HubId(id.toString),
+    companyId = CompanyId(companyId.toString),
     title = title,
     description = description,
     addressLine = addressLine,
@@ -50,17 +56,17 @@ private object HubRow {
   // Anorm-парсер для автоматической сборки структуры HubRow из SQL-ответа
   val parser: RowParser[HubRow] = {
     get[UUID]("id") ~
-      get[UUID]("company_id") ~
-      get[String]("title") ~
-      get[Option[String]]("description") ~
-      get[String]("address_line") ~
-      get[String]("postal_code") ~
-      get[BigDecimal]("latitude") ~
-      get[BigDecimal]("longitude") ~
-      get[String]("hub_type") ~
-      get[String]("status") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[UUID]("company_id") ~
+    get[String]("title") ~
+    get[Option[String]]("description") ~
+    get[String]("address_line") ~
+    get[String]("postal_code") ~
+    get[BigDecimal]("latitude") ~
+    get[BigDecimal]("longitude") ~
+    get[String]("hub_type") ~
+    get[String]("status") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ companyId ~ title ~ description ~ addressLine ~ postalCode ~ latitude ~ longitude ~ hubType ~ status ~ createdAt ~ updatedAt =>
         HubRow(id, companyId, title, description, addressLine, postalCode, latitude, longitude, hubType, status, createdAt, updatedAt)
     }

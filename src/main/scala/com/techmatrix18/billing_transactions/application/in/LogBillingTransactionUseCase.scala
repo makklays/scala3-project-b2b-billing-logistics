@@ -38,7 +38,7 @@ class LogBillingTransactionUseCase(
       // 2. Сборка нового иммутабельного Aggregate Root доменной транзакции (Append-Only)
       val newTransaction = BillingTransaction(
         id = newTransactionId,
-        companyId = CompanyId(UUID.fromString(command.companyId)), // Безопасно парсим Foreign Key компании
+        companyId = CompanyId(command.companyId), // Безопасно парсим Foreign Key компании
         amount = command.amount,
         currency = command.currency.trim.toUpperCase,
         category = command.category.trim.toUpperCase,
