@@ -27,7 +27,7 @@ class HubController @Inject()(
   createHubUseCase: CreateHubUseCase,
   updateHubUseCase: UpdateHubUseCase,
   updateHubGpsCoordinatesUseCase: UpdateHubGpsCoordinatesUseCase,
-  activateHubUseCase: ActivateHubUseCase,
+  activeHubUseCase: ActiveHubUseCase,
   putHubUnderMaintenanceUseCase: PutHubUnderMaintenanceUseCase,
   suspendHubUseCase: SuspendHubUseCase,
   deleteHubUseCase: DeleteHubUseCase
@@ -101,7 +101,7 @@ class HubController @Inject()(
         if (command.hubId.value != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path param ID mismatch")))
         } else {
-          activateHubUseCase.execute(command).map {
+          activeHubUseCase.execute(command).map {
             case Left(businessError) => BadRequest(Json.obj("status" -> "Fail", "message" -> businessError))
             case Right(response)     => Ok(Json.toJson(response))
           }

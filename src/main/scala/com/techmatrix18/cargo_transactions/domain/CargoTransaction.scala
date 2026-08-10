@@ -1,7 +1,8 @@
 package com.techmatrix18.cargo_transactions.domain
 
 import com.techmatrix18.hub_sections.domain.HubSectionId
-import com.techmatrix18.gate_bookings.domain.GateBookingId 
+import com.techmatrix18.gate_bookings.domain.GateBookingId
+import com.techmatrix18.cargo_transactions.domain.CargoTransactionId
 import java.time.Instant
 
 /**

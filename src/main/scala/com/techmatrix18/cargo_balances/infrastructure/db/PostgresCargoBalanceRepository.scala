@@ -86,7 +86,7 @@ class PostgresCargoBalanceRepository @Inject()(
                  current_pallets as currentPallets, created_at as createdAt, updated_at as updatedAt
           FROM cargo_balances
           LIMIT 100
-        """.as(CargoBalanceRow.parser.list).map(_.toDomain)
+        """.as(CargoBalanceRow.parser.*).map(_.toDomain)
     }
   }
 }
