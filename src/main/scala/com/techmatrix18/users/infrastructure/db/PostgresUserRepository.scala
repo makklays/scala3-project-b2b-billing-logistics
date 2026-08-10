@@ -30,7 +30,7 @@ class PostgresUserRepository @Inject()(
                created_at as createdAt, updated_at as updatedAt
         FROM users
         WHERE id = ${id.raw}
-      """.as(UserRow.parser.singleOptional).map(_.toDomain)
+      """.as(UserRow.parser.singleOpt).map(_.toDomain)
     }
   }
 
@@ -41,7 +41,7 @@ class PostgresUserRepository @Inject()(
                  created_at as createdAt, updated_at as updatedAt
           FROM users
           WHERE LOWER(email) = ${email.trim.toLowerCase}
-        """.as(UserRow.parser.singleOptional).map(_.toDomain)
+        """.as(UserRow.parser.singleOpt).map(_.toDomain)
     }
   }
 
@@ -52,7 +52,7 @@ class PostgresUserRepository @Inject()(
                  created_at as createdAt, updated_at as updatedAt
           FROM users
           WHERE LOWER(username) = ${username.trim.toLowerCase}
-        """.as(UserRow.parser.singleOptional).map(_.toDomain)
+        """.as(UserRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

@@ -33,7 +33,7 @@ class PostgresIdempotencyRepository @Inject()(
           SELECT idempotency_key, request_payload_hash, status, response_code, response_body, created_at, expires_at
           FROM idempotency_records
           WHERE idempotency_key = ${key.raw}
-        """.as(IdempotencyRow.parser.singleOptional).map(_.toDomain)
+        """.as(IdempotencyRow.parser.singleOpt).map(_.toDomain)
 
       existingRecordOpt match {
         // Ключ найден — это сетевой дубликат (или повторный запрос)

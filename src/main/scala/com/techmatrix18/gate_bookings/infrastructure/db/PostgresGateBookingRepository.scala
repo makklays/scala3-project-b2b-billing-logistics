@@ -35,7 +35,7 @@ class PostgresGateBookingRepository @Inject()(
                status, created_at as createdAt, updated_at as updatedAt
         FROM gate_bookings
         WHERE id = ${UUID.fromString(bookingId.value)}::uuid
-      """.as(GateBookingRow.parser.singleOptional).map(_.toDomain)
+      """.as(GateBookingRow.parser.singleOpt).map(_.toDomain)
     }
   }
 
@@ -48,7 +48,7 @@ class PostgresGateBookingRepository @Inject()(
                status, created_at as createdAt, updated_at as updatedAt
         FROM gate_bookings
         WHERE gate_id = ${gateId.raw}::uuid AND status = 'IN_PROGRESS'
-      """.as(GateBookingRow.parser.singleOptional).map(_.toDomain)
+      """.as(GateBookingRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

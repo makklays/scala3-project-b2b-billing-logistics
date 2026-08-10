@@ -1,3 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/http/BillingTransactionController.scala:42:82 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m42 |[0m    [33mval[0m [36mresolvedCompanyId[0m = companyIdStrOpt.map([36midStr[0m => CompanyId(UUID.fromString(idStr)))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                   ^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                Found:    java.util.UUID[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                Required: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/presentation/GlobalErrorHandler.scala:3:30 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.users.presentation.dto.AuthErrorResponse[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -6,32 +13,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.users.presentation.dto.AuthJsonFormats.[33mgiven[0m [34m// Импортируем Scala 3 given-форматы[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m       value presentation is not a member of com.techmatrix18.users[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/BillingTransactionRow.scala:63:54 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m63 |[0m    companyId = java.util.UUID.fromString(transaction.companyId),[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                          ^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    (transaction.companyId : com.techmatrix18.companies.domain.CompanyId)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: String[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:37:50 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m      [31mSQL"""[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m          SELECT id, company_id as companyId, amount, currency, category,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m                 source_id as sourceId, description, created_at as createdAt[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m          FROM billing_transactions[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m          WHERE id = [0m${UUID.fromString(transactionId.value)}[31m::uuid[0m
-[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m        """[0m.as(BillingTransactionRow.parser.*).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    [1m[31mList[0m[com.techmatrix18.billing_transactions.domain.BillingTransaction][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: [1m[32mOption[0m[com.techmatrix18.billing_transactions.domain.BillingTransaction][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/http/BillingTransactionController.scala:42:82 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m42 |[0m    [33mval[0m [36mresolvedCompanyId[0m = companyIdStrOpt.map([36midStr[0m => CompanyId(UUID.fromString(idStr)))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                   ^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                Found:    java.util.UUID[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                Required: String[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/http/BillingTransactionController.scala:56:34 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m56 |[0m      Ok(Json.toJson(transactions))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                  ^[0m[0m
@@ -66,18 +47,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    ???)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut no implicit values were found that match type com.techmatrix18.billing_transactions.domain.BillingTransaction <:< Iterable[A].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_balances/infrastructure/db/PostgresCargoBalanceRepository.scala:35:42 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      [31mSQL"""[0m
-[0m[[0m[31merror[0m] [0m[0m[31m31 |[0m        SELECT id, hub_section_id as hubSectionId, client_name as clientName,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m               current_pallets as currentPallets, created_at as createdAt, updated_at as updatedAt[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m        FROM cargo_balances[0m
-[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m        WHERE id = [0m${UUID.fromString(balanceId.value)}[31m::uuid[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      """[0m.as(CargoBalanceRow.parser.*).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   Found:    [1m[31mList[0m[com.techmatrix18.cargo_balances.domain.CargoBalance][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   Required: [1m[32mOption[0m[com.techmatrix18.cargo_balances.domain.CargoBalance][0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:57:38 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m57 |[0m          transactionId = generatedId.value, [34m// Наш метод расширения (extension)[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^[0m[0m
@@ -170,10 +139,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m43 |[0m  [33mval[0m [36mparser[0m: [35mRowParser[0m[[35mCompanyRow[0m] = Macro.named[[35mCompanyRow[0m][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                      ^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m                       value named is not a member of object anorm.Macro[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/db/PostgresCompanyRepository.scala:30:31 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      """.as(CompanyRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.companies.infrastructure.db.CompanyRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:83:12 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m83 |[0m        [33mif[0m (command.companyId != id) {[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -239,18 +204,10 @@
 [0m[[0m[31merror[0m] [0m[0m[31m72 |[0m    gateId = booking.gateId.raw,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m       value raw is not a member of com.techmatrix18.gates.domain.GateId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gate_bookings/infrastructure/db/PostgresGateBookingRepository.scala:38:35 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m38 |[0m      """.as(GateBookingRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.gate_bookings.infrastructure.db.GateBookingRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gate_bookings/infrastructure/db/PostgresGateBookingRepository.scala:50:33 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m50 |[0m        WHERE gate_id = ${gateId.raw}::uuid AND status = [31m'IN_PROGRESS[0m'[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m       value raw is not a member of com.techmatrix18.gates.domain.GateId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gate_bookings/infrastructure/db/PostgresGateBookingRepository.scala:51:35 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m51 |[0m      """.as(GateBookingRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.gate_bookings.infrastructure.db.GateBookingRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gate_bookings/infrastructure/db/PostgresGateBookingRepository.scala:120:25 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m120 |[0m        .as(scalar[UUID].singleOptional) [34m// Извлекаем исключительно одну ячейку типа UUID[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -365,10 +322,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m35 |[0m        WHERE id = ${gateId.raw}::uuid[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m       value raw is not a member of com.techmatrix18.gates.domain.GateId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/infrastructure/db/PostgresGateRepository.scala:36:28 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m      """.as(GateRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.gates.infrastructure.db.GateRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/infrastructure/db/PostgresGateRepository.scala:86:30 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m86 |[0m          WHERE id = ${gateId.raw}::uuid[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                       ^^^^^^^^^^[0m[0m
@@ -395,10 +348,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m63 |[0m    hubId = section.hubId.raw,             [34m// Берем чистый UUID хаба[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m         value raw is not a member of com.techmatrix18.hubs.domain.HubId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hub_sections/infrastructure/db/PostgresHubSectionRepository.scala:35:34 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      """.as(HubSectionRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.hub_sections.infrastructure.db.HubSectionRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hub_sections/infrastructure/db/PostgresHubSectionRepository.scala:91:36 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m91 |[0m        """.as(HubSectionRow.parser.list).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -521,16 +470,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/PostgresIdempotencyRepository.scala:36:37 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        """.as(IdempotencyRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.idempotency.infrastructure.db.IdempotencyRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/PostgresIdempotencyRepository.scala:41:15 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m          Left(existingRecord)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: existingRecord - did you mean existingRecordOpt?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/presentation/IdempotencyAction.scala:9:7 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m9 |[0m[33mimport[0m akka.util.ByteString [34m// Если используется Pekko, замените на org.apache.pekko.util.ByteString[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^[0m[0m
@@ -615,7 +554,7 @@
 [0m[[0m[31merror[0m] [0m[0m[31m30 |[0m               created_at, updated_at[0m
 [0m[[0m[31merror[0m] [0m[0m[31m31 |[0m        FROM tokens[0m
 [0m[[0m[31merror[0m] [0m[0m[31m32 |[0m        WHERE token = [0m${token.trim}[31m AND revoked = false[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      """[0m.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      """[0m.as(AuthTokenRow.parser.singleOpt).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:39:6 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m39 |[0m      [31mSQL"""[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
@@ -630,7 +569,7 @@
 [0m[[0m[31merror[0m] [0m[0m[31m42 |[0m                 created_at, updated_at[0m
 [0m[[0m[31merror[0m] [0m[0m[31m43 |[0m          FROM tokens[0m
 [0m[[0m[31merror[0m] [0m[0m[31m44 |[0m          WHERE refresh_token = [0m${refreshToken.trim}[31m AND revoked = false[0m
-[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m        """[0m.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m        """[0m.as(AuthTokenRow.parser.singleOpt).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:53:8 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m53 |[0m        [31mSQL"""[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^[0m[0m
@@ -674,12 +613,81 @@
 [0m[[0m[31merror[0m] [0m[0m[31m82 |[0m          SET revoked = true, updated_at = NOW()[0m
 [0m[[0m[31merror[0m] [0m[0m[31m83 |[0m          WHERE user_id = [0m${userId.raw}[31m AND revoked = false[0m
 [0m[[0m[31merror[0m] [0m[0m[31m84 |[0m        """[0m.executeUpdate()[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresUserRepository.scala:33:28 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      """.as(UserRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.users.infrastructure.db.UserRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresUserRepository.scala:44:30 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m44 |[0m        """.as(UserRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.users.infrastructure.db.UserRow][0m
-[0m[[0m[31merror[0m] [0m[0m115 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/UserRow.scala:46:12 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m46 |[0m      roles = [33mif[0m (parsedRoles.isEmpty) List(UserRole.StandardUser) [33melse[0m parsedRoles,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[33mmethod[0m [35mapply[0m in [33mobject[0m [35mUser[0m: (id: com.techmatrix18.users.domain.UserId, username: String, email: String,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  role: com.techmatrix18.users.domain.UserRole, mobile: Option[String],[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  gender: Option[String], age: Option[Int], avatar: Option[String],[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  passwordHash: String, createdAt: java.time.Instant, updatedAt:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  java.time.Instant): com.techmatrix18.users.domain.User does not have a parameter roles[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/UserRow.scala:82:17 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m82 |[0m    roles = user.roles.map(_.code).mkString([31m","[0m), [34m// Склеиваем список ролей в строку через запятую[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue roles is not a member of com.techmatrix18.users.domain.User - did you mean user.role?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthController.scala:12:80 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m12 |[0m[33mprivate[0m [33mobject[0m LoginRequest { [33mimplicit[0m [33mval[0m format: OFormat[LoginRequest] = Json.derived }[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                           ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m         value derived is not a member of object play.api.libs.json.Json[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthController.scala:15:84 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m15 |[0m[33mprivate[0m [33mobject[0m RefreshRequest { [33mimplicit[0m [33mval[0m format: OFormat[RefreshRequest] = Json.derived }[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                               ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m         value derived is not a member of object play.api.libs.json.Json[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthController.scala:64:70 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m64 |[0m              [33mcase[0m Right(tokensResult) => Ok(Json.toJson(tokensResult)) [34m// Этот JSON автоматически запишется в БД[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo Json serializer found for type Any. Try to implement an implicit Writes or Format for this type..[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    play.api.libs.json.Writes.iterableWrites2[[35mA[0m, [35mAny[0m]([0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      /* missing */summon[Any <:< Iterable[A]], ???)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut no implicit values were found that match type Any <:< Iterable[A].[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthController.scala:90:70 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m90 |[0m              [33mcase[0m Right(tokensResult) => Ok(Json.toJson(tokensResult)) [34m// Этот JSON автоматически запишется в БД[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo Json serializer found for type com.techmatrix18.users.application.in.RefreshTokensResponse. Try to implement an implicit Writes or Format for this type..[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    play.api.libs.json.Writes.iterableWrites2[[35mA[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      [35mcom.techmatrix18.users.application.in.RefreshTokensResponse[0m]([0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      /* missing */[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m        summon[com.techmatrix18.users.application.in.RefreshTokensResponse <:<[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m          Iterable[A]][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      ,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    ???)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut no implicit values were found that match type com.techmatrix18.users.application.in.RefreshTokensResponse <:< Iterable[A].[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthJsonFormats.scala:21:37 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m21 |[0m  [33mgiven[0m [36mloginResponseFormat[0m: [35mOFormat[0m[[35mLoginResponse[0m] = Json.format[[35mLoginResponse[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                     ^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                     Not found: type LoginResponse[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthJsonFormats.scala:21:66 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m21 |[0m  [33mgiven[0m [36mloginResponseFormat[0m: [35mOFormat[0m[[35mLoginResponse[0m] = Json.format[[35mLoginResponse[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                  ^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                           Not found: type LoginResponse[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthJsonFormats.scala:22:39 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m22 |[0m  [33mgiven[0m [36mrefreshResponseFormat[0m: [35mOFormat[0m[[35mRefreshTokenResponse[0m] = Json.format[[35mRefreshTokenResponse[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                       ^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNot found: type RefreshTokenResponse - did you mean RefreshTokensResponse?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/http/AuthJsonFormats.scala:22:75 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m22 |[0m  [33mgiven[0m [36mrefreshResponseFormat[0m: [35mOFormat[0m[[35mRefreshTokenResponse[0m] = Json.format[[35mRefreshTokenResponse[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                           ^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNot found: type RefreshTokenResponse - did you mean RefreshTokensResponse?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/presentation/GlobalErrorHandler.scala:47:70 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m47 |[0m    Future.successful(Results.Status(statusCode)(Json.toJson(response)))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mAmbiguous given instances: both [33mobject[0m [35mShortWrites[0m in [33mtrait[0m [35mDefaultWrites[0m and [33mobject[0m [35mByteWrites[0m in [33mtrait[0m [35mDefaultWrites[0m match type play.api.libs.json.Writes[T] of parameter tjs of [33mmethod[0m [35mtoJson[0m in [33mobject[0m [35mJson[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/presentation/GlobalErrorHandler.scala:66:71 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m66 |[0m    Future.successful(Results.InternalServerError(Json.toJson(response)))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                       ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mAmbiguous given instances: both [33mobject[0m [35mShortWrites[0m in [33mtrait[0m [35mDefaultWrites[0m and [33mobject[0m [35mByteWrites[0m in [33mtrait[0m [35mDefaultWrites[0m match type play.api.libs.json.Writes[T] of parameter tjs of [33mmethod[0m [35mtoJson[0m in [33mobject[0m [35mJson[0m[0m
+[0m[[0m[31merror[0m] [0m[0m102 errors found[0m

@@ -32,7 +32,7 @@ class PostgresHubSectionRepository @Inject()(
                total_capacity as totalCapacity, created_at as createdAt, updated_at as updatedAt
         FROM hub_sections
         WHERE id = ${UUID.fromString(sectionId.value)}::uuid
-      """.as(HubSectionRow.parser.singleOptional).map(_.toDomain)
+      """.as(HubSectionRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

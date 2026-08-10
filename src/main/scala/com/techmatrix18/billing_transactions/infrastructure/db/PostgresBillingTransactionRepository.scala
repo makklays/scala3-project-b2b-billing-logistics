@@ -30,11 +30,11 @@ class PostgresBillingTransactionRepository @Inject()(
   override def findById(transactionId: BillingTransactionId): Future[Option[BillingTransaction]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, company_id as companyId, amount, currency, category,
-                 source_id as sourceId, description, created_at as createdAt
-          FROM billing_transactions
-          WHERE id = ${UUID.fromString(transactionId.value)}::uuid
-        """.as(BillingTransactionRow.parser.*).map(_.toDomain)
+              SELECT id, company_id as companyId, amount, currency, category,
+                     source_id as sourceId, description, created_at as createdAt
+              FROM billing_transactions
+              WHERE id = ${UUID.fromString(transactionId.value)}::uuid
+            """.as(BillingTransactionRow.parser.singleOpt).map(_.toDomain) // ИСПРАВЛЕНО: .singleOpt вместо .singleOptional
     }
   }
 
@@ -55,7 +55,7 @@ class PostgresBillingTransactionRepository @Inject()(
             ${row.description},
             ${row.createdAt}
           )
-        """.executeInsert()
+          """.executeInsert()
 
       transaction.id
     }

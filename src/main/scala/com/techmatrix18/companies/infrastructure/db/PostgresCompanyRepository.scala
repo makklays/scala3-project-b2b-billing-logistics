@@ -27,7 +27,7 @@ class PostgresCompanyRepository(
                created_at as createdAt, updated_at as updatedAt
         FROM companies
         WHERE id = ${UUID.fromString(id.value)}::uuid
-      """.as(CompanyRow.parser.singleOptional).map(_.toDomain)
+      """.as(CompanyRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

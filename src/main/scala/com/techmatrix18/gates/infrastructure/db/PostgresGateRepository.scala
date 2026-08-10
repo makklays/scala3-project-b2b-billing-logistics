@@ -33,7 +33,7 @@ class PostgresGateRepository @Inject()(
                overtime_hourly_rate as overtimeHourlyRate, created_at as createdAt, updated_at as updatedAt
         FROM gates
         WHERE id = ${gateId.raw}::uuid
-      """.as(GateRow.parser.singleOptional).map(_.toDomain)
+      """.as(GateRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

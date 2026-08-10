@@ -30,7 +30,7 @@ class PostgresAuthTokenRepository @Inject()(
                created_at, updated_at
         FROM tokens
         WHERE token = ${token.trim} AND revoked = false
-      """.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)
+      """.as(AuthTokenRow.parser.singleOpt).map(_.toDomain)
     }
   }
 
@@ -42,7 +42,7 @@ class PostgresAuthTokenRepository @Inject()(
                  created_at, updated_at
           FROM tokens
           WHERE refresh_token = ${refreshToken.trim} AND revoked = false
-        """.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)
+        """.as(AuthTokenRow.parser.singleOpt).map(_.toDomain)
     }
   }
 
