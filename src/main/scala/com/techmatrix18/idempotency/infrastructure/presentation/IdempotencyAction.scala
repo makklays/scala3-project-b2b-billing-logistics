@@ -6,7 +6,7 @@ import javax.inject.{Inject, Singleton}
 import play.api.libs.json.Json
 import play.api.mvc.*
 import play.api.libs.streams.Accumulator
-import akka.util.ByteString // Если используется Pekko, замените на org.apache.pekko.util.ByteString
+import org.apache.pekko.util.ByteString // Если используется Pekko, замените на org.apache.pekko.util.ByteString
 import java.security.MessageDigest
 import scala.concurrent.{ExecutionContext, Future}
 import org.slf4j.MDC

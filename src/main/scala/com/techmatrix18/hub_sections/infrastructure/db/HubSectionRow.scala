@@ -60,7 +60,7 @@ object HubSectionRow {
   // Сборка строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(section: HubSection): HubSectionRow = HubSectionRow(
     id = UUID.fromString(section.id.value), // Извлекаем String через extension и парсим в UUID
-    hubId = section.hubId.raw,             // Берем чистый UUID хаба
+    hubId = UUID.fromString(section.hubId.value),             // Берем чистый UUID хаба
     sectionName = section.sectionName,
     sectionType = section.sectionType.code,
     totalCapacity = section.totalCapacity,

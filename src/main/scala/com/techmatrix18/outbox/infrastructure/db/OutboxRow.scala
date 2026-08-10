@@ -4,6 +4,7 @@ import com.techmatrix18.outbox.domain.{OutboxEvent, OutboxEventId, OutboxStatus}
 import java.time.Instant
 import java.util.UUID
 import anorm.{RowParser, ~, get}
+import anorm.SqlParser.{get, flatten}
 
 /**
  * OutboxRow - Вспомогательная структура строки таблицы outbox_events для Anorm.
@@ -43,15 +44,16 @@ object OutboxRow {
 
   // Нативный Scala 3 Anorm-парсер для автоматической сборки структуры OutboxRow из SQL-ответа.
   // Извлекает UUID и Instant напрямую, задействуя встроенные конвертеры Anorm.
+  // Anorm-парсер для автоматической сборки структуры OutboxRow
   val parser: RowParser[OutboxRow] = {
-    get[UUID]("id") ~
-    get[String]("aggregate_type") ~
-    get[UUID]("aggregate_id") ~
-    get[String]("event_type") ~
-    get[String]("payload") ~
-    get[String]("status") ~
-    get[Instant]("created_at") ~
-    get[Option[Instant]]("processed_at") map {
+    SqlParser.get[UUID]("id") ~
+      SqlParser.get[String]("aggregate_type") ~
+      SqlParser.get[String]("aggregate_id") ~
+      SqlParser.get[String]("event_type") ~
+      SqlParser.get[String]("payload") ~
+      SqlParser.get[String]("status") ~
+      SqlParser.get[Instant]("created_at") ~
+      SqlParser.get[Option[Instant]]("processed_at") map {
       case id ~ aggregateType ~ aggregateId ~ eventType ~ payload ~ status ~ createdAt ~ processedAt =>
         OutboxRow(id, aggregateType, aggregateId, eventType, payload, status, createdAt, processedAt)
     }

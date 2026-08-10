@@ -44,9 +44,9 @@ object CompanyRow {
   //val parser: RowParser[CompanyRow] = Macro.to[CompanyRow]
   val parser: RowParser[CompanyRow] = {
     get[UUID]("id") ~
-      get[String]("title") ~
-      get[String]("inn") ~
-      get[String]("status") map {
+    get[String]("title") ~
+    get[String]("inn") ~
+    get[String]("status") map {
       case id ~ title ~ inn ~ status =>
         CompanyRow(id, title, inn, status)
     }

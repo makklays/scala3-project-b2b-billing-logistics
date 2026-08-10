@@ -1,7 +1,7 @@
 package com.techmatrix18.users.application.in
 
 import com.techmatrix18.users.application.in.RefreshTokenCommand
-import com.techmatrix18.users.application.out.{AuthTokenRepository, UserRepository}
+import com.techmatrix18.users.application.out.{AuthTokenRepository, UserRepository, JwtService}
 import com.techmatrix18.users.domain.{AuthToken, TokenId, User, UserId}
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -22,7 +22,8 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class RefreshTokenUseCase @Inject()(
   userRepository: UserRepository,
-  tokenRepository: AuthTokenRepository
+  tokenRepository: AuthTokenRepository,
+  jwtService: JwtService
 )(using ec: ExecutionContext) {
 
   private val AccessTokenLifetimeMinutes = 15
@@ -59,7 +60,7 @@ class RefreshTokenUseCase @Inject()(
             val refreshExpiry = now.plus(RefreshTokenLifetimeDays, ChronoUnit.DAYS)
 
             // Выпуск честного подписанного Auth через инфраструктурный порт
-            val newAccessTokenStr = authService.generateToken(user.id, user.role, accessExpiry)
+            val newAccessTokenStr = jwtService.generateToken(user.id, user.role, accessExpiry)
             val newRefreshTokenStr = UUID.randomUUID().toString.replaceAll("-", "")
 
             val newSession = AuthToken(

@@ -3,6 +3,7 @@ package com.techmatrix18.gates.application.in
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
 import com.techmatrix18.gates.application.out.GateRepository
 import com.techmatrix18.gate_bookings.application.out.GateBookingRepository
+import com.techmatrix18.gate_bookings.domain.GateBookingStatus
 import java.time.Instant
 import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
@@ -51,7 +52,7 @@ class OccupyGateUseCase(
 
               // 4. Создаем иммутабельный слепок обновленной брони (активируем её)
               val activatedBooking = booking.copy(
-                status = "IN_PROGRESS",          // Фура заехала на разгрузку
+                status = GateBookingStatus.InProgress,          // Фура заехала на разгрузку
                 actualArrivalTime = Some(now),   // Фиксируем точное время старта аренды для биллинга
                 updatedAt = now
               )

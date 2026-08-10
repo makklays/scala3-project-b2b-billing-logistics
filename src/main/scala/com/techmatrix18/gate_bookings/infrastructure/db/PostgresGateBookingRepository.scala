@@ -120,7 +120,7 @@ class PostgresGateBookingRepository @Inject()(
         WHERE gb.id = ${UUID.fromString(bookingId.value)}::uuid
       """
         .as(scalar[UUID].singleOpt) // Извлекаем исключительно одну ячейку типа UUID
-        .map(companyUuid => CompanyId(companyUuid)) // Заворачиваем обратно в непрозрачный opaque доменный тип
+        .map(companyUuid => CompanyId(companyUuid.toString)) // Заворачиваем обратно в непрозрачный opaque доменный тип
     }
   }
 

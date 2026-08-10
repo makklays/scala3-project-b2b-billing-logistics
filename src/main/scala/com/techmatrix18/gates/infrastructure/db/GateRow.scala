@@ -80,8 +80,8 @@ object GateRow {
 
   // Сборка строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(gate: Gate): GateRow = GateRow(
-    id = gate.id.value, // Используем метод расширения .raw для получения UUID ворот
-    hubId = gate.hubId.value, // Метод расширения .raw для получения UUID хаба
+    id = UUID.fromString(gate.id.value), // Используем метод расширения .raw для получения UUID ворот
+    hubId = UUID.fromString(gate.hubId.value), // Метод расширения .raw для получения UUID хаба
     gateNumber = gate.gateNumber,
     gateType = gate.gateType.code,
     status = gate.status.code,

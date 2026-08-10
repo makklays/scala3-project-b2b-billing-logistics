@@ -1,14 +1,16 @@
 package com.techmatrix18.hubs.infrastructure.db
 
 import com.techmatrix18.hubs.application.out.HubRepository
-import com.techmatrix18.hubs.domain.{Hub, HubId, HubType, HubStatus}
+import com.techmatrix18.hubs.domain.{Hub, HubId, HubStatus, HubType}
 import com.techmatrix18.companies.domain.CompanyId
+
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
 import play.api.db.Database
-import anorm.*
+import anorm.{~, *}
 import anorm.SqlParser.*
+
 import scala.concurrent.{ExecutionContext, Future}
 
 /**
@@ -26,6 +28,8 @@ private case class HubRow(
   companyId: UUID,
   title: String,
   description: Option[String],
+  countryCode: String, // ДОБАВЛЕНО
+  city: String, // ДОБАВЛЕНО
   addressLine: String,
   postalCode: String,
   latitude: BigDecimal,
@@ -42,6 +46,8 @@ private case class HubRow(
     title = title,
     description = description,
     addressLine = addressLine,
+    countryCode = countryCode, // ДОБАВЛЕНО
+    city = city, // ДОБАВЛЕНО
     postalCode = postalCode,
     latitude = latitude,
     longitude = longitude,
@@ -59,6 +65,8 @@ private object HubRow {
     get[UUID]("company_id") ~
     get[String]("title") ~
     get[Option[String]]("description") ~
+    get[String]("country_code") ~ // ДОБАВЛЕНО
+    get[String]("city") ~ // ДОБАВЛЕНО
     get[String]("address_line") ~
     get[String]("postal_code") ~
     get[BigDecimal]("latitude") ~
@@ -67,8 +75,8 @@ private object HubRow {
     get[String]("status") ~
     get[Instant]("created_at") ~
     get[Instant]("updated_at") map {
-      case id ~ companyId ~ title ~ description ~ addressLine ~ postalCode ~ latitude ~ longitude ~ hubType ~ status ~ createdAt ~ updatedAt =>
-        HubRow(id, companyId, title, description, addressLine, postalCode, latitude, longitude, hubType, status, createdAt, updatedAt)
+      case id ~ companyId ~ title ~ description ~ country_code ~ city ~ addressLine ~ postalCode ~ latitude ~ longitude ~ hubType ~ status ~ createdAt ~ updatedAt =>
+        HubRow(id, companyId, title, description, country_code, city, addressLine, postalCode, latitude, longitude, hubType, status, createdAt, updatedAt)
     }
   }
 
@@ -78,6 +86,8 @@ private object HubRow {
     companyId = UUID.fromString(hub.companyId),
     title = hub.title,
     description = hub.description,
+    countryCode = hub.countryCode, // ДОБАВЛЕНО
+    city = hub.city, // ДОБАВЛЕНО
     addressLine = hub.addressLine,
     postalCode = hub.postalCode,
     latitude = hub.latitude,

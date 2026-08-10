@@ -32,7 +32,8 @@ class PostgresHubRepository @Inject()(
                  postal_code as postalCode, latitude, longitude, hub_type as hubType, status,
                  created_at as createdAt, updated_at as updatedAt
           FROM hubs
-          WHERE id = ${id.raw}::uuid
+          -- ИСПРАВЛЕНО: Заменено id.raw на id.value
+          WHERE id = ${UUID.fromString(id.value)}::uuid
         """.as(HubRow.parser.singleOpt).map(_.toDomain)
     }
   }

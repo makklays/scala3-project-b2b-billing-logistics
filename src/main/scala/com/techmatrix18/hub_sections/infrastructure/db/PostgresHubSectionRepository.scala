@@ -88,7 +88,7 @@ class PostgresHubSectionRepository @Inject()(
                  total_capacity as totalCapacity, created_at as createdAt, updated_at as updatedAt
           FROM hub_sections
           LIMIT 100
-        """.as(HubSectionRow.parser.list).map(_.toDomain)
+        """.as(HubSectionRow.parser.*).map(_.toDomain)
     }
   }
 }

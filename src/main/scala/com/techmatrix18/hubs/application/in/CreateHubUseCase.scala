@@ -2,6 +2,7 @@ package com.techmatrix18.hubs.application.in
 
 import com.techmatrix18.hubs.domain.{Hub, HubId, HubStatus, HubType}
 import com.techmatrix18.hubs.application.out.HubRepository
+import com.techmatrix18.companies.domain.CompanyId
 import java.time.Instant
 import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
@@ -36,13 +37,13 @@ class CreateHubUseCase(
       // 2. Парсинг строковых ENUM из команды в строго типизированные доменные типы
       val parsedHubType = command.hubType.trim.toUpperCase match {
         case "SEA_PORT" => HubType.SeaPort
-        case "AIR_CARGO_HUB" => HubType.AirCargoHub
+        case "AIRPORT" => HubType.Airport
         case _ => HubType.LandTerminal // Дефолтное значение для сухопутных терминалов
       }
 
       // 3. Сборка иммутабельного Aggregate Root домена Hub
       val newHub = Hub(
-        id = HubId(UUID.randomUUID()), // Генерация нового UUID
+        id = HubId(UUID.randomUUID().toString),   // Генерация нового UUID
         companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании-владельцу
         title = command.title.trim,
         description = command.description, // Автоматически мапится Option[String]

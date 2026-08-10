@@ -35,14 +35,14 @@ class CreateGateUseCase(
       val parsedGateType = command.gateType.trim.toUpperCase match {
         case "COLD_STORAGE" => GateType.ColdStorage
         case "MARINE_BERTH" => GateType.MarineBerth
-        case "SPACE_CARGO_DOCK" => GateType.SpaceDock
+        case "SPACE_CARGO_GATE" => GateType.SpaceGate
         case _ => GateType.Dry // По умолчанию сухой док
       }
 
       // 3. Сборка иммутабельного Aggregate Root Gate
       val newGate = Gate(
-        id = GateId(UUID.randomUUID()),                // Заворачиваем UUID в строгий тип идентификатора
-        hubId = HubId(UUID.fromString(command.hubId)), // Привязка Foreign Key к хабу
+        id = GateId(UUID.randomUUID().toString),                // Заворачиваем UUID в строгий тип идентификатора
+        hubId = HubId(UUID.fromString(command.hubId).toString), // Привязка Foreign Key к хабу
         gateNumber = command.gateNumber.trim,
         gateType = parsedGateType,
         status = GateStatus.Available,                 // Новые ворота свободны по умолчанию

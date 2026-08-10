@@ -5,6 +5,7 @@ import com.techmatrix18.gates.application.out.GateRepository
 import com.techmatrix18.gate_bookings.application.out.GateBookingRepository
 import com.techmatrix18.companies.application.in.DeductFundsUseCase
 import com.techmatrix18.gates.application.in.ReleaseGateCommand
+import com.techmatrix18.companies.application.in.DeductFundsCommand
 import com.techmatrix18.companies.domain.CompanyId
 import java.time.Instant
 import java.time.temporal.ChronoUnit

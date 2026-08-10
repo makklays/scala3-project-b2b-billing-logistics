@@ -44,7 +44,7 @@ class ActiveHubUseCase(
             ))
           }.recover {
             case error: Exception =>
-              Left(s"Failed to update hub status due to an infrastructure error: ${ex.getMessage}")
+              Left(s"Failed to update hub status due to an infrastructure error: ${error.getMessage}")
           }
         }
     }
