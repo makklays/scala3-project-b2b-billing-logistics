@@ -1,6 +1,6 @@
 package com.techmatrix18.hubs.application.in
 
-import com.techmatrix18.hubs.domain.{Hub, HubId, HubStatus}
+import com.techmatrix18.hubs.domain.{Hub, HubId, HubStatus, HubType}
 import com.techmatrix18.hubs.application.out.HubRepository
 import java.time.Instant
 import java.util.UUID

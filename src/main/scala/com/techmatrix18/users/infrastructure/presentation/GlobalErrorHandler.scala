@@ -1,7 +1,8 @@
 package com.techmatrix18.users.infrastructure.presentation
 
-import com.techmatrix18.users.presentation.dto.AuthErrorResponse
-import com.techmatrix18.users.presentation.dto.AuthJsonFormats.given // Импортируем Scala 3 given-форматы
+import com.techmatrix18.users.infrastructure.presentation.GlobalErrorHandler
+import com.techmatrix18.users.infrastructure.presentation.AuthErrorResponse
+import com.techmatrix18.users.infrastructure.http.AuthJsonFormats.given        // Импортируем Scala 3 given-форматы
 import javax.inject.{Inject, Provider, Singleton}
 import play.api.http.HttpErrorHandler
 import play.api.libs.json.Json

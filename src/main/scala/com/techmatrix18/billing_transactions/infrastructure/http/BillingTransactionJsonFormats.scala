@@ -1,5 +1,6 @@
 package com.techmatrix18.billing_transactions.infrastructure.http
 
+import com.techmatrix18.billing_transactions.domain.BillingTransaction
 import com.techmatrix18.billing_transactions.application.in.*
 import play.api.libs.json.{Json, OFormat}
 
@@ -20,5 +21,8 @@ object BillingTransactionJsonFormats {
 
   // 2. Формат для исходящего JSON-ответа (Подтверждение записи в Ledger-книгу)
   given logBillingTransactionResponseFormat: OFormat[LogBillingTransactionResponse] = Json.format[LogBillingTransactionResponse]
+
+  // 3. Формат для самого доменного объекта (уберет ошибку компиляции списка)
+  given billingTransactionFormat: OFormat[BillingTransaction] = Json.format[BillingTransaction]
 }
 

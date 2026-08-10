@@ -2,8 +2,11 @@ package com.techmatrix18.cargo_transactions.application.in
 
 import com.techmatrix18.cargo_transactions.application.out.CargoTransactionRepository
 import com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}
+import com.techmatrix18.cargo_transactions.domain.CargoTransactionId.*
 import com.techmatrix18.hub_sections.domain.HubSectionId
+import com.techmatrix18.hub_sections.domain.HubSectionId.*
 import com.techmatrix18.gate_bookings.domain.GateBookingId
+import com.techmatrix18.gate_bookings.domain.GateBookingId.*
 import java.time.Instant
 import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
@@ -54,7 +57,8 @@ class LogCargoTransactionUseCase(
       // 4. Сохранение записи в PostgreSQL через Out-порт репозитория
       transactionRepository.create(newTransaction).map { generatedId =>
         Right(LogCargoTransactionResponse(
-          transactionId = generatedId.value, // Наш метод расширения (extension)
+          //transactionId = generatedId.value,    // Наш метод расширения (extension)
+          transactionId = generatedId.raw,
           operationType = newTransaction.operationType.code,
           createdAt = newTransaction.createdAt
         ))

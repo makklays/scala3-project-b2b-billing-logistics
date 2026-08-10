@@ -27,11 +27,11 @@ case class CompanyRow(
   // Конвертация строки из БД в чистую доменную сущность
   def toDomain: Company = {
     Company(
-      id = CompanyId(id),
+      id = CompanyId(id.toString),
       title = title,
       taxNumber = taxNumber,
       balance = balance,
-      status = CompanyStatus.withName(status),
+      status = CompanyStatus.valueOf(status),
       createdAt = createdAt,
       updatedAt = updatedAt
     )
@@ -40,7 +40,7 @@ case class CompanyRow(
 
 object CompanyRow {
   // Автоматический парсер Anorm для маппинга полей SQL в case-класс CompanyRow
-  val parser: RowParser[CompanyRow] = Macro.named[CompanyRow]
+  val parser: RowParser[CompanyRow] = Macro.parser[CompanyRow]
 
   // Конвертация доменной модели в строку БД перед сохранением
   def fromDomain(company: Company): CompanyRow = CompanyRow(

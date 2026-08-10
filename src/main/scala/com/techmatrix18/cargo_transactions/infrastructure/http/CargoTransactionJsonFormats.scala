@@ -1,5 +1,6 @@
 package com.techmatrix18.cargo_transactions.infrastructure.http
 
+import com.techmatrix18.cargo_transactions.domain.CargoTransaction
 import com.techmatrix18.cargo_transactions.application.in.*
 import play.api.libs.json.{Json, OFormat}
 
@@ -20,5 +21,8 @@ object CargoTransactionJsonFormats {
 
   // 2. Формат для исходящего JSON-ответа (Подтверждение записи в Ledger-книгу)
   given logCargoTransactionResponseFormat: OFormat[LogCargoTransactionResponse] = Json.format[LogCargoTransactionResponse]
+
+  // 3. Специфический формат для доменной модели грузов на Scala 3
+  given cargoTransactionFormat: OFormat[CargoTransaction] = Json.format[CargoTransaction]
 }
 

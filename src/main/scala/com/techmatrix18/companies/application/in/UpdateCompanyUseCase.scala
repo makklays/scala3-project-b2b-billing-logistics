@@ -42,7 +42,7 @@ class UpdateCompanyUseCase( // Изменено с case class на обычны�
             // 3. Создаем иммутабельную копию сущности домена с новыми реквизитами
             // Обратите внимание: поле в домене называется 'name', но команда прилетает с 'title'
             val updatedCompany = company.copy(
-              name = command.title,
+              title = command.title,
               taxNumber = command.taxNumber,
               updatedAt = Instant.now()
             )
@@ -51,7 +51,7 @@ class UpdateCompanyUseCase( // Изменено с case class на обычны�
             companyRepository.update(updatedCompany).map { _ =>
               Right(UpdateCompanyResponse(
                 companyId = updatedCompany.id.value, // Наш метод расширения для извлечения String
-                title = updatedCompany.name,
+                title = updatedCompany.title,
                 taxNumber = updatedCompany.taxNumber
               ))
             }.recover {

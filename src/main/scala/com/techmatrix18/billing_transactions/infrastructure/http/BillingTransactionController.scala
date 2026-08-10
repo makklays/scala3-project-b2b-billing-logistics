@@ -1,6 +1,7 @@
 package com.techmatrix18.billing_transactions.infrastructure.http
 
 import com.techmatrix18.billing_transactions.application.out.{BillingTransactionRepository, BillingTransactionFilter}
+import com.techmatrix18.billing_transactions.domain.BillingTransaction
 import com.techmatrix18.billing_transactions.domain.BillingTransactionId
 import com.techmatrix18.companies.domain.CompanyId
 import com.techmatrix18.billing_transactions.infrastructure.http.BillingTransactionJsonFormats.given // Импортируем given-форматы Scala 3
@@ -39,7 +40,8 @@ class BillingTransactionController @Inject()(
     val currencyOpt = request.queryString.get("currency").flatMap(_.headOption)
 
     // Преобразуем строковой ID компании в строгий доменный CompanyId, если он передан
-    val resolvedCompanyId = companyIdStrOpt.map(idStr => CompanyId(UUID.fromString(idStr)))
+    //val resolvedCompanyId = companyIdStrOpt.map(idStr => CompanyId(UUID.fromString(idStr)))
+    val resolvedCompanyId = companyIdStrOpt.map(idStr => CompanyId(idStr))
 
     // Упаковываем параметры в строго типизированный DTO-фильтр прикладного уровня
     val filter = BillingTransactionFilter(

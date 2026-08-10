@@ -1,5 +1,9 @@
 package com.techmatrix18.gate_bookings.application.out
 
+import java.time.Instant
+import com.techmatrix18.gates.domain.GateId
+import com.techmatrix18.gate_bookings.domain.GateBookingStatus
+
 /**
  * Filter criteria object for flexible gate booking queries.
  * Предотвращает раздувание интерфейса репозитория.

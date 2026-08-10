@@ -4,6 +4,7 @@ import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
 import com.techmatrix18.gates.application.out.GateRepository
 import java.time.Instant
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.gates.domain.GateType
 
 /**
  * CreateGateUseCase

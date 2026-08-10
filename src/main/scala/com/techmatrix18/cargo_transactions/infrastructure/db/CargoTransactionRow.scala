@@ -47,12 +47,12 @@ object CargoTransactionRow {
   // Anorm-парсер для автоматической сборки структуры CargoTransactionRow из SQL-ответа
   val parser: RowParser[CargoTransactionRow] = {
     get[UUID]("id") ~
-      get[UUID]("hub_section_id") ~
-      get[UUID]("gate_booking_id") ~
-      get[String]("client_name") ~
-      get[String]("operation_type") ~
-      get[Int]("pallets_delta") ~
-      get[Instant]("created_at") map {
+    get[UUID]("hub_section_id") ~
+    get[UUID]("gate_booking_id") ~
+    get[String]("client_name") ~
+    get[String]("operation_type") ~
+    get[Int]("pallets_delta") ~
+    get[Instant]("created_at") map {
       case id ~ hubSectionId ~ gateBookingId ~ clientName ~ operationType ~ palletsDelta ~ createdAt =>
         CargoTransactionRow(id, hubSectionId, gateBookingId, clientName, operationType, palletsDelta, createdAt)
     }
@@ -60,7 +60,8 @@ object CargoTransactionRow {
 
   // Сборка строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(transaction: CargoTransaction): CargoTransactionRow = CargoTransactionRow(
-    id = UUID.fromString(transaction.id.value), // Извлекаем String через extension и парсим в UUID
+    //id = UUID.fromString(transaction.id.value),                      // Извлекаем String через extension и парсим в UUID
+    id = UUID.fromString(transaction.id.raw),
     hubSectionId = UUID.fromString(transaction.hubSectionId.value),
     gateBookingId = UUID.fromString(transaction.gateBookingId.value),
     clientName = transaction.clientName,

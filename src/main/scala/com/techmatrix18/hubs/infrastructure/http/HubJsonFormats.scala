@@ -16,6 +16,7 @@ import play.api.libs.json.{Json, OFormat}
 object HubJsonFormats {
 
   // 1. Форматы для создания и обновления профиля хаба
+  given createHubCommandFormat: OFormat[CreateHubCommand] = Json.format[CreateHubCommand]
   given createHubResponseFormat: OFormat[CreateHubResponse] = Json.format[CreateHubResponse]
 
   given updateHubProfileCommandFormat: OFormat[UpdateHubCommand] = Json.format[UpdateHubCommand]

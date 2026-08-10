@@ -5,6 +5,7 @@ import com.techmatrix18.gate_bookings.application.out.GateBookingRepository
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
 import com.techmatrix18.gates.application.out.GateRepository
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
+import com.techmatrix18.gates.domain.GateId.*
 import java.time.Instant
 import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
@@ -35,7 +36,8 @@ class CreateGateBookingUseCase(
     } else {
 
       // 2. Асинхронно проверяем существование и доступность физических ворот
-      val targetGateId = GateId(UUID.fromString(command.gateId))
+      //val targetGateId = GateId(UUID.fromString(command.gateId))
+      val targetGateId = command.gateId
 
       gateRepository.findById(targetGateId).flatMap {
         case None =>
@@ -54,7 +56,8 @@ class CreateGateBookingUseCase(
             val newBooking = GateBooking(
               id = newBookingId,
               gateId = gate.id,
-              companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании для биллинга
+              companyId = CompanyId(UUID.fromString(command.clientCompanyId).toString),
+              //companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании для биллинга
               clientName = command.clientName.trim,
               truckLicensePlate = command.truckLicensePlate.trim.toUpperCase,
               scheduledStartTime = command.scheduledStartTime,

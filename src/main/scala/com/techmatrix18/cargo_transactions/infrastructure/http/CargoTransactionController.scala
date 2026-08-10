@@ -2,6 +2,7 @@ package com.techmatrix18.cargo_transactions.infrastructure.http
 
 import com.techmatrix18.cargo_transactions.application.out.{CargoTransactionRepository, CargoTransactionFilter}
 import com.techmatrix18.cargo_transactions.domain.CargoTransactionId
+import com.techmatrix18.cargo_transactions.infrastructure.http.CargoTransactionJsonFormats.*
 import com.techmatrix18.cargo_transactions.infrastructure.http.CargoTransactionJsonFormats.given // Импортируем given-форматы Scala 3
 import play.api.mvc.*
 import play.api.libs.json.*

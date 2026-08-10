@@ -30,12 +30,12 @@ class PostgresCargoTransactionRepository @Inject()(
   override def findById(transactionId: CargoTransactionId): Future[Option[CargoTransaction]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, hub_section_id as hubSectionId, gate_booking_id as gateBookingId,
-                 client_name as clientName, operation_type as operationType,
-                 pallets_delta as palletsDelta, created_at as createdAt
-          FROM cargo_transactions
-          WHERE id = ${UUID.fromString(transactionId.value)}::uuid
-        """.as(CargoTransactionRow.parser.*).map(_.toDomain)
+              SELECT id, cargo_balance_id as cargoBalanceId, operation_type as operationType, quantity, created_at as createdAt
+              FROM cargo_transactions
+
+              -- ИСПРАВЛЕНО: Заменено transactionId.value на transactionId.raw
+              WHERE id = ${UUID.fromString(transactionId.raw)}::uuid
+            """.as(CargoTransactionRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

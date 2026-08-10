@@ -4,6 +4,8 @@ import com.techmatrix18.gate_bookings.application.out.{GateBookingRepository, Ga
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
 import com.techmatrix18.gates.domain.GateId
 import com.techmatrix18.companies.domain.CompanyId
+import com.techmatrix18.companies.domain.CompanyId.*
+import com.techmatrix18.gates.domain.GateId.*
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}

@@ -9,6 +9,7 @@ import com.techmatrix18.companies.domain.CompanyId
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import scala.concurrent.{ExecutionContext, Future}
+import com.techmatrix18.gate_bookings.domain.GateBookingStatus
 
 /**
  * ReleaseGateUseCase - Inbound Driving Service for truck departure and automated billing calculation
@@ -62,7 +63,7 @@ class ReleaseGateUseCase(
               // 4. Формируем иммутабельные слепки для обновления инфраструктуры
               val releasedGate = gate.copy(status = GateStatus.Available, updatedAt = now)
               val completedBooking = booking.copy(
-                status = "COMPLETED",
+                status = GateBookingStatus.Completed,
                 actualDepartureTime = Some(now),
                 updatedAt = now
               )

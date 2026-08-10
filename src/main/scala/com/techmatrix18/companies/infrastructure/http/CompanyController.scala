@@ -2,6 +2,7 @@ package com.techmatrix18.companies.infrastructure.http
 
 import com.techmatrix18.companies.application.in.*
 import com.techmatrix18.companies.domain.CompanyId
+import com.techmatrix18.companies.domain.CompanyId.*
 import com.techmatrix18.companies.infrastructure.http.CompanyJsonFormats.given // Импортируем given-форматы Scala 3
 import play.api.mvc.*
 import play.api.libs.json.*
@@ -60,7 +61,7 @@ class CompanyController @Inject()(
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
         // На уровне контроллера защищаем инвариант: ID из URL должен строго совпадать с ID в команде DTO
-        if (command.companyId.value != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path parameter ID must match JSON entity body identifier")))
         } else {
           updateCompanyUseCase.execute(command).map {
@@ -120,7 +121,7 @@ class CompanyController @Inject()(
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
-        if (command.companyId.value != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path ID mismatch")))
         } else {
           activateCompanyUseCase.execute(command).map {
@@ -140,7 +141,7 @@ class CompanyController @Inject()(
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
-        if (command.companyId.value != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path ID mismatch")))
         } else {
           suspendCompanyUseCase.execute(command).map {
@@ -160,7 +161,7 @@ class CompanyController @Inject()(
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
-        if (command.companyId.value != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path ID mismatch")))
         } else {
           deleteCompanyUseCase.execute(command).map {
