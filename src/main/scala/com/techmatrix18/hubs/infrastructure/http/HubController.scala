@@ -1,6 +1,7 @@
 package com.techmatrix18.hubs.infrastructure.http
 
 import com.techmatrix18.hubs.application.in.*
+import com.techmatrix18.hubs.application.in.CreateHubCommand
 import com.techmatrix18.hubs.infrastructure.http.HubJsonFormats.given
 import play.api.libs.json.*
 import play.api.mvc.*
@@ -38,7 +39,7 @@ class HubController @Inject()(
    * Registers a new logistical hub/terminal in the platform
    */
   def create(): Action[JsValue] = Action.async(parse.json) { request =>
-    request.body.validate[HubCompanyCommand] match {
+    request.body.validate[CreateHubCommand] match {
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
@@ -54,7 +55,7 @@ class HubController @Inject()(
    * Updates hub metadata profiles (title, postal addresses)
    */
   def updateProfile(id: String): Action[JsValue] = Action.async(parse.json) { request =>
-    request.body.validate[UpdateHubProfileCommand] match {
+    request.body.validate[UpdateHubCommand] match {
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>

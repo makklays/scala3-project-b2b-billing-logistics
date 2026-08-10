@@ -1,9 +1,3 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:30:22 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m  activateHubUseCase: [35mActivateHubUseCase[0m,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                      ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m     Not found: type ActivateHubUseCase - did you mean ActiveHubUseCase?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/application/in/LoginUseCase.scala:28:18 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  passwordHasher: [35mPasswordHasher[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                  ^^^^^^^^^^^^^^[0m[0m
@@ -78,87 +72,43 @@
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value singleOptional is not a member of anorm.RowParser[[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m      com.techmatrix18.cargo_balances.infrastructure.db.CargoBalanceRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_balances/infrastructure/db/PostgresCargoBalanceRepository.scala:89:38 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m89 |[0m        """.as(CargoBalanceRow.parser.list).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value list is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      com.techmatrix18.cargo_balances.infrastructure.db.CargoBalanceRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:4:69 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                                     ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:41:29 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m      [33mval[0m [36mnewTransactionId[0m = CargoTransactionId(UUID.randomUUID().toString)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m          Not found: CargoTransactionId - did you mean CargoTransaction?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:57:38 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m          transactionId = generatedId.value, [34m// Наш метод расширения (extension)[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue value is not a member of com.techmatrix18.cargo_transactions.domain.CargoTransactionId, but could be made available as an extension method.[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/domain/CargoTransaction.scala:18:6 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m18 |[0m  id: [35mCargoTransactionId[0m,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Not found: type CargoTransactionId[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/out/CargoTransactionRepository.scala:26:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m26 |[0m  [33mdef[0m [36mcreate[0m([36mtransaction[0m: [35mCargoTransaction[0m): [35mFuture[0m[[35mCargoTransactionId[0m][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m     Not found: type CargoTransactionId - did you mean CargoTransaction?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import org.apache.pekko.util.Helpers.Requiring[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/out/CargoTransactionFilter.scala:3:69 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                                     ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/out/CargoTransactionRepository.scala:3:69 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                                     ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/out/CargoTransactionRepository.scala:22:30 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m22 |[0m  [33mdef[0m [36mfindById[0m([36mtransactionId[0m: [35mCargoTransactionId[0m): [35mFuture[0m[[35mOption[0m[[35mCargoTransaction[0m]][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                              ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m     Not found: type CargoTransactionId - did you mean CargoTransaction?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/CargoTransactionRow.scala:63:40 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m63 |[0m    id = UUID.fromString(transaction.id.value), [34m// Извлекаем String через extension и парсим в UUID[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                         ^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue value is not a member of com.techmatrix18.cargo_transactions.domain.CargoTransactionId, but could be made available as an extension method.[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/CargoTransactionRow.scala:4:69 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                                     ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/CargoTransactionRow.scala:36:9 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m    id = CargoTransactionId(id.toString), [34m// Заворачиваем UUID в наш opaque-тип (String)[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m         ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m         Not found: CargoTransactionId - did you mean CargoTransaction?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:4:69 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.{CargoTransaction, CargoTransactionId, OperationType}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                                     ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:30:39 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m  [33moverride[0m [33mdef[0m findById(transactionId: CargoTransactionId): Future[Option[CargoTransaction]] = Future {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                       ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m     Not found: type CargoTransactionId - did you mean CargoTransaction?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import org.apache.pekko.util.Helpers.Requiring[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:37:53 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m          WHERE id = ${UUID.fromString(transactionId.value)}::uuid[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                       ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue value is not a member of com.techmatrix18.cargo_transactions.domain.CargoTransactionId, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import org.apache.pekko.util.Helpers.Requiring[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:38:42 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m38 |[0m        """.as(CargoTransactionRow.parser.singleOptional).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.cargo_transactions.infrastructure.db.CargoTransactionRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:45:61 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m  [33moverride[0m [33mdef[0m create(transaction: CargoTransaction): Future[CargoTransactionId] = Future {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                             ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m     Not found: type CargoTransactionId - did you mean CargoTransaction?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:75:42 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m75 |[0m        """.as(CargoTransactionRow.parser.list).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue list is not a member of anorm.RowParser[[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.cargo_transactions.infrastructure.db.CargoTransactionRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/http/CargoTransactionController.scala:4:50 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.cargo_transactions.domain.CargoTransactionId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                  ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue CargoTransactionId is not a member of com.techmatrix18.cargo_transactions.domain[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/http/CargoTransactionController.scala:50:34 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m50 |[0m      Ok(Json.toJson(transactions))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                  ^[0m[0m
@@ -178,12 +128,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m          A² is a type variable[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m          A³ is a type variable[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/http/CargoTransactionController.scala:65:30 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m65 |[0m    [33mval[0m [36mtargetTransactionId[0m = CargoTransactionId(id)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                              ^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m       Not found: CargoTransactionId - did you mean targetTransactionId?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/http/CargoTransactionController.scala:74:35 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m74 |[0m        Ok(Json.toJson(transaction))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                   ^[0m[0m
@@ -584,4 +528,78 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: errors[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m153 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:45:33 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m        createHubUseCase.execute(command).map {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                 ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                 Not found: command[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:57:26 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m    request.body.validate[[35mUpdateHubProfileCommand[0m] [33mmatch[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: type UpdateHubProfileCommand[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:59:132 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m59 |[0m        Future.successful(BadRequest(Json.obj([31m"status"[0m -> [31m"Error"[0m, [31m"message"[0m -> [31m"Invalid JSON payload"[0m, [31m"details"[0m -> JsError.toJson(errors))))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                                                                                    ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: errors[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:61:12 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m61 |[0m        [33mif[0m (command.hubId.value != id) {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m            Not found: command - did you mean compat?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:64:35 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m64 |[0m          updateHubUseCase.execute(command).map {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                   ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                   Not found: command[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:20:13 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m20 |[0m  createdAt: [35mInstant[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: type Instant[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:21:13 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m21 |[0m  expiresAt: [35mInstant[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: type Instant[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:25:21 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m  [33mdef[0m [36misExpired[0m([36mnow[0m: [35mInstant[0m): [35mBoolean[0m = now.isAfter(expiresAt)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Not found: type Instant[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:3:44 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.idempotency.domain.{IdempotencyRecord, IdempotencyKey, IdempotencyStatus}[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                            ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue IdempotencyRecord is not a member of com.techmatrix18.idempotency.domain[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:5:28 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m5 |[0m[33mimport[0m anorm.{RowParser, ~, get}[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                            ^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m                            value get is not a member of anorm[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:28:16 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  [33mdef[0m [36mtoDomain[0m: [35mIdempotencyRecord[0m = IdempotencyRecord([0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                Not found: type IdempotencyRecord[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:28:36 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  [33mdef[0m [36mtoDomain[0m: [35mIdempotencyRecord[0m = IdempotencyRecord([0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                    ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                    Not found: IdempotencyRecord[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:43:4 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m    get[[35mString[0m]([31m"idempotency_key"[0m) ~[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m140 errors found[0m
