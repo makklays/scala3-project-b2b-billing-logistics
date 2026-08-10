@@ -5,6 +5,7 @@ import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBo
 import com.techmatrix18.companies.application.in.{DeductFundsUseCase, DeductFundsCommand}
 import com.techmatrix18.gates.application.out.GateRepository
 import java.time.Instant
+import java.util.UUID
 import java.time.temporal.ChronoUnit
 import scala.concurrent.{ExecutionContext, Future}
 

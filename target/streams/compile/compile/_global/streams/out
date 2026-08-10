@@ -1,43 +1,25 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:57:38 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m          transactionId = generatedId.value, [34m// Наш метод расширения (extension)[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue value is not a member of com.techmatrix18.cargo_transactions.domain.CargoTransactionId, but could be made available as an extension method.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import org.apache.pekko.util.Helpers.Requiring[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/application/in/CreateCompanyUseCase.scala:25:16 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m25 |[0m    [33mif[0m (command.name.trim.isEmpty) {[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue name is not a member of com.techmatrix18.companies.application.in.CreateCompanyCommand[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/application/in/CreateCompanyUseCase.scala:36:23 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        name = command.name,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue name is not a member of com.techmatrix18.companies.application.in.CreateCompanyCommand[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/application/in/UpdateCompanyUseCase.scala:45:19 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m              name = command.title,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[33mmethod[0m [35mcopy[0m in [33mclass[0m [35mCompany[0m: (id: com.techmatrix18.companies.domain.CompanyId, title: String,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/application/in/CreateCompanyUseCase.scala:36:13 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        name = command.title,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[33mmethod[0m [35mapply[0m in [33mobject[0m [35mCompany[0m: (id: com.techmatrix18.companies.domain.CompanyId, title: String,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  taxNumber: String, balance: BigDecimal,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  status: com.techmatrix18.companies.domain.CompanyStatus,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  createdAt: java.time.Instant, updatedAt: java.time.Instant):[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.companies.domain.Company does not have a parameter name[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/db/CompanyRow.scala:30:21 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      id = CompanyId(id),[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Found:    (CompanyRow.this.id : java.util.UUID)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Required: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E134] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/db/CompanyRow.scala:43:44 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m  [33mval[0m [36mparser[0m: [35mRowParser[0m[[35mCompanyRow[0m] = Macro.parser[[35mCompanyRow[0m][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                      ^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNone of the overloaded alternatives of [33mmethod[0m [35mparser[0m in [33mobject[0m [35mMacro[0m with types[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m [T](naming: anorm.Macro.ColumnNaming, names: String*): anorm.RowParser[T][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m [T](names: String*): anorm.RowParser[T²][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mmatch type arguments [com.techmatrix18.companies.infrastructure.db.CompanyRow] and expected type anorm.RowParser[com.techmatrix18.companies.infrastructure.db.CompanyRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/db/CompanyRow.scala:34:29 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m      status = CompanyStatus.withName(status),[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue withName is not a member of object com.techmatrix18.companies.domain.CompanyStatus[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/db/CompanyRow.scala:43:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m  [33mval[0m [36mparser[0m: [35mRowParser[0m[[35mCompanyRow[0m] = Macro.named[[35mCompanyRow[0m][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                      ^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                       value named is not a member of object anorm.Macro[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mwhere:    T  is a type variable[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m          T² is a type variable[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:84:12 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m84 |[0m        [33mif[0m (command.companyId != id) {[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -500,4 +482,4 @@
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m       Not found: pdi[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m73 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m69 errors found[0m

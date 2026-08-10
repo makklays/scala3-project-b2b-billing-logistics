@@ -56,7 +56,7 @@ class CreateGateBookingUseCase(
             val newBooking = GateBooking(
               id = newBookingId,
               gateId = gate.id,
-              companyId = CompanyId(UUID.fromString(command.clientCompanyId).toString),
+              //companyId = CompanyId(UUID.fromString(command.clientCompanyId).toString),
               //companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании для биллинга
               clientName = command.clientName.trim,
               truckLicensePlate = command.truckLicensePlate.trim.toUpperCase,

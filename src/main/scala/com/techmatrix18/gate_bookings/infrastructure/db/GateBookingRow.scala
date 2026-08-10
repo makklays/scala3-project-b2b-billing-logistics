@@ -1,5 +1,7 @@
 package com.techmatrix18.gate_bookings.infrastructure.db
 
+import com.techmatrix18.gates.domain.GateId
+import com.techmatrix18.gates.domain.GateId.*
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
 import anorm.{Macro, RowParser, ~}
 import java.time.Instant
@@ -51,16 +53,16 @@ object GateBookingRow {
   // Anorm парсер для автоматической сборки кейс-класса строки
   val parser: RowParser[GateBookingRow] = {
     get[UUID]("id") ~
-      get[UUID]("gate_id") ~
-      get[String]("client_name") ~
-      get[String]("truck_license_plate") ~
-      get[Instant]("scheduled_start_time") ~
-      get[Instant]("scheduled_end_time") ~
-      get[Option[Instant]]("actual_arrival_time") ~
-      get[Option[Instant]]("actual_departure_time") ~
-      get[String]("status") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[UUID]("gate_id") ~
+    get[String]("client_name") ~
+    get[String]("truck_license_plate") ~
+    get[Instant]("scheduled_start_time") ~
+    get[Instant]("scheduled_end_time") ~
+    get[Option[Instant]]("actual_arrival_time") ~
+    get[Option[Instant]]("actual_departure_time") ~
+    get[String]("status") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ gateId ~ clientName ~ truckLicensePlate ~ scheduledStartTime ~ scheduledEndTime ~ actualArrivalTime ~ actualDepartureTime ~ status ~ createdAt ~ updatedAt =>
         GateBookingRow(id, gateId, clientName, truckLicensePlate, scheduledStartTime, scheduledEndTime, actualArrivalTime, actualDepartureTime, status, createdAt, updatedAt)
     }

@@ -24,7 +24,7 @@ object GateBookingJsonFormats {
   given markAsNoShowCommandFormat: OFormat[MarkAsNoShowCommand] = Json.format[MarkAsNoShowCommand]
 
   // 2. Форматы для исходящих JSON-событий (События, которые будут отправляться клиентам)
-  given createGateBookingResponseFormat: OFormat[CreateGateBookingResponse] = Json.format[CreateGateResponse]
+  given createGateBookingResponseFormat: OFormat[CreateGateBookingResponse] = Json.format[CreateGateBookingResponse]
   given cancelGateBookingResponseFormat: OFormat[CancelGateBookingResponse] = Json.format[CancelGateBookingResponse]
   given arriveTruckResponseFormat: OFormat[ArriveTruckResponse] = Json.format[ArriveTruckResponse]
   given departTruckResponseFormat: OFormat[DepartTruckResponse] = Json.format[DepartTruckResponse]

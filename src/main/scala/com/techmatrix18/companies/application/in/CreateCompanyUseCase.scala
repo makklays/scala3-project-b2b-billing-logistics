@@ -22,7 +22,7 @@ class CreateCompanyUseCase(
   def execute(command: CreateCompanyCommand): Future[Either[String, CreateCompanyResponse]] = {
 
     // Валидация входных данных на уровне прикладной логики
-    if (command.name.trim.isEmpty) {
+    if (command.title.trim.isEmpty) {
       Future.successful(Left("Company name cannot be empty"))
     } else if (command.taxNumber.trim.isEmpty) {
       Future.successful(Left("Tax number (CIF/NIF) is required for Spanish B2B infrastructure"))

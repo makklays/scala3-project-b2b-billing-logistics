@@ -81,7 +81,7 @@ class CompanyController @Inject()(
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
-        if (command.companyId != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path ID mismatch")))
         } else {
           depositFundsUseCase.execute(command).map {
@@ -101,7 +101,7 @@ class CompanyController @Inject()(
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>
-        if (command.companyId != id) {
+        if (command.companyId.toString != id) {
           Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Path ID mismatch")))
         } else {
           deductFundsUseCase.execute(command).map {
