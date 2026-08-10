@@ -3,6 +3,8 @@ package com.techmatrix18.gates.infrastructure.db
 import com.techmatrix18.gates.application.out.{GateRepository, GateFilter}
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus, GateType, WorkingHours}
 import com.techmatrix18.hubs.domain.HubId
+import com.techmatrix18.hubs.domain.HubId.*
+import com.techmatrix18.gates.domain.GateId.*
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
@@ -44,8 +46,8 @@ case class GateRow(
     }
 
     Gate(
-      id = GateId(id),
-      hubId = HubId(hubId),
+      id = GateId(id.toString),
+      hubId = HubId(hubId.toString),
       gateNumber = gateNumber,
       gateType = GateType.values.find(_.code == gateType).getOrElse(GateType.Dry),
       status = GateStatus.values.find(_.code == status).getOrElse(GateStatus.Available),
@@ -62,15 +64,15 @@ object GateRow {
   // Anorm-парсер для автоматической сборки структуры GateRow из SQL-ответа
   val parser: RowParser[GateRow] = {
     get[UUID]("id") ~
-      get[UUID]("hub_id") ~
-      get[String]("gate_number") ~
-      get[String]("gate_type") ~
-      get[String]("status") ~
-      get[String]("working_hours") ~
-      get[BigDecimal]("hourly_rate") ~
-      get[BigDecimal]("overtime_hourly_rate") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[UUID]("hub_id") ~
+    get[String]("gate_number") ~
+    get[String]("gate_type") ~
+    get[String]("status") ~
+    get[String]("working_hours") ~
+    get[BigDecimal]("hourly_rate") ~
+    get[BigDecimal]("overtime_hourly_rate") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ hubId ~ gateNumber ~ gateType ~ status ~ workingHours ~ hourlyRate ~ overtimeHourlyRate ~ createdAt ~ updatedAt =>
         GateRow(id, hubId, gateNumber, gateType, status, workingHours, hourlyRate, overtimeHourlyRate, createdAt, updatedAt)
     }
@@ -78,8 +80,8 @@ object GateRow {
 
   // Сборка строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(gate: Gate): GateRow = GateRow(
-    id = gate.id.raw, // Используем метод расширения .raw для получения UUID ворот
-    hubId = gate.hubId.raw, // Метод расширения .raw для получения UUID хаба
+    id = gate.id.value, // Используем метод расширения .raw для получения UUID ворот
+    hubId = gate.hubId.value, // Метод расширения .raw для получения UUID хаба
     gateNumber = gate.gateNumber,
     gateType = gate.gateType.code,
     status = gate.status.code,

@@ -1,8 +1,10 @@
 package com.techmatrix18.gates.application.in
 
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
+import com.techmatrix18.hubs.domain.HubId
 import com.techmatrix18.gates.application.out.GateRepository
 import java.time.Instant
+import java.util.UUID
 import scala.concurrent.{ExecutionContext, Future}
 import com.techmatrix18.gates.domain.GateType
 

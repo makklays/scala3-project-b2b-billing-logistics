@@ -33,7 +33,7 @@ case class HubSectionRow(
   // Конвертация строки базы данных в чистый доменный агрегат (DDD)
   def toDomain: HubSection = HubSection(
     id = HubSectionId(id.toString), // Заворачиваем UUID в наш opaque-тип (String)
-    hubId = HubId(hubId),
+    hubId = HubId(hubId.toString),
     sectionName = sectionName,
     sectionType = SectionType.values.find(_.code == sectionType).getOrElse(SectionType.PalletZone),
     totalCapacity = totalCapacity,
@@ -46,12 +46,12 @@ object HubSectionRow {
   // Anorm-парсер для автоматической сборки структуры HubSectionRow из SQL-ответа
   val parser: RowParser[HubSectionRow] = {
     get[UUID]("id") ~
-      get[UUID]("hub_id") ~
-      get[String]("section_name") ~
-      get[String]("section_type") ~
-      get[BigDecimal]("total_capacity") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[UUID]("hub_id") ~
+    get[String]("section_name") ~
+    get[String]("section_type") ~
+    get[BigDecimal]("total_capacity") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ hubId ~ sectionName ~ sectionType ~ totalCapacity ~ createdAt ~ updatedAt =>
         HubSectionRow(id, hubId, sectionName, sectionType, totalCapacity, createdAt, updatedAt)
     }

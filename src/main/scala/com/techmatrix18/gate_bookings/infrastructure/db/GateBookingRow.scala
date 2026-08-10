@@ -3,6 +3,7 @@ package com.techmatrix18.gate_bookings.infrastructure.db
 import com.techmatrix18.gates.domain.GateId
 import com.techmatrix18.gates.domain.GateId.*
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
+import com.techmatrix18.gate_bookings.domain.GateBookingId.*
 import anorm.{Macro, RowParser, ~}
 import java.time.Instant
 import java.util.UUID
@@ -36,7 +37,7 @@ case class GateBookingRow(
   // Трансформация строки БД в чистый доменный агрегат (DDD)
   def toDomain: GateBooking = GateBooking(
     id = GateBookingId(id.toString), // Заворачиваем UUID в наш opaque-тип (String)
-    gateId = GateId(gateId),
+    gateId = GateId(gateId.toString),
     clientName = clientName,
     truckLicensePlate = truckLicensePlate,
     scheduledStartTime = scheduledStartTime,

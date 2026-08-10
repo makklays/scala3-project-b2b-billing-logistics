@@ -3,9 +3,9 @@ package com.techmatrix18.gate_bookings.infrastructure.db
 import com.techmatrix18.gate_bookings.application.out.{GateBookingRepository, GateBookingFilter}
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
 import com.techmatrix18.gates.domain.GateId
+import com.techmatrix18.gates.domain.GateId.*
 import com.techmatrix18.companies.domain.CompanyId
 import com.techmatrix18.companies.domain.CompanyId.*
-import com.techmatrix18.gates.domain.GateId.*
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
@@ -49,7 +49,7 @@ class PostgresGateBookingRepository @Inject()(
                actual_arrival_time as actualArrivalTime, actual_departure_time as actualDepartureTime,
                status, created_at as createdAt, updated_at as updatedAt
         FROM gate_bookings
-        WHERE gate_id = ${gateId.raw}::uuid AND status = 'IN_PROGRESS'
+        WHERE gate_id = ${gateId.value}::uuid AND status = 'IN_PROGRESS'
       """.as(GateBookingRow.parser.singleOpt).map(_.toDomain)
     }
   }
@@ -127,7 +127,7 @@ class PostgresGateBookingRepository @Inject()(
   override def findByFilter(filter: GateBookingFilter): Future[List[GateBooking]] = Future {
     db.withConnection { implicit connection =>
       SQL"SELECT * FROM gate_bookings LIMIT 100"
-        .as(GateBookingRow.parser.list).map(_.toDomain)
+        .as(GateBookingRow.parser.*).map(_.toDomain)
     }
   }
 }

@@ -1,5 +1,6 @@
 package com.techmatrix18.gates.application.in
 
+import com.techmatrix18.gate_bookings.domain.GateBookingId
 import com.techmatrix18.gates.domain.GateId
 import java.util.UUID
 
@@ -12,5 +13,5 @@ import java.util.UUID
  * @since 05.08.2026
  */
 
-case class OccupyGateCommand(gateId: GateId, bookingId: UUID)
+case class OccupyGateCommand(gateId: GateId, bookingId: GateBookingId)
 

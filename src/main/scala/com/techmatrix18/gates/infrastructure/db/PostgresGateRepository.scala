@@ -2,7 +2,9 @@ package com.techmatrix18.gates.infrastructure.db
 
 import com.techmatrix18.gates.application.out.{GateRepository, GateFilter}
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus, GateType, WorkingHours}
+import com.techmatrix18.gates.domain.GateId.*
 import com.techmatrix18.hubs.domain.HubId
+import com.techmatrix18.hubs.domain.HubId.*
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
@@ -32,7 +34,7 @@ class PostgresGateRepository @Inject()(
                working_hours as workingHours, hourly_rate as hourlyRate,
                overtime_hourly_rate as overtimeHourlyRate, created_at as createdAt, updated_at as updatedAt
         FROM gates
-        WHERE id = ${gateId.raw}::uuid
+        WHERE id = ${gateId.value}::uuid
       """.as(GateRow.parser.singleOpt).map(_.toDomain)
     }
   }
@@ -83,7 +85,7 @@ class PostgresGateRepository @Inject()(
     db.withConnection { implicit connection =>
       SQL"""
           DELETE FROM gates
-          WHERE id = ${gateId.raw}::uuid
+          WHERE id = ${gateId.value}::uuid
         """.executeUpdate()
       ()
     }
@@ -97,7 +99,7 @@ class PostgresGateRepository @Inject()(
                  overtime_hourly_rate as overtimeHourlyRate, created_at as createdAt, updated_at as updatedAt
           FROM gates
           LIMIT 100
-        """.as(GateRow.parser.list).map(_.toDomain)
+        """.as(GateRow.parser.*).map(_.toDomain)
     }
   }
 }

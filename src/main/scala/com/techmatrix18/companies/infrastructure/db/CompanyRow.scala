@@ -41,7 +41,16 @@ case class CompanyRow(
 object CompanyRow {
   // Автоматический парсер Anorm для маппинга полей SQL в case-класс CompanyRow
   //val parser: RowParser[CompanyRow] = Macro.parser[CompanyRow]
-  val parser: RowParser[CompanyRow] = Macro.to[CompanyRow]
+  //val parser: RowParser[CompanyRow] = Macro.to[CompanyRow]
+  val parser: RowParser[CompanyRow] = {
+    get[UUID]("id") ~
+      get[String]("title") ~
+      get[String]("inn") ~
+      get[String]("status") map {
+      case id ~ title ~ inn ~ status =>
+        CompanyRow(id, title, inn, status)
+    }
+  }
 
   // Конвертация доменной модели в строку БД перед сохранением
   def fromDomain(company: Company): CompanyRow = CompanyRow(

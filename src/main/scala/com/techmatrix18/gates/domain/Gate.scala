@@ -31,6 +31,6 @@ case class Gate(
 ) {
 
   // Чистое доменное правило: открыты ли ворота для бронирования прямо сейчас?
-  def isAvailableForBooking: Boolean = status == GateStatus.Active
+  def isAvailableForBooking: Boolean = status == GateStatus.Available
 }
 

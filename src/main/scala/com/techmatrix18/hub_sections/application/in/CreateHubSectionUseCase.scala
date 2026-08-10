@@ -45,7 +45,7 @@ class CreateHubSectionUseCase(
       // 3. Сборка иммутабельного Aggregate Root HubSection в точном соответствии с вашей 3NF БД
       val newSection = HubSection(
         id = newSectionId,
-        hubId = HubId(UUID.fromString(command.hubId)), // Привязка Foreign Key к хабу
+        hubId = HubId(UUID.fromString(command.hubId).toString), // Привязка Foreign Key к хабу
         sectionName = command.sectionName.trim,
         sectionType = parsedSectionType,
         totalCapacity = command.totalCapacity,

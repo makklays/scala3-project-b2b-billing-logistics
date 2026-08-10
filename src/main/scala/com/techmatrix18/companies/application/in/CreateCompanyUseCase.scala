@@ -33,7 +33,7 @@ class CreateCompanyUseCase(
       // Сборка чистой доменной сущности (Aggregate Root)
       val newCompany = Company(
         id = CompanyId.generate(), // Используем наш безопасный генератор ID
-        name = command.title,
+        title = command.title,
         taxNumber = command.taxNumber,
         balance = command.initialBalance,
         status = CompanyStatus.Active, // Новая компания сразу активна
@@ -46,7 +46,7 @@ class CreateCompanyUseCase(
         // Мапим результат в успешный ответ
         Right(CreateCompanyResponse(
           companyId = createdId.value, // Достаем сырую строку через наш extension метод
-          title = newCompany.name
+          title = newCompany.title
         ))
       }.recover {
         // Защита от системных сбоев (например, дубликат tax_number в базе данных)

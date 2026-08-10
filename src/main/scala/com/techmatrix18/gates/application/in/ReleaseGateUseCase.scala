@@ -70,10 +70,10 @@ class ReleaseGateUseCase(
 
               // 5. Запускаем финансовую транзакцию списания денег через смежный домен
               val financialCommand = DeductFundsCommand(
-                companyId = booking.companyId,
+                companyId = booking.companyId,  // TODO: нет companyId (!) - переделат функцию (!)
                 amount = totalCost,
                 category = "GATE_RENTAL",
-                sourceId = Some(booking.id) // Передаем UUID брони как полиморфный источник финансового следа
+                sourceId = Some(booking.id)     // Передаем UUID брони как полиморфный источник финансового следа
               )
 
               deductFundsUseCase.execute(financialCommand).flatMap {
