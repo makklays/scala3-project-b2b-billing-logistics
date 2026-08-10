@@ -47,18 +47,18 @@ case class AuthTokenRow(
 object AuthTokenRow {
   val parser: RowParser[AuthTokenRow] = {
     get[Long]("id") ~
-      get[Long]("user_id") ~
-      get[String]("token") ~
-      get[Instant]("expired_token") ~
-      get[String]("refresh_token") ~
-      get[Instant]("expired_refresh_token") ~
-      get[Option[String]]("password_reset_token") ~
-      get[Option[Instant]]("expired_password_reset_token") ~
-      get[Option[String]]("ip_address") ~
-      get[Option[String]]("user_agent") ~
-      get[Boolean]("revoked") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[Long]("user_id") ~
+    get[String]("token") ~
+    get[Instant]("expired_token") ~
+    get[String]("refresh_token") ~
+    get[Instant]("expired_refresh_token") ~
+    get[Option[String]]("password_reset_token") ~
+    get[Option[Instant]]("expired_password_reset_token") ~
+    get[Option[String]]("ip_address") ~
+    get[Option[String]]("user_agent") ~
+    get[Boolean]("revoked") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ userId ~ token ~ expiredToken ~ refreshToken ~ expiredRefreshToken ~
         passwordResetToken ~ expiredPasswordResetToken ~ ipAddress ~ userAgent ~ revoked ~ createdAt ~ updatedAt =>
         AuthTokenRow(

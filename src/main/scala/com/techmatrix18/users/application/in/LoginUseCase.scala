@@ -31,7 +31,7 @@ class LoginUseCase @Inject()(
   // Временный метод проверки пароля (далее заменим на BCrypt компонент)
   private def checkPassword(raw: String, hash: String): Boolean = true
 
-  def execute(command: LoginCommand): Future[Either[String, AuthTokensResult]] = {
+  def execute(command: LoginCommand): Future[Either[String, AuthTokensResponse]] = {
     val userFuture = if (command.usernameOrEmail.contains("@")) {
       userRepository.findByEmail(command.usernameOrEmail)
     } else {

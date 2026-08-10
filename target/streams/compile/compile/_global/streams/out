@@ -271,10 +271,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Required: com.techmatrix18.gate_bookings.domain.GateBookingId[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:4:47 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.gates.application.out.{GateBookingRepository, GateRepository}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                               ^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue GateBookingRepository is not a member of com.techmatrix18.gates.application.out[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:65:25 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m65 |[0m                status = [31m"COMPLETED"[0m,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                         ^^^^^^^^^^^[0m[0m
@@ -690,4 +686,8 @@
 [0m[[0m[31merror[0m] [0m[0m[31m66 |[0m    Future.successful(Results.InternalServerError(Json.toJson(response)))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                       ^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mAmbiguous given instances: both [33mobject[0m [35mShortWrites[0m in [33mtrait[0m [35mDefaultWrites[0m and [33mobject[0m [35mByteWrites[0m in [33mtrait[0m [35mDefaultWrites[0m match type play.api.libs.json.Writes[T] of parameter tjs of [33mmethod[0m [35mtoJson[0m in [33mobject[0m [35mJson[0m[0m
-[0m[[0m[31merror[0m] [0m[0m102 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/security/BCryptPasswordHasher.scala:4:11 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m org.mindrot.jbcrypt.BCrypt[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m       value mindrot is not a member of org[0m
+[0m[[0m[31merror[0m] [0m[0m101 errors found[0m

@@ -33,7 +33,7 @@ class PostgresHubRepository @Inject()(
                  created_at as createdAt, updated_at as updatedAt
           FROM hubs
           WHERE id = ${id.raw}::uuid
-        """.as(HubRow.parser.*).map(_.toDomain)
+        """.as(HubRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

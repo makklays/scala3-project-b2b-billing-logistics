@@ -18,8 +18,8 @@ class AuthJsonFormats {
   given loginCommandFormat: OFormat[LoginCommand] = Json.format[LoginCommand]
   given refreshCommandFormat: OFormat[RefreshTokenCommand] = Json.format[RefreshTokenCommand]
 
-  given loginResponseFormat: OFormat[LoginResponse] = Json.format[LoginResponse]
-  given refreshResponseFormat: OFormat[RefreshTokenResponse] = Json.format[RefreshTokenResponse]
+  given loginResponseFormat: OFormat[AuthTokensResponse] = Json.format[AuthTokensResponse]
+  given refreshResponseFormat: OFormat[RefreshTokensResponse] = Json.format[RefreshTokensResponse]
 
 }
 
