@@ -4,6 +4,8 @@ import com.techmatrix18.companies.domain.{Company, CompanyId, CompanyStatus}
 import anorm.{Macro, RowParser, ~}
 import java.time.Instant
 import java.util.UUID
+import anorm.*
+import anorm.SqlParser.*
 
 /**
  * CompanyRow
@@ -42,11 +44,12 @@ object CompanyRow {
   // Автоматический парсер Anorm для маппинга полей SQL в case-класс CompanyRow
   //val parser: RowParser[CompanyRow] = Macro.parser[CompanyRow]
   //val parser: RowParser[CompanyRow] = Macro.to[CompanyRow]
+  // Явный, типобезопасный парсер строки таблицы компаний для Scala 3
   val parser: RowParser[CompanyRow] = {
-    get[UUID]("id") ~
-    get[String]("title") ~
-    get[String]("inn") ~
-    get[String]("status") map {
+    SqlParser.get[java.util.UUID]("id") ~
+    SqlParser.get[String]("title") ~
+    SqlParser.get[String]("inn") ~
+    SqlParser.get[String]("status") map {
       case id ~ title ~ inn ~ status =>
         CompanyRow(id, title, inn, status)
     }

@@ -36,7 +36,8 @@ class CreateSectionTariffUseCase(
     } else {
 
       // 2. Асинхронно проверяем существование целевой секции склада
-      val targetSectionId = HubSectionId(UUID.fromString(command.hubSectionId).toString)
+      //val targetSectionId = HubSectionId(UUID.fromString(command.hubSectionId).toString)
+      val targetSectionId = command.hubSectionId
 
       hubSectionRepository.findById(targetSectionId).flatMap {
         case None =>

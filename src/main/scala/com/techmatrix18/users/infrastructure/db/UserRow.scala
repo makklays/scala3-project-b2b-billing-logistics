@@ -59,16 +59,16 @@ private object UserRow {
   // Anorm-парсер для автоматической сборки структуры UserRow из SQL-ответа
   val parser: RowParser[UserRow] = {
     get[Long]("id") ~
-      get[String]("username") ~
-      get[String]("email") ~
-      get[String]("roles") ~
-      get[Option[String]]("mobile") ~
-      get[Option[String]]("gender") ~
-      get[Option[Int]]("age") ~
-      get[Option[String]]("avatar") ~
-      get[String]("password") ~
-      get[Instant]("created_at") ~
-      get[Instant]("updated_at") map {
+    get[String]("username") ~
+    get[String]("email") ~
+    get[String]("roles") ~
+    get[Option[String]]("mobile") ~
+    get[Option[String]]("gender") ~
+    get[Option[Int]]("age") ~
+    get[Option[String]]("avatar") ~
+    get[String]("password") ~
+    get[Instant]("created_at") ~
+    get[Instant]("updated_at") map {
       case id ~ username ~ email ~ roles ~ mobile ~ gender ~ age ~ avatar ~ password ~ createdAt ~ updatedAt =>
         UserRow(id, username, email, roles, mobile, gender, age, avatar, password, createdAt, updatedAt)
     }
@@ -79,7 +79,7 @@ private object UserRow {
     id = user.id.raw,
     username = user.username,
     email = user.email,
-    roles = user.roles.map(_.code).mkString(","), // Склеиваем список ролей в строку через запятую
+    roles = user.role.toString,    // Склеиваем список ролей в строку через запятую
     mobile = user.mobile,
     gender = user.gender,
     age = user.age,

@@ -47,13 +47,13 @@ object OutboxRow {
   // Anorm-парсер для автоматической сборки структуры OutboxRow
   val parser: RowParser[OutboxRow] = {
     SqlParser.get[UUID]("id") ~
-      SqlParser.get[String]("aggregate_type") ~
-      SqlParser.get[String]("aggregate_id") ~
-      SqlParser.get[String]("event_type") ~
-      SqlParser.get[String]("payload") ~
-      SqlParser.get[String]("status") ~
-      SqlParser.get[Instant]("created_at") ~
-      SqlParser.get[Option[Instant]]("processed_at") map {
+    SqlParser.get[String]("aggregate_type") ~
+    SqlParser.get[String]("aggregate_id") ~
+    SqlParser.get[String]("event_type") ~
+    SqlParser.get[String]("payload") ~
+    SqlParser.get[String]("status") ~
+    SqlParser.get[Instant]("created_at") ~
+    SqlParser.get[Option[Instant]]("processed_at") map {
       case id ~ aggregateType ~ aggregateId ~ eventType ~ payload ~ status ~ createdAt ~ processedAt =>
         OutboxRow(id, aggregateType, aggregateId, eventType, payload, status, createdAt, processedAt)
     }

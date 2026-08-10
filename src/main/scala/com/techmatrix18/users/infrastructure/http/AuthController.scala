@@ -9,10 +9,14 @@ import play.api.mvc.{AbstractController, ControllerComponents, Action, AnyConten
 import scala.concurrent.{ExecutionContext, Future}
 
 private case class LoginRequest(usernameOrEmail: String, passwordRaw: String)
-private object LoginRequest { implicit val format: OFormat[LoginRequest] = Json.derived }
+private object LoginRequest {
+  given format: OFormat[LoginRequest] = Json.format[LoginRequest]
+}
 
 private case class RefreshRequest(refreshToken: String)
-private object RefreshRequest { implicit val format: OFormat[RefreshRequest] = Json.derived }
+private object RefreshRequest {
+  given format: OFormat[RefreshRequest] = Json.format[RefreshRequest]
+}
 
 /**
  * AuthController - Контроллер управления сессиями и JWT-токенами.

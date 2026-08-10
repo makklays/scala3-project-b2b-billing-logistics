@@ -73,7 +73,8 @@ object GateBookingRow {
   def fromDomain(booking: GateBooking): GateBookingRow = GateBookingRow(
     id = UUID.fromString(booking.id.value),
     //gateId = booking.gateId.raw,
-    gateId = booking.gateId.value,
+    //gateId = booking.gateId.value,
+    gateId = UUID.fromString(booking.gateId.value),
     clientName = booking.clientName,
     truckLicensePlate = booking.truckLicensePlate,
     scheduledStartTime = booking.scheduledStartTime,

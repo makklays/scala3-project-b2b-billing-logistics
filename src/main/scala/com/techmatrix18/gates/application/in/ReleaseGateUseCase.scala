@@ -74,7 +74,7 @@ class ReleaseGateUseCase(
                 companyId = booking.companyId,  // TODO: нет companyId (!) - переделат функцию (!)
                 amount = totalCost,
                 category = "GATE_RENTAL",
-                sourceId = Some(booking.id)     // Передаем UUID брони как полиморфный источник финансового следа
+                sourceId = Some(booking.id.value)     // Передаем UUID брони как полиморфный источник финансового следа
               )
 
               deductFundsUseCase.execute(financialCommand).flatMap {

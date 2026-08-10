@@ -88,7 +88,7 @@ class PostgresHubRepository @Inject()(
     db.withConnection { implicit connection =>
       SQL"""
           DELETE FROM hubs
-          WHERE id = ${id.raw}::uuid
+          WHERE id = ${id.value}::uuid
         """.executeUpdate()
       ()
     }
@@ -102,7 +102,7 @@ class PostgresHubRepository @Inject()(
                  created_at as createdAt, updated_at as updatedAt
           FROM hubs
           LIMIT 100
-        """.as(HubRow.parser.list).map(_.toDomain)
+        """.as(HubRow.parser.*).map(_.toDomain)
     }
   }
 }

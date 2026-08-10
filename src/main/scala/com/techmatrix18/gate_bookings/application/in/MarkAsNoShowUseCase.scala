@@ -65,7 +65,8 @@ class MarkAsNoShowUseCase(
                     companyId = resolvedCompanyId,
                     amount = penaltyAmount,
                     category = "GATE_NOSHOW_PENALTY",
-                    sourceId = Some(UUID.fromString(booking.id.value)) // 👈 Исправлено: безопасный парсинг String-ID в UUID
+                    //sourceId = Some(UUID.fromString(booking.id.value)) // 👈 Исправлено: безопасный парсинг String-ID в UUID
+                    sourceId = Some(booking.id.value)
                   )
 
                   // 6. Вызываем междоменное финансовое списание

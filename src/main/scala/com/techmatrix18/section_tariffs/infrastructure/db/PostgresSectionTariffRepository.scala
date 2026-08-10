@@ -29,12 +29,12 @@ class PostgresSectionTariffRepository @Inject()(
   override def findById(tariffId: SectionTariffId): Future[Option[SectionTariff]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, hub_section_id as hubSectionId, section_type as sectionType, client_name as clientName,
-                 occupied_rate_per_hour as occupiedRatePerHour, empty_reservation_rate_per_hour as emptyReservationRatePerHour,
-                 valid_from as validFrom, valid_to as validTo, created_at as createdAt, updated_at as updatedAt
-          FROM section_tariffs
-          WHERE id = ${UUID.fromString(tariffId.value)}::uuid
-        """.as(SectionTariffRow.parser.*).map(_.toDomain)
+            SELECT id, hub_section_id as hubSectionId, section_type as sectionType, client_name as clientName,
+                   occupied_rate_per_hour as occupiedRatePerHour, empty_reservation_rate_per_hour as emptyReservationRatePerHour,
+                   valid_from as validFrom, valid_to as validTo, created_at as createdAt, updated_at as updatedAt
+            FROM section_tariffs
+            WHERE id = ${UUID.fromString(tariffId.value)}::uuid
+          """.as(SectionTariffRow.parser.singleOpt).map(_.toDomain) // ИСПРАВЛЕНО: .singleOpt вместо .*
     }
   }
 

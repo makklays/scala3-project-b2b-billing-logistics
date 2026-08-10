@@ -44,7 +44,8 @@ class CreateHubUseCase(
       // 3. Сборка иммутабельного Aggregate Root домена Hub
       val newHub = Hub(
         id = HubId(UUID.randomUUID().toString),   // Генерация нового UUID
-        companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании-владельцу
+        //companyId = CompanyId(UUID.fromString(command.companyId)), // Привязка к компании-владельцу
+        companyId = CompanyId(command.companyId),
         title = command.title.trim,
         description = command.description, // Автоматически мапится Option[String]
         hubType = parsedHubType,
