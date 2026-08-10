@@ -60,7 +60,7 @@ object BillingTransactionRow {
   // Сборка плоской строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(transaction: BillingTransaction): BillingTransactionRow = BillingTransactionRow(
     id = UUID.fromString(transaction.id.value), // Извлекаем String через extension и парсим в UUID
-    companyId = java.util.UUID.fromString(transaction.companyId),
+    companyId = java.util.UUID.fromString(transaction.companyId.toString),
     amount = transaction.amount,
     currency = transaction.currency,
     category = transaction.category,

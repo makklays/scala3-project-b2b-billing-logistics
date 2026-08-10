@@ -13,16 +13,18 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: String[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:37:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m        """.as(BillingTransactionRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.billing_transactions.infrastructure.db.BillingTransactionRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:72:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m        """.as(BillingTransactionRow.parser.list).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue list is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.billing_transactions.infrastructure.db.BillingTransactionRow][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:37:50 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m          SELECT id, company_id as companyId, amount, currency, category,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m                 source_id as sourceId, description, created_at as createdAt[0m
+[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m          FROM billing_transactions[0m
+[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m          WHERE id = [0m${UUID.fromString(transactionId.value)}[31m::uuid[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m        """[0m.as(BillingTransactionRow.parser.*).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    [1m[31mList[0m[com.techmatrix18.billing_transactions.domain.BillingTransaction][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: [1m[32mOption[0m[com.techmatrix18.billing_transactions.domain.BillingTransaction][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/http/BillingTransactionController.scala:42:82 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m42 |[0m    [33mval[0m [36mresolvedCompanyId[0m = companyIdStrOpt.map([36midStr[0m => CompanyId(UUID.fromString(idStr)))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                   ^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -64,11 +66,18 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    ???)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut no implicit values were found that match type com.techmatrix18.billing_transactions.domain.BillingTransaction <:< Iterable[A].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_balances/infrastructure/db/PostgresCargoBalanceRepository.scala:35:36 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      """.as(CargoBalanceRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    value singleOptional is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      com.techmatrix18.cargo_balances.infrastructure.db.CargoBalanceRow][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_balances/infrastructure/db/PostgresCargoBalanceRepository.scala:35:42 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m31 |[0m        SELECT id, hub_section_id as hubSectionId, client_name as clientName,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m               current_pallets as currentPallets, created_at as createdAt, updated_at as updatedAt[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m        FROM cargo_balances[0m
+[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m        WHERE id = [0m${UUID.fromString(balanceId.value)}[31m::uuid[0m
+[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m      """[0m.as(CargoBalanceRow.parser.*).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   Found:    [1m[31mList[0m[com.techmatrix18.cargo_balances.domain.CargoBalance][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m   Required: [1m[32mOption[0m[com.techmatrix18.cargo_balances.domain.CargoBalance][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/application/in/LogCargoTransactionUseCase.scala:57:38 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m57 |[0m          transactionId = generatedId.value, [34m// Наш метод расширения (extension)[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^[0m[0m
@@ -96,16 +105,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import org.apache.pekko.util.Helpers.Requiring[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:38:42 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m38 |[0m        """.as(CargoTransactionRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.cargo_transactions.infrastructure.db.CargoTransactionRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/db/PostgresCargoTransactionRepository.scala:75:42 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m75 |[0m        """.as(CargoTransactionRow.parser.list).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue list is not a member of anorm.RowParser[[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.cargo_transactions.infrastructure.db.CargoTransactionRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/cargo_transactions/infrastructure/http/CargoTransactionController.scala:50:34 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m50 |[0m      Ok(Json.toJson(transactions))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                  ^[0m[0m
@@ -175,30 +174,6 @@
 [0m[[0m[31merror[0m] [0m[0m[31m30 |[0m      """.as(CompanyRow.parser.singleOptional).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.companies.infrastructure.db.CompanyRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:58:26 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m58 |[0m    request.body.validate[[35mUpdateCompanyProfileCommand[0m] [33mmatch[0m {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: type UpdateCompanyProfileCommand[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:60:132 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m60 |[0m        Future.successful(BadRequest(Json.obj([31m"status"[0m -> [31m"Error"[0m, [31m"message"[0m -> [31m"Invalid JSON payload"[0m, [31m"details"[0m -> JsError.toJson(errors))))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                                                                                    ^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: errors[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:63:12 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m63 |[0m        [33mif[0m (command.companyId.value != id) {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m            Not found: command - did you mean compat?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:66:39 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m66 |[0m          updateCompanyUseCase.execute(command).map {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                       ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                       Not found: command[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/companies/infrastructure/http/CompanyController.scala:83:12 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m83 |[0m        [33mif[0m (command.companyId != id) {[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -626,4 +601,85 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m122 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:27:6 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m27 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue SQL is not a member of StringContext, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import anorm.SqlStringInterpolation[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m        SELECT id, user_id, token, expired_token, refresh_token, expired_refresh_token,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m29 |[0m               password_reset_token, expired_password_reset_token, ip_address, user_agent, revoked,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m30 |[0m               created_at, updated_at[0m
+[0m[[0m[31merror[0m] [0m[0m[31m31 |[0m        FROM tokens[0m
+[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m        WHERE token = [0m${token.trim}[31m AND revoked = false[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      """[0m.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:39:6 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m39 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue SQL is not a member of StringContext, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import anorm.SqlStringInterpolation[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m40 |[0m          SELECT id, user_id, token, expired_token, refresh_token, expired_refresh_token,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m                 password_reset_token, expired_password_reset_token, ip_address, user_agent, revoked,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m42 |[0m                 created_at, updated_at[0m
+[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m          FROM tokens[0m
+[0m[[0m[31merror[0m] [0m[0m[31m44 |[0m          WHERE refresh_token = [0m${refreshToken.trim}[31m AND revoked = false[0m
+[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m        """[0m.as(AuthTokenRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:53:8 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m53 |[0m        [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m        ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue SQL is not a member of StringContext, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import anorm.SqlStringInterpolation[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m54 |[0m          INSERT INTO tokens ([0m
+[0m[[0m[31merror[0m] [0m[0m[31m55 |[0m            user_id, token, expired_token, refresh_token, expired_refresh_token,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m56 |[0m            password_reset_token, expired_password_reset_token, ip_address, user_agent, revoked, created_at, updated_at[0m
+[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m          ) VALUES ([0m
+[0m[[0m[31merror[0m] [0m[0m[31m58 |[0m            [0m${row.userId}[31m, [0m${row.token}[31m, [0m${row.expiredToken}[31m, [0m${row.refreshToken}[31m, [0m${row.expiredRefreshToken}[31m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m59 |[0m            [0m${row.passwordResetToken}[31m, [0m${row.expiredPasswordResetToken}[31m, [0m${row.ipAddress}[31m, [0m${row.userAgent}[31m, [0m${row.revoked}[31m, [0m${row.createdAt}[31m, [0m${row.updatedAt}[31m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m60 |[0m          )[0m
+[0m[[0m[31merror[0m] [0m[0m[31m61 |[0m        """[0m.executeInsert(scalar[[35mLong[0m].single)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:69:6 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m69 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue SQL is not a member of StringContext, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import anorm.SqlStringInterpolation[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m70 |[0m          UPDATE tokens[0m
+[0m[[0m[31merror[0m] [0m[0m[31m71 |[0m          SET revoked = true, updated_at = NOW()[0m
+[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m          WHERE id = [0m${id.raw}[31m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m73 |[0m        """[0m.executeUpdate()[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresAuthTokenRepository.scala:80:6 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m80 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue SQL is not a member of StringContext, but could be made available as an extension method.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mThe following import might fix the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import anorm.SqlStringInterpolation[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m81 |[0m          UPDATE tokens[0m
+[0m[[0m[31merror[0m] [0m[0m[31m82 |[0m          SET revoked = true, updated_at = NOW()[0m
+[0m[[0m[31merror[0m] [0m[0m[31m83 |[0m          WHERE user_id = [0m${userId.raw}[31m AND revoked = false[0m
+[0m[[0m[31merror[0m] [0m[0m[31m84 |[0m        """[0m.executeUpdate()[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresUserRepository.scala:33:28 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m      """.as(UserRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.users.infrastructure.db.UserRow][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/PostgresUserRepository.scala:44:30 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m44 |[0m        """.as(UserRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.users.infrastructure.db.UserRow][0m
+[0m[[0m[31merror[0m] [0m[0m115 errors found[0m
