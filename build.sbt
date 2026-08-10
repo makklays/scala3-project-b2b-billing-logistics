@@ -41,6 +41,12 @@ libraryDependencies ++= Seq(
 
   // 7. Тестирование Play-приложения
   "org.playframework" %% "play-test"  % playVersion      % Test,
-  "org.scalatest"     %% "scalatest"  % scalaTestVersion % Test
+  "org.scalatest"     %% "scalatest"  % scalaTestVersion % Test,
+
+  // 8. Безопасное хэширование паролей пользователей (Blowfish алгоритм)
+  "org.mindrot" % "jbcrypt" % "0.4",
+
+  // 9. Генерация и валидация JWT токенов для Scala 3 / Play 3
+  "com.github.jwt-scala" %% "jwt-play-json" % "10.0.1"
 )
 
