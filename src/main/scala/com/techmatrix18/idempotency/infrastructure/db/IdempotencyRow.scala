@@ -1,6 +1,6 @@
 package com.techmatrix18.idempotency.infrastructure.db
 
-import com.techmatrix18.idempotency.domain.{IdempotencyRecord, IdempotencyKey, IdempotencyStatus}
+import com.techmatrix18.idempotency.domain.{Idempotency, IdempotencyKey, IdempotencyStatus}
 import java.time.Instant
 import anorm.{RowParser, ~, get}
 
@@ -25,7 +25,7 @@ case class IdempotencyRow(
 ) {
 
   // Трансформация плоской строки базы данных в чистый DDD Агрегат
-  def toDomain: IdempotencyRecord = IdempotencyRecord(
+  def toDomain: Idempotency = Idempotency(
     key = IdempotencyKey(idempotencyKey),
     requestPayloadHash = requestPayloadHash,
     status = IdempotencyStatus.values.find(_.code == status.trim.toUpperCase).getOrElse(IdempotencyStatus.Started),
@@ -41,19 +41,19 @@ object IdempotencyRow {
   // Нативный Scala 3 Anorm-парсер для автоматической сборки структуры IdempotencyRow из SQL-ответа
   val parser: RowParser[IdempotencyRow] = {
     get[String]("idempotency_key") ~
-      get[String]("request_payload_hash") ~
-      get[String]("status") ~
-      get[Option[Int]]("response_code") ~
-      get[Option[String]]("response_body") ~
-      get[Instant]("created_at") ~
-      get[Instant]("expires_at") map {
+    get[String]("request_payload_hash") ~
+    get[String]("status") ~
+    get[Option[Int]]("response_code") ~
+    get[Option[String]]("response_body") ~
+    get[Instant]("created_at") ~
+    get[Instant]("expires_at") map {
       case idempotencyKey ~ requestPayloadHash ~ status ~ responseCode ~ responseBody ~ createdAt ~ expiresAt =>
         IdempotencyRow(idempotencyKey, requestPayloadHash, status, responseCode, responseBody, createdAt, expiresAt)
     }
   }
 
   // Сборка плоской строки БД из иммутабельного доменного агрегата перед записью
-  def fromDomain(record: IdempotencyRecord): IdempotencyRow = IdempotencyRow(
+  def fromDomain(record: Idempotency): IdempotencyRow = IdempotencyRow(
     idempotencyKey = record.key.raw,
     requestPayloadHash = record.requestPayloadHash,
     status = record.status.code,

@@ -32,7 +32,7 @@ class PostgresCargoBalanceRepository @Inject()(
                current_pallets as currentPallets, created_at as createdAt, updated_at as updatedAt
         FROM cargo_balances
         WHERE id = ${UUID.fromString(balanceId.value)}::uuid
-      """.as(CargoBalanceRow.parser.singleOptional).map(_.toDomain)
+      """.as(CargoBalanceRow.parser.*).map(_.toDomain)
     }
   }
 

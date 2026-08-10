@@ -1,6 +1,7 @@
 package com.techmatrix18.idempotency.domain
 
 import com.techmatrix18.idempotency.domain.IdempotencyStatus
+import java.time.Instant
 
 /**
  * IdempotencyRecord Aggregate Root - Сетевой аудит-заслон на входе в систему.

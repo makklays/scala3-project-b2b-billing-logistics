@@ -2,7 +2,7 @@ package com.techmatrix18.users.application.in
 
 import com.techmatrix18.users.application.in.LoginCommand
 import com.techmatrix18.users.application.out.{AuthTokenRepository, UserRepository}
-import com.techmatrix18.users.application.out.JwtService
+import com.techmatrix18.users.application.out.{JwtService, PasswordHasher}
 import com.techmatrix18.users.domain.{AuthToken, TokenId}
 import java.time.Instant
 import java.time.temporal.ChronoUnit

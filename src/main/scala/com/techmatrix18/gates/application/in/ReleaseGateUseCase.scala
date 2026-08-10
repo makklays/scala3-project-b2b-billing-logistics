@@ -1,8 +1,9 @@
 package com.techmatrix18.gates.application.in
 
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
-import com.techmatrix18.gates.application.out.{GateRepository, GateBookingRepository}
-import com.techmatrix18.companies.application.in.{DeductFundsUseCase, DeductFundsCommand}
+import com.techmatrix18.gates.application.out.{GateBookingRepository, GateRepository}
+import com.techmatrix18.companies.application.in.DeductFundsUseCase
+import com.techmatrix18.gates.application.in.ReleaseGateCommand
 import com.techmatrix18.companies.domain.CompanyId
 import java.time.Instant
 import java.time.temporal.ChronoUnit

@@ -45,13 +45,13 @@ object BillingTransactionRow {
   // Anorm-парсер для автоматического маршаллинга строк SQL-ответа в BillingTransactionRow
   val parser: RowParser[BillingTransactionRow] = {
     get[UUID]("id") ~
-      get[UUID]("company_id") ~
-      get[BigDecimal]("amount") ~
-      get[String]("currency") ~
-      get[String]("category") ~
-      get[Option[UUID]]("source_id") ~
-      get[Option[String]]("description") ~
-      get[Instant]("created_at") map {
+    get[UUID]("company_id") ~
+    get[BigDecimal]("amount") ~
+    get[String]("currency") ~
+    get[String]("category") ~
+    get[Option[UUID]]("source_id") ~
+    get[Option[String]]("description") ~
+    get[Instant]("created_at") map {
       case id ~ companyId ~ amount ~ currency ~ category ~ sourceId ~ description ~ createdAt =>
         BillingTransactionRow(id, companyId, amount, currency, category, sourceId, description, createdAt)
     }
@@ -60,7 +60,7 @@ object BillingTransactionRow {
   // Сборка плоской строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(transaction: BillingTransaction): BillingTransactionRow = BillingTransactionRow(
     id = UUID.fromString(transaction.id.value), // Извлекаем String через extension и парсим в UUID
-    companyId = transaction.companyId.raw,      // Получаем чистый UUID компании через метод расширения
+    companyId = java.util.UUID.fromString(transaction.companyId),
     amount = transaction.amount,
     currency = transaction.currency,
     category = transaction.category,

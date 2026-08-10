@@ -35,7 +35,7 @@ class PostgresCargoTransactionRepository @Inject()(
                  pallets_delta as palletsDelta, created_at as createdAt
           FROM cargo_transactions
           WHERE id = ${UUID.fromString(transactionId.value)}::uuid
-        """.as(CargoTransactionRow.parser.singleOptional).map(_.toDomain)
+        """.as(CargoTransactionRow.parser.*).map(_.toDomain)
     }
   }
 
@@ -72,7 +72,7 @@ class PostgresCargoTransactionRepository @Inject()(
           FROM cargo_transactions
           ORDER BY created_at DESC
           LIMIT 100
-        """.as(CargoTransactionRow.parser.list).map(_.toDomain)
+        """.as(CargoTransactionRow.parser.*).map(_.toDomain)
     }
   }
 }

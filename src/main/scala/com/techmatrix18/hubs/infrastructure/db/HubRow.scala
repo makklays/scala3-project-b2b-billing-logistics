@@ -74,8 +74,8 @@ private object HubRow {
 
   // Сборка строки БД из иммутабельного доменного объекта перед записью в Postgres
   def fromDomain(hub: Hub): HubRow = HubRow(
-    id = hub.id.raw, // Используем метод расширения .raw для получения UUID
-    companyId = hub.companyId.raw,
+    id = UUID.fromString(hub.id),
+    companyId = UUID.fromString(hub.companyId),
     title = hub.title,
     description = hub.description,
     addressLine = hub.addressLine,

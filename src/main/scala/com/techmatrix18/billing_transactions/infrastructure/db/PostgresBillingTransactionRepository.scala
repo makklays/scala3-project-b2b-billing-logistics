@@ -3,6 +3,7 @@ package com.techmatrix18.billing_transactions.infrastructure.db
 import com.techmatrix18.billing_transactions.application.out.{BillingTransactionRepository, BillingTransactionFilter}
 import com.techmatrix18.billing_transactions.domain.{BillingTransaction, BillingTransactionId}
 import com.techmatrix18.companies.domain.CompanyId
+import com.techmatrix18.companies.domain.CompanyId.*
 import java.util.UUID
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
@@ -33,7 +34,7 @@ class PostgresBillingTransactionRepository @Inject()(
                  source_id as sourceId, description, created_at as createdAt
           FROM billing_transactions
           WHERE id = ${UUID.fromString(transactionId.value)}::uuid
-        """.as(BillingTransactionRow.parser.singleOptional).map(_.toDomain)
+        """.as(BillingTransactionRow.parser.*).map(_.toDomain)
     }
   }
 
@@ -68,7 +69,7 @@ class PostgresBillingTransactionRepository @Inject()(
           FROM billing_transactions
           ORDER BY created_at DESC
           LIMIT 100
-        """.as(BillingTransactionRow.parser.list).map(_.toDomain)
+        """.as(BillingTransactionRow.parser.*).map(_.toDomain)
     }
   }
 }

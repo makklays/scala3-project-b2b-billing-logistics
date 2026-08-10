@@ -55,7 +55,7 @@ class CompanyController @Inject()(
    * Updates company metadata profile (title, tax registration)
    */
   def updateProfile(id: String): Action[JsValue] = Action.async(parse.json) { request =>
-    request.body.validate[UpdateCompanyProfileCommand] match {
+    request.body.validate[UpdateCompanyCommand] match {
       case JsError(errors) =>
         Future.successful(BadRequest(Json.obj("status" -> "Error", "message" -> "Invalid JSON payload", "details" -> JsError.toJson(errors))))
       case JsSuccess(command, _) =>

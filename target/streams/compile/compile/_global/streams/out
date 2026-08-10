@@ -1,9 +1,3 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/application/in/LoginUseCase.scala:28:18 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  passwordHasher: [35mPasswordHasher[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                  ^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                  Not found: type PasswordHasher[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/presentation/GlobalErrorHandler.scala:3:30 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.users.presentation.dto.AuthErrorResponse[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
@@ -12,17 +6,20 @@
 [0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.users.presentation.dto.AuthJsonFormats.[33mgiven[0m [34m// Импортируем Scala 3 given-форматы[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m       value presentation is not a member of com.techmatrix18.users[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/BillingTransactionRow.scala:63:38 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m63 |[0m    companyId = transaction.companyId.raw,      [34m// Получаем чистый UUID компании через метод расширения[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue raw is not a member of com.techmatrix18.companies.domain.CompanyId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:36:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        """.as(BillingTransactionRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/BillingTransactionRow.scala:63:54 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m63 |[0m    companyId = java.util.UUID.fromString(transaction.companyId),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                          ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    (transaction.companyId : com.techmatrix18.companies.domain.CompanyId)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:37:44 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m        """.as(BillingTransactionRow.parser.singleOptional).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.billing_transactions.infrastructure.db.BillingTransactionRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:71:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m71 |[0m        """.as(BillingTransactionRow.parser.list).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/billing_transactions/infrastructure/db/PostgresBillingTransactionRepository.scala:72:44 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m        """.as(BillingTransactionRow.parser.list).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue list is not a member of anorm.RowParser[[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m  com.techmatrix18.billing_transactions.infrastructure.db.BillingTransactionRow][0m
@@ -342,28 +339,27 @@
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m           Required: com.techmatrix18.gate_bookings.domain.GateBookingId[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:4:63 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.gates.application.out.{GateRepository, GateBookingRepository}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                                               ^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:4:47 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m4 |[0m[33mimport[0m com.techmatrix18.gates.application.out.{GateBookingRepository, GateRepository}[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                               ^^^^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue GateBookingRepository is not a member of com.techmatrix18.gates.application.out[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:64:25 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m64 |[0m                status = [31m"COMPLETED"[0m,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:65:25 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m65 |[0m                status = [31m"COMPLETED"[0m,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                         ^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m       Found:    ([32m"COMPLETED"[0m : String)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m       Required: com.techmatrix18.gate_bookings.domain.GateBookingStatus[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:71:36 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m71 |[0m                companyId = booking.companyId,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                            ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue companyId is not a member of com.techmatrix18.gate_bookings.domain.GateBooking[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:74:40 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m74 |[0m                sourceId = Some(booking.id) [34m// Передаем UUID брони как полиморфный источник финансового следа[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    (booking.id : com.techmatrix18.gate_bookings.domain.GateBookingId)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:71:37 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m71 |[0m              [33mval[0m [36mfinancialCommand[0m = DeductFundsCommand([0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                     ^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                     Not found: DeductFundsCommand[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/application/in/ReleaseGateUseCase.scala:72:36 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m                companyId = booking.companyId,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                            ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue companyId is not a member of com.techmatrix18.gate_bookings.domain.GateBooking[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/gates/domain/Gate.scala:34:60 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m34 |[0m  [33mdef[0m [36misAvailableForBooking[0m: [35mBoolean[0m = status == GateStatus.Active[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                 ^^^^^^^^^^^^^^^^^[0m[0m
@@ -492,22 +488,24 @@
 [0m[[0m[31merror[0m] [0m[0m[31m50 |[0m    createdAt = createdAt,[0m
 [0m[[0m[31merror[0m] [0m[0m[31m51 |[0m    updatedAt = updatedAt[0m
 [0m[[0m[31merror[0m] [0m[0m[31m52 |[0m  )[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/HubRow.scala:77:16 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m77 |[0m    id = hub.id.raw, [34m// Используем метод расширения .raw для получения UUID[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m         ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m         value raw is not a member of com.techmatrix18.hubs.domain.HubId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/HubRow.scala:78:30 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m78 |[0m    companyId = hub.companyId.raw,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue raw is not a member of com.techmatrix18.companies.domain.CompanyId[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/HubRow.scala:77:29 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m77 |[0m    id = UUID.fromString(hub.id),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                         ^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Found:    (hub.id : com.techmatrix18.hubs.domain.HubId)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Required: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/HubRow.scala:78:36 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m78 |[0m    companyId = UUID.fromString(hub.companyId),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                ^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m Found:    (hub.companyId : com.techmatrix18.companies.domain.CompanyId)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m Required: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/PostgresHubRepository.scala:35:26 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m35 |[0m          WHERE id = ${id.raw}::uuid[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                       ^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m         value raw is not a member of com.techmatrix18.hubs.domain.HubId[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/PostgresHubRepository.scala:36:29 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        """.as(HubRow.parser.singleOptional).map(_.toDomain)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.hubs.infrastructure.db.HubRow][0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/db/PostgresHubRepository.scala:90:26 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m90 |[0m          WHERE id = ${id.raw}::uuid[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                       ^^^^^^[0m[0m
@@ -516,90 +514,116 @@
 [0m[[0m[31merror[0m] [0m[0m[31m104 |[0m        """.as(HubRow.parser.list).map(_.toDomain)[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m               ^^^^^^^^^^^^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m    |[0mvalue list is not a member of anorm.RowParser[com.techmatrix18.hubs.infrastructure.db.HubRow][0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:41:26 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m    request.body.validate[[35mHubCompanyCommand[0m] [33mmatch[0m {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: type HubCompanyCommand[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:42:43 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m42 |[0m    request.body.validate[[35mCreateHubCommand[0m] [33mmatch[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                           ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo Json deserializer found for type com.techmatrix18.hubs.application.in.CreateHubCommand. Try to implement an implicit Reads or Format for this type.[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:43:132 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m        Future.successful(BadRequest(Json.obj([31m"status"[0m -> [31m"Error"[0m, [31m"message"[0m -> [31m"Invalid JSON payload"[0m, [31m"details"[0m -> JsError.toJson(errors))))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mOne of the following imports might make progress towards fixing the problem:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import play.api.libs.json.OFormat.oFormatFromReadsAndOWrites[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  import play.api.libs.json.Format.GenericFormat[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:44:132 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m44 |[0m        Future.successful(BadRequest(Json.obj([31m"status"[0m -> [31m"Error"[0m, [31m"message"[0m -> [31m"Invalid JSON payload"[0m, [31m"details"[0m -> JsError.toJson(errors))))[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                                                                                    ^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: errors[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:45:33 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m45 |[0m        createHubUseCase.execute(command).map {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:46:33 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m46 |[0m        createHubUseCase.execute(command).map {[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                 ^^^^^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                 Not found: command[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:57:26 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m    request.body.validate[[35mUpdateHubProfileCommand[0m] [33mmatch[0m {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                          ^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                          Not found: type UpdateHubProfileCommand[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:59:132 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m59 |[0m        Future.successful(BadRequest(Json.obj([31m"status"[0m -> [31m"Error"[0m, [31m"message"[0m -> [31m"Invalid JSON payload"[0m, [31m"details"[0m -> JsError.toJson(errors))))[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                                                                                    ^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: errors[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:61:12 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m61 |[0m        [33mif[0m (command.hubId.value != id) {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m            ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m            Not found: command - did you mean compat?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/hubs/infrastructure/http/HubController.scala:64:35 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m64 |[0m          updateHubUseCase.execute(command).map {[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                   ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                   Not found: command[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:20:13 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m20 |[0m  createdAt: [35mInstant[0m,[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: type Instant[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:21:13 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m21 |[0m  expiresAt: [35mInstant[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: type Instant[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/domain/Idempotency.scala:25:21 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m  [33mdef[0m [36misExpired[0m([36mnow[0m: [35mInstant[0m): [35mBoolean[0m = now.isAfter(expiresAt)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Not found: type Instant[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:3:44 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m3 |[0m[33mimport[0m com.techmatrix18.idempotency.domain.{IdempotencyRecord, IdempotencyKey, IdempotencyStatus}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                                            ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0mvalue IdempotencyRecord is not a member of com.techmatrix18.idempotency.domain[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:5:28 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m5 |[0m[33mimport[0m anorm.{RowParser, ~, get}[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                            ^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m  |[0m                            value get is not a member of anorm[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:28:16 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  [33mdef[0m [36mtoDomain[0m: [35mIdempotencyRecord[0m = IdempotencyRecord([0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                Not found: type IdempotencyRecord[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:28:36 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m  [33mdef[0m [36mtoDomain[0m: [35mIdempotencyRecord[0m = IdempotencyRecord([0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                    ^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                    Not found: IdempotencyRecord[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/IdempotencyRow.scala:43:4 [0m[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m43 |[0m    get[[35mString[0m]([31m"idempotency_key"[0m) ~[0m
 [0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m140 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/PostgresIdempotencyRepository.scala:36:37 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m        """.as(IdempotencyRow.parser.singleOptional).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mvalue singleOptional is not a member of anorm.RowParser[com.techmatrix18.idempotency.infrastructure.db.IdempotencyRow][0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/db/PostgresIdempotencyRepository.scala:41:15 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m41 |[0m          Left(existingRecord)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: existingRecord - did you mean existingRecordOpt?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/presentation/IdempotencyAction.scala:9:7 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m9 |[0m[33mimport[0m akka.util.ByteString [34m// Если используется Pekko, замените на org.apache.pekko.util.ByteString[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m       Not found: akka[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/idempotency/infrastructure/presentation/IdempotencyAction.scala:100:29 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m100 |[0m      result.body.consumeData.flatMap { [36mbyteString[0m =>[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                             ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mA Materializer is required.  You may want to have the ActorSystem in implicit scope.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mI found:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    org.apache.pekko.stream.Materializer.matFromSystem([0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m      /* missing */summon[org.apache.pekko.actor.ClassicActorSystemProvider])[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mBut no implicit values were found that match type org.apache.pekko.actor.ClassicActorSystemProvider.[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/outbox/infrastructure/db/OutboxRow.scala:6:28 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m6 |[0m[33mimport[0m anorm.{RowParser, ~, get}[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m                            ^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m  |[0m                            value get is not a member of anorm[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/outbox/infrastructure/db/OutboxRow.scala:47:4 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m47 |[0m    get[[35mUUID[0m]([31m"id"[0m) ~[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/section_tariffs/application/in/CreateSectionTariffUseCase.scala:39:65 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m39 |[0m      [33mval[0m [36mtargetSectionId[0m = HubSectionId(UUID.fromString(command.hubSectionId).toString)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                         ^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mFound:    (command.hubSectionId : com.techmatrix18.hub_sections.domain.HubSectionId)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mRequired: String[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/section_tariffs/infrastructure/db/PostgresSectionTariffRepository.scala:37:45 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m31 |[0m      [31mSQL"""[0m
+[0m[[0m[31merror[0m] [0m[0m[31m32 |[0m          SELECT id, hub_section_id as hubSectionId, section_type as sectionType, client_name as clientName,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m                 occupied_rate_per_hour as occupiedRatePerHour, empty_reservation_rate_per_hour as emptyReservationRatePerHour,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m                 valid_from as validFrom, valid_to as validTo, created_at as createdAt, updated_at as updatedAt[0m
+[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m          FROM section_tariffs[0m
+[0m[[0m[31merror[0m] [0m[0m[31m36 |[0m          WHERE id = [0m${UUID.fromString(tariffId.value)}[31m::uuid[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m        """[0m.as(SectionTariffRow.parser.*).map(_.toDomain)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m Found:    [1m[31mList[0m[com.techmatrix18.section_tariffs.domain.SectionTariff][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m Required: [1m[32mOption[0m[com.techmatrix18.section_tariffs.domain.SectionTariff][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/application/in/LoginUseCase.scala:34:60 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m34 |[0m  [33mdef[0m [36mexecute[0m([36mcommand[0m: [35mLoginCommand[0m): [35mFuture[0m[[35mEither[0m[[35mString[0m, [35mAuthTokensResult[0m]] = {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                            ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                        Not found: type AuthTokensResult[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/application/in/RefreshTokenUseCase.scala:62:36 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m62 |[0m            [33mval[0m [36mnewAccessTokenStr[0m = authService.generateToken(user.id, user.role, accessExpiry)[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                    ^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                    Not found: authService[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/AuthTokenRow.scala:48:14 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m48 |[0m  [33mval[0m [36mparser[0m: [35mRowParser[0m[[35mAuthTokenRow[0m] = {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Not found: type RowParser[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/alexander/IdeaProjects/scala3-project-b2b-billing-logistics/src/main/scala/com/techmatrix18/users/infrastructure/db/AuthTokenRow.scala:49:4 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m49 |[0m    get[[35mLong[0m]([31m"id"[0m) ~[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: get - did you mean Set?[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m122 errors found[0m

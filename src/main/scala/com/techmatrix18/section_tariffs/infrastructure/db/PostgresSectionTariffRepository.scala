@@ -34,7 +34,7 @@ class PostgresSectionTariffRepository @Inject()(
                  valid_from as validFrom, valid_to as validTo, created_at as createdAt, updated_at as updatedAt
           FROM section_tariffs
           WHERE id = ${UUID.fromString(tariffId.value)}::uuid
-        """.as(SectionTariffRow.parser.singleOptional).map(_.toDomain)
+        """.as(SectionTariffRow.parser.*).map(_.toDomain)
     }
   }
 
@@ -89,7 +89,7 @@ class PostgresSectionTariffRepository @Inject()(
           FROM section_tariffs
           ORDER BY valid_from DESC
           LIMIT 100
-        """.as(SectionTariffRow.parser.list).map(_.toDomain)
+        """.as(SectionTariffRow.parser.*).map(_.toDomain)
     }
   }
 }

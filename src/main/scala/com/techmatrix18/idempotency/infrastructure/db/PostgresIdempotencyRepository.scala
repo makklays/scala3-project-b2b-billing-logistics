@@ -1,7 +1,7 @@
 package com.techmatrix18.idempotency.infrastructure.db
 
 import com.techmatrix18.idempotency.application.out.IdempotencyRepository
-import com.techmatrix18.idempotency.domain.{IdempotencyRecord, IdempotencyKey, IdempotencyStatus}
+import com.techmatrix18.idempotency.domain.{Idempotency, IdempotencyKey, IdempotencyStatus}
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import javax.inject.{Inject, Singleton}
@@ -25,7 +25,7 @@ class PostgresIdempotencyRepository @Inject()(
   db: Database
 )(using ec: ExecutionContext) extends IdempotencyRepository {
 
-  override def findOrInsert(key: IdempotencyKey, payloadHash: String): Future[Either[IdempotencyRecord, IdempotencyRecord]] = Future {
+  override def findOrInsert(key: IdempotencyKey, payloadHash: String): Future[Either[Idempotency, Idempotency]] = Future {
     db.withTransaction { implicit connection =>
       // 1. Пытаемся найти существующий ключ в таблице
       val existingRecordOpt =
@@ -53,7 +53,7 @@ class PostgresIdempotencyRepository @Inject()(
               )
             """.executeInsert()
 
-          val newRecord = IdempotencyRecord(
+          val newRecord = Idempotency(
             key = key,
             requestPayloadHash = payloadHash,
             status = IdempotencyStatus.Started,
