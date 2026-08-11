@@ -1,7 +1,9 @@
 package com.techmatrix18.gate_bookings.infrastructure.http
 
 import com.techmatrix18.gate_bookings.application.in.*
-import play.api.libs.json.{Json, OFormat}
+import play.api.libs.json.{Json, OFormat, Format}
+import com.techmatrix18.gates.domain.GateId
+import com.techmatrix18.gate_bookings.domain.GateBookingId
 
 /**
  * Объект, содержащий форматы JSON для сериализации и десериализации команд и событий,
@@ -14,6 +16,18 @@ import play.api.libs.json.{Json, OFormat}
  */
 
 object GateBookingJsonFormats {
+
+  given gateIdFormat: Format[GateId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[GateId]),
+      play.api.libs.json.Writes((id: GateId) => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
+
+  given gateBookingIdFormat: Format[GateBookingId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[GateBookingId]),
+      play.api.libs.json.Writes((id: GateBookingId) => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
 
   // 1. Форматы для входящих JSON-команд (Запросы клиентов на резервирование и отмену)
   given createGateBookingCommandFormat: OFormat[CreateGateBookingCommand] = Json.format[CreateGateBookingCommand]

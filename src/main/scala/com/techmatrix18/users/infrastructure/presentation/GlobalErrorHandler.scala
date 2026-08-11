@@ -2,7 +2,7 @@ package com.techmatrix18.users.infrastructure.presentation
 
 import com.techmatrix18.users.infrastructure.presentation.GlobalErrorHandler
 import com.techmatrix18.users.infrastructure.presentation.AuthErrorResponse
-import com.techmatrix18.users.infrastructure.http.AuthJsonFormats.given        // Импортируем Scala 3 given-форматы
+//import com.techmatrix18.users.infrastructure.http.AuthJsonFormats.given        // Импортируем Scala 3 given-форматы
 import javax.inject.{Inject, Provider, Singleton}
 import play.api.http.HttpErrorHandler
 import play.api.libs.json.Json
@@ -31,6 +31,8 @@ class GlobalErrorHandler @Inject()(
   override def onClientError(request: RequestHeader, statusCode: Int, message: String): Future[Result] = {
     logger.warn(s"[HTTP Client Error] Status: $statusCode, Path: ${request.path}, Message: $message")
 
+    given play.api.libs.json.OFormat[AuthErrorResponse] = play.api.libs.json.Json.format[AuthErrorResponse]
+
     val response = statusCode match {
       case play.api.http.Status.NOT_FOUND =>
         AuthErrorResponse(error = "Ресурс не найден", details = Some(s"Эндпоинт ${request.method} ${request.path} отсутствует"))
@@ -58,6 +60,8 @@ class GlobalErrorHandler @Inject()(
     } else {
       Some("Пожалуйста, обратитесь в службу поддержки или проверьте идентификатор запроса")
     }
+
+    given play.api.libs.json.OFormat[AuthErrorResponse] = play.api.libs.json.Json.format[AuthErrorResponse]
 
     val response = AuthErrorResponse(
       error = "Внутренняя ошибка сервера",

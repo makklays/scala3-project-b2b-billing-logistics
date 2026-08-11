@@ -1,7 +1,8 @@
 package com.techmatrix18.hubs.infrastructure.http
 
 import com.techmatrix18.hubs.application.in.*
-import play.api.libs.json.{Json, OFormat}
+import play.api.libs.json.{Json, OFormat, Format}
+import com.techmatrix18.hubs.domain.HubId
 
 /**
  * HubJsonFormats - Infrastructure driving adapter for Play JSON marshalling.
@@ -14,6 +15,12 @@ import play.api.libs.json.{Json, OFormat}
  */
 
 object HubJsonFormats {
+
+  given hubIdFormat: Format[HubId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[HubId]),
+      play.api.libs.json.Writes((id: HubId) => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
 
   // 1. Форматы для создания и обновления профиля хаба
   given createHubCommandFormat: OFormat[CreateHubCommand] = Json.format[CreateHubCommand]

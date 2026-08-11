@@ -25,17 +25,17 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class PostgresCargoTransactionRepository @Inject()(
   db: Database
-)(using ec: ExecutionContext) {
+)(using ec: ExecutionContext) extends CargoTransactionRepository {
 
   override def findById(transactionId: CargoTransactionId): Future[Option[CargoTransaction]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-              SELECT id, cargo_balance_id as cargoBalanceId, operation_type as operationType, quantity, created_at as createdAt
-              FROM cargo_transactions
-
-              -- ИСПРАВЛЕНО: Заменено transactionId.value на transactionId.raw
-              WHERE id = ${UUID.fromString(transactionId.raw)}::uuid
-            """.as(CargoTransactionRow.parser.singleOpt).map(_.toDomain)
+            SELECT id, hub_section_id as hubSectionId, gate_booking_id as gateBookingId,
+                   operation_type as operationType, pallet_count as palletCount,
+                   created_at as createdAt
+            FROM cargo_transactions
+            WHERE id = ${UUID.fromString(transactionId.toString)}::uuid
+          """.as(CargoTransactionRow.parser.singleOpt).map(_.toDomain)
     }
   }
 

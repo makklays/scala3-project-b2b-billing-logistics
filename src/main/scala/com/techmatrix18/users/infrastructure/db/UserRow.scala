@@ -23,7 +23,7 @@ private case class UserRow(
   id: Long,
   username: String,
   email: String,
-  roles: String, // В БД хранится как строка "USER" или "ADMIN,DRIVER"
+  role: String, // В БД хранится как строка "USER" или "ADMIN,DRIVER"
   mobile: Option[String],
   gender: Option[String],
   age: Option[Int],
@@ -34,16 +34,11 @@ private case class UserRow(
 ) {
   // Трансформация строки БД в чистый DDD Агрегат
   def toDomain: User = {
-    val parsedRoles = roles.split(",")
-      .map(_.trim)
-      .flatMap(code => UserRole.values.find(_.code == code))
-      .toList
-
     User(
       id = UserId(id),
       username = username,
       email = email,
-      roles = if (parsedRoles.isEmpty) List(UserRole.StandardUser) else parsedRoles,
+      role = UserRole.valueOf(role),
       mobile = mobile,
       gender = gender,
       age = age,
@@ -58,19 +53,19 @@ private case class UserRow(
 private object UserRow {
   // Anorm-парсер для автоматической сборки структуры UserRow из SQL-ответа
   val parser: RowParser[UserRow] = {
-    get[Long]("id") ~
-    get[String]("username") ~
-    get[String]("email") ~
-    get[String]("roles") ~
-    get[Option[String]]("mobile") ~
-    get[Option[String]]("gender") ~
-    get[Option[Int]]("age") ~
-    get[Option[String]]("avatar") ~
-    get[String]("password") ~
-    get[Instant]("created_at") ~
-    get[Instant]("updated_at") map {
-      case id ~ username ~ email ~ roles ~ mobile ~ gender ~ age ~ avatar ~ password ~ createdAt ~ updatedAt =>
-        UserRow(id, username, email, roles, mobile, gender, age, avatar, password, createdAt, updatedAt)
+    SqlParser.get[Long]("id") ~
+    SqlParser.get[String]("username") ~
+    SqlParser.get[String]("email") ~
+    SqlParser.get[String]("role") ~
+    SqlParser.get[Option[String]]("mobile") ~
+    SqlParser.get[Option[String]]("gender") ~
+    SqlParser.get[Option[Int]]("age") ~
+    SqlParser.get[Option[String]]("avatar") ~
+    SqlParser.get[String]("password") ~
+    SqlParser.get[Instant]("created_at") ~
+    SqlParser.get[Instant]("updated_at") map {
+      case id ~ username ~ email ~ role ~ mobile ~ gender ~ age ~ avatar ~ password ~ createdAt ~ updatedAt =>
+        UserRow(id, username, email, role, mobile, gender, age, avatar, password, createdAt, updatedAt)
     }
   }
 
@@ -79,7 +74,7 @@ private object UserRow {
     id = user.id.raw,
     username = user.username,
     email = user.email,
-    roles = user.role.toString,    // Склеиваем список ролей в строку через запятую
+    role = user.role.toString,
     mobile = user.mobile,
     gender = user.gender,
     age = user.age,

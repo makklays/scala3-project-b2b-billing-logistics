@@ -3,8 +3,8 @@ package com.techmatrix18.outbox.infrastructure.db
 import com.techmatrix18.outbox.domain.{OutboxEvent, OutboxEventId, OutboxStatus}
 import java.time.Instant
 import java.util.UUID
-import anorm.{RowParser, ~, get}
-import anorm.SqlParser.{get, flatten}
+import anorm.{RowParser, ~}
+import anorm.SqlParser
 
 /**
  * OutboxRow - Вспомогательная структура строки таблицы outbox_events для Anorm.
@@ -48,7 +48,7 @@ object OutboxRow {
   val parser: RowParser[OutboxRow] = {
     SqlParser.get[UUID]("id") ~
     SqlParser.get[String]("aggregate_type") ~
-    SqlParser.get[String]("aggregate_id") ~
+    SqlParser.get[UUID]("aggregate_id") ~
     SqlParser.get[String]("event_type") ~
     SqlParser.get[String]("payload") ~
     SqlParser.get[String]("status") ~

@@ -2,7 +2,8 @@ package com.techmatrix18.idempotency.infrastructure.db
 
 import com.techmatrix18.idempotency.domain.{Idempotency, IdempotencyKey, IdempotencyStatus}
 import java.time.Instant
-import anorm.{RowParser, ~, get}
+import anorm.{RowParser, ~}
+import anorm.SqlParser // Добавляем импорт самого объекта парсеров
 
 /**
  * IdempotencyRow - Вспомогательная структура строки таблицы idempotency_records для Anorm.
@@ -40,13 +41,14 @@ object IdempotencyRow {
 
   // Нативный Scala 3 Anorm-парсер для автоматической сборки структуры IdempotencyRow из SQL-ответа
   val parser: RowParser[IdempotencyRow] = {
-    get[String]("idempotency_key") ~
-    get[String]("request_payload_hash") ~
-    get[String]("status") ~
-    get[Option[Int]]("response_code") ~
-    get[Option[String]]("response_body") ~
-    get[Instant]("created_at") ~
-    get[Instant]("expires_at") map {
+    SqlParser.get[String]("idempotency_key") ~
+    SqlParser.get[String]("request_payload_hash") ~
+    SqlParser.get[String]("status") ~
+    SqlParser.get[Option[Int]]("response_code") ~
+    SqlParser.get[Option[String]]("response_body") ~
+    SqlParser.get[java.time.Instant]("created_at") ~
+    SqlParser.get[java.time.Instant]("expires_at") map {
+      // Все переменные уникальны и идут строго по порядку полей вашего класса!
       case idempotencyKey ~ requestPayloadHash ~ status ~ responseCode ~ responseBody ~ createdAt ~ expiresAt =>
         IdempotencyRow(idempotencyKey, requestPayloadHash, status, responseCode, responseBody, createdAt, expiresAt)
     }

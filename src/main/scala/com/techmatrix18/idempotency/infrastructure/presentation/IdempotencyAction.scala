@@ -10,6 +10,7 @@ import org.apache.pekko.util.ByteString // Если используется Pek
 import java.security.MessageDigest
 import scala.concurrent.{ExecutionContext, Future}
 import org.slf4j.MDC
+import org.apache.pekko.stream.Materializer
 
 /**
  * IdempotencyAction - Кастомный Action Refiner для Play Framework.
@@ -25,7 +26,7 @@ import org.slf4j.MDC
 class IdempotencyAction @Inject()(
   repository: IdempotencyRepository,      // Проверка idempotency
   val parser: BodyParsers.Default
-)(implicit val executionContext: ExecutionContext) extends ActionBuilder[Request, AnyContent] {
+)(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilder[Request, AnyContent] {
 
   private def calculateHash(body: String): String = {
     val digest = MessageDigest.getInstance("SHA-256")

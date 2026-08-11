@@ -26,7 +26,7 @@ class PostgresUserRepository @Inject()(
   override def findById(id: UserId): Future[Option[User]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-        SELECT id, username, email, roles, mobile, gender, age, avatar, password,
+        SELECT id, username, email, role, mobile, gender, age, avatar, password,
                created_at as createdAt, updated_at as updatedAt
         FROM users
         WHERE id = ${id.raw}
@@ -37,7 +37,7 @@ class PostgresUserRepository @Inject()(
   override def findByEmail(email: String): Future[Option[User]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, username, email, roles, mobile, gender, age, avatar, password,
+          SELECT id, username, email, role, mobile, gender, age, avatar, password,
                  created_at as createdAt, updated_at as updatedAt
           FROM users
           WHERE LOWER(email) = ${email.trim.toLowerCase}
@@ -48,7 +48,7 @@ class PostgresUserRepository @Inject()(
   override def findByUsername(username: String): Future[Option[User]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, username, email, roles, mobile, gender, age, avatar, password,
+          SELECT id, username, email, role, mobile, gender, age, avatar, password,
                  created_at as createdAt, updated_at as updatedAt
           FROM users
           WHERE LOWER(username) = ${username.trim.toLowerCase}
@@ -62,11 +62,11 @@ class PostgresUserRepository @Inject()(
       val generatedId =
         SQL"""
           INSERT INTO users (
-            username, email, roles, mobile, gender, age, avatar, password, created_at, updated_at
+            username, email, role, mobile, gender, age, avatar, password, created_at, updated_at
           ) VALUES (
             ${row.username},
             ${row.email},
-            ${row.roles},
+            ${row.role},
             ${row.mobile},
             ${row.gender},
             ${row.age},
@@ -88,7 +88,7 @@ class PostgresUserRepository @Inject()(
           UPDATE users
           SET username = ${row.username},
               email = ${row.email},
-              roles = ${row.roles},
+              role = ${row.role},
               mobile = ${row.mobile},
               gender = ${row.gender},
               age = ${row.age},

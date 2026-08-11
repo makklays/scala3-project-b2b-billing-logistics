@@ -4,6 +4,9 @@ import com.techmatrix18.gates.application.in.*
 import com.techmatrix18.gates.domain.WorkingHours
 import play.api.libs.json.*
 import java.time.Instant
+import play.api.libs.json.{Json, OFormat, Format}
+import com.techmatrix18.gates.domain.GateId
+import com.techmatrix18.gate_bookings.domain.GateBookingId
 
 /**
  * GateJsonFormats - Infrastructure driving adapter for Play JSON marshalling.
@@ -15,6 +18,18 @@ import java.time.Instant
  * @since 06.08.2026
  */
 object GateJsonFormats {
+
+  given gateIdFormat: Format[GateId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[GateId]),
+      play.api.libs.json.Writes((id: GateId) => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
+
+  given gateBookingIdFormat: Format[GateBookingId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[GateBookingId]),
+      play.api.libs.json.Writes(id => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
 
   // 1. Формат для Value Object рабочих часов
   given workingHoursFormat: Format[WorkingHours] = Json.format[WorkingHours]

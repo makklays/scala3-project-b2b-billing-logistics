@@ -6,6 +6,8 @@ import play.api.db.Database
 import java.time.Instant
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+import anorm.*                     // Импортирует SqlStringInterpolation и базовые структуры
+import anorm.SqlParser.*
 
 /**
  * PostgresAuthTokenRepository - Реализация работы с JWT-сессиями через Anorm

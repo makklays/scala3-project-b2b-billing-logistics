@@ -3,6 +3,7 @@ package com.techmatrix18.gates.application.in
 import com.techmatrix18.gates.domain.{Gate, GateId, GateStatus}
 import com.techmatrix18.gates.application.out.GateRepository
 import com.techmatrix18.gate_bookings.application.out.GateBookingRepository
+import com.techmatrix18.hubs.application.out.HubRepository
 import com.techmatrix18.companies.application.in.DeductFundsUseCase
 import com.techmatrix18.gates.application.in.ReleaseGateCommand
 import com.techmatrix18.companies.application.in.DeductFundsCommand
@@ -28,6 +29,7 @@ import com.techmatrix18.gate_bookings.domain.GateBookingStatus
 class ReleaseGateUseCase(
   gateRepository: GateRepository,
   bookingRepository: GateBookingRepository,
+  hubRepository: HubRepository,
   deductFundsUseCase: DeductFundsUseCase // Внедряем финансовый сценарий для списания денег
 )(using ec: ExecutionContext) {
 
@@ -47,57 +49,50 @@ class ReleaseGateUseCase(
           // 2. Ищем активное бронирование, привязанное к этим воротам в статусе "IN_PROGRESS"
           bookingRepository.findActiveByGateId(gate.id).flatMap {
             case None =>
-              // Защитный механизм: переводим ворота в Available, даже если бронь не найдена сбоем IoT
+              // Защитный механизм: переводим ворота в Available, если бронь не найдена сбоем IoT
               val fixedGate = gate.copy(status = GateStatus.Available, updatedAt = Instant.now())
               gateRepository.update(fixedGate).map { _ =>
                 Left(s"Gate released, but no active booking found in 'IN_PROGRESS' status for tracking history.")
               }
 
             case Some(booking) =>
-              val now = Instant.now()
+              // 3. Загружаем Хаб по hubId из ворот, чтобы узнать компанию-владельца
+              hubRepository.findById(gate.hubId).flatMap {
+                case None =>
+                  Future.successful(Left(s"Hub with ID '${gate.hubId.value}' not found for company billing validation"))
 
-              // 3. Вычисляем финансовые показатели аренды (биллинг)
-              val arrivalTime = booking.actualArrivalTime.getOrElse(booking.createdAt)
-              val totalHours = Math.max(1L, ChronoUnit.HOURS.between(arrivalTime, now)) // минимум 1 час тарификации
-              val totalCost = gate.hourlyRate * BigDecimal(totalHours)
+                case Some(hub) =>
+                  val now = Instant.now()
 
-              // 4. Формируем иммутабельные слепки для обновления инфраструктуры
-              val releasedGate = gate.copy(status = GateStatus.Available, updatedAt = now)
-              val completedBooking = booking.copy(
-                status = GateBookingStatus.Completed,
-                actualDepartureTime = Some(now),
-                updatedAt = now
-              )
+                  // 4. Вычисляем финансовые показатели аренды ворот
+                  val arrivalTime = booking.actualArrivalTime.getOrElse(booking.createdAt)
+                  val totalHours = Math.max(1L, java.time.temporal.ChronoUnit.HOURS.between(arrivalTime, now))
+                  val totalCost = gate.hourlyRate * BigDecimal(totalHours)
 
-              // 5. Запускаем финансовую транзакцию списания денег через смежный домен
-              val financialCommand = DeductFundsCommand(
-                companyId = booking.companyId,  // TODO: нет companyId (!) - переделат функцию (!)
-                amount = totalCost,
-                category = "GATE_RENTAL",
-                sourceId = Some(booking.id.value)     // Передаем UUID брони как полиморфный источник финансового следа
-              )
+                  // 5. Формируем иммутабельные слепки для обновления инфраструктуры
+                  val releasedGate = gate.copy(status = GateStatus.Available, updatedAt = now)
+                  val completedBooking = booking.copy(
+                    status = GateBookingStatus.Completed,
+                    actualDepartureTime = Some(now),
+                    updatedAt = now
+                  )
 
-              deductFundsUseCase.execute(financialCommand).flatMap {
-                case Left(financeError) =>
-                  // Если биллинг заблокирован (например, аккаунт заблокирован), мы все равно фиксируем выезд,
-                  // но логируем критическую ошибку задолженности
-                  for {
+                  // 6. Формируем финансовую команду: компания берётся из найденного ХАБА!
+                  val financialCommand = DeductFundsCommand(
+                    companyId = hub.companyId,
+                    amount = totalCost,
+                    category = "GATE_RENTAL",
+                    sourceId = Some(booking.id.value)
+                  )
+
+                  // 7. Сохраняем изменения и запускаем списание денег
+                  // КРИТИЧЕСКИ ВАЖНО: Явно аннотируем тип возвращаемого значения для for-comprehension
+                  (for {
                     _ <- gateRepository.update(releasedGate)
                     _ <- bookingRepository.update(completedBooking)
-                  } yield Left(s"Gate released, but billing deduction failed: $financeError")
-
-                case Right(_) =>
-                  // Успешный финтех-цикл: деньги списаны, ворота свободны, бронь закрыта
-                  for {
-                    _ <- gateRepository.update(releasedGate)
-                    _ <- bookingRepository.update(completedBooking)
-                  } yield {
-                    Right(ReleaseGateResponse(
-                      gateId = releasedGate.id.value,
-                      status = "AVAILABLE",
-                      updatedAt = now
-                    ))
-                  }
+                    billingResult <- deductFundsUseCase.execute(financialCommand)
+                  //} yield billingResult.map(_ => ReleaseGateResponse(gate.id.value, "COMPLETED"))): Future[Either[String, ReleaseGateResponse]]
+                  } yield billingResult.map(_ => ReleaseGateResponse(gate.id.value, "COMPLETED", now))): Future[Either[String, ReleaseGateResponse]]
               }
           }
         }

@@ -65,7 +65,9 @@ class AuthController @Inject()(
 
             loginUseCase.execute(command).map {
               case Left(errorMsg) => Unauthorized(Json.obj("error" -> errorMsg))
-              case Right(tokensResult) => Ok(Json.toJson(tokensResult)) // Этот JSON автоматически запишется в БД
+              case Right(tokensResult) =>
+                given OFormat[com.techmatrix18.users.application.in.AuthTokensResponse] = Json.format[com.techmatrix18.users.application.in.AuthTokensResponse]
+                Ok(Json.toJson(tokensResult)) // Этот JSON автоматически запишется в БД
             }
         }
     }
@@ -91,7 +93,9 @@ class AuthController @Inject()(
 
             refreshTokenUseCase.execute(command).map {
               case Left(errorMsg) => Forbidden(Json.obj("error" -> errorMsg))
-              case Right(tokensResult) => Ok(Json.toJson(tokensResult)) // Этот JSON автоматически запишется в БД
+              case Right(tokensResult) =>
+                given OFormat[com.techmatrix18.users.application.in.RefreshTokensResponse] = Json.format[com.techmatrix18.users.application.in.RefreshTokensResponse]
+                Ok(Json.toJson(tokensResult)) // Этот JSON автоматически запишется в БД
             }
         }
     }

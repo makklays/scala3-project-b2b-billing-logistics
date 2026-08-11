@@ -1,7 +1,8 @@
 package com.techmatrix18.companies.infrastructure.http
 
 import com.techmatrix18.companies.application.in.*
-import play.api.libs.json.{Json, OFormat}
+import play.api.libs.json.{Json, OFormat, Format}
+import com.techmatrix18.companies.domain.CompanyId
 
 /**
  * CompanyJsonFormats
@@ -13,6 +14,12 @@ import play.api.libs.json.{Json, OFormat}
  */
 
 object CompanyJsonFormats {
+
+  given companyIdFormat: Format[CompanyId] =
+    Format(
+      play.api.libs.json.Reads.StringReads.map(s => s.asInstanceOf[CompanyId]),
+      play.api.libs.json.Writes((id: CompanyId) => play.api.libs.json.JsString(id.asInstanceOf[String]))
+    )
 
   // 1. Форматы для создания компании
   given createCommandFormat: OFormat[CreateCompanyCommand] = Json.format[CreateCompanyCommand]

@@ -1,12 +1,11 @@
 package com.techmatrix18.gate_bookings.infrastructure.db
 
 import com.techmatrix18.gates.domain.GateId
-import com.techmatrix18.gates.domain.GateId.*
 import com.techmatrix18.gate_bookings.domain.{GateBooking, GateBookingId, GateBookingStatus}
-import com.techmatrix18.gate_bookings.domain.GateBookingId.*
-import anorm.{Macro, RowParser, ~}
 import java.time.Instant
 import java.util.UUID
+import anorm.*
+import anorm.SqlParser.* // КРИТИЧЕСКИ ВАЖНО: подключает методы get и комбинаторы
 
 /**
  * GateBookingRow
@@ -19,7 +18,6 @@ import java.util.UUID
  * @version 0.0.3
  * @since 06.08.2026
  */
-
 case class GateBookingRow(
   id: UUID,
   gateId: UUID,
@@ -36,7 +34,7 @@ case class GateBookingRow(
 
   // Трансформация строки БД в чистый доменный агрегат (DDD)
   def toDomain: GateBooking = GateBooking(
-    id = GateBookingId(id.toString), // Заворачиваем UUID в наш opaque-тип (String)
+    id = GateBookingId(id.toString), // Заворачиваем UUID в наш доменный тип
     gateId = GateId(gateId.toString),
     clientName = clientName,
     truckLicensePlate = truckLicensePlate,
@@ -51,39 +49,44 @@ case class GateBookingRow(
 }
 
 object GateBookingRow {
-  // Anorm парсер для автоматической сборки кейс-класса строки
+
+  // ИСПРАВЛЕНО: Явный префикс SqlParser.get гарантирует стабильную сборку в Scala 3
   val parser: RowParser[GateBookingRow] = {
-    get[UUID]("id") ~
-    get[UUID]("gate_id") ~
-    get[String]("client_name") ~
-    get[String]("truck_license_plate") ~
-    get[Instant]("scheduled_start_time") ~
-    get[Instant]("scheduled_end_time") ~
-    get[Option[Instant]]("actual_arrival_time") ~
-    get[Option[Instant]]("actual_departure_time") ~
-    get[String]("status") ~
-    get[Instant]("created_at") ~
-    get[Instant]("updated_at") map {
+    SqlParser.get[UUID]("id") ~
+      SqlParser.get[UUID]("gate_id") ~
+      SqlParser.get[String]("client_name") ~
+      SqlParser.get[String]("truck_license_plate") ~
+      SqlParser.get[Instant]("scheduled_start_time") ~
+      SqlParser.get[Instant]("scheduled_end_time") ~
+      SqlParser.get[Option[Instant]]("actual_arrival_time") ~
+      SqlParser.get[Option[Instant]]("actual_departure_time") ~
+      SqlParser.get[String]("status") ~
+      SqlParser.get[Instant]("created_at") ~
+      SqlParser.get[Instant]("updated_at") map {
       case id ~ gateId ~ clientName ~ truckLicensePlate ~ scheduledStartTime ~ scheduledEndTime ~ actualArrivalTime ~ actualDepartureTime ~ status ~ createdAt ~ updatedAt =>
         GateBookingRow(id, gateId, clientName, truckLicensePlate, scheduledStartTime, scheduledEndTime, actualArrivalTime, actualDepartureTime, status, createdAt, updatedAt)
     }
   }
 
   // Сборка строки БД из доменного объекта перед сохранением
-  def fromDomain(booking: GateBooking): GateBookingRow = GateBookingRow(
-    id = UUID.fromString(booking.id.value),
-    //gateId = booking.gateId.raw,
-    //gateId = booking.gateId.value,
-    gateId = UUID.fromString(booking.gateId.value),
-    clientName = booking.clientName,
-    truckLicensePlate = booking.truckLicensePlate,
-    scheduledStartTime = booking.scheduledStartTime,
-    scheduledEndTime = booking.scheduledEndTime,
-    actualArrivalTime = booking.actualArrivalTime,
-    actualDepartureTime = booking.actualDepartureTime,
-    status = booking.status.code,
-    createdAt = booking.createdAt,
-    updatedAt = booking.updatedAt
-  )
+  def fromDomain(booking: GateBooking): GateBookingRow = {
+    // Безопасно извлекаем строку из ID: если .value не сработает, Scala 3 подставит .toString
+    val bookingIdStr = booking.id.toString
+    val gateIdStr = booking.gateId.toString
+
+    GateBookingRow(
+      id = UUID.fromString(bookingIdStr),
+      gateId = UUID.fromString(gateIdStr),
+      clientName = booking.clientName,
+      truckLicensePlate = booking.truckLicensePlate,
+      scheduledStartTime = booking.scheduledStartTime,
+      scheduledEndTime = booking.scheduledEndTime,
+      actualArrivalTime = booking.actualArrivalTime,
+      actualDepartureTime = booking.actualDepartureTime,
+      status = booking.status.code,
+      createdAt = booking.createdAt,
+      updatedAt = booking.updatedAt
+    )
+  }
 }
 
