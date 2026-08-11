@@ -28,6 +28,9 @@ class IdempotencyAction @Inject()(
   val parser: BodyParsers.Default
 )(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilder[Request, AnyContent] {
 
+  // КРИТИЧЕСКИ ВАЖНО: Добавите эту строчку, чтобы удовлетворить контракт Play Framework!
+  override protected def executionContext: ExecutionContext = ec
+
   private def calculateHash(body: String): String = {
     val digest = MessageDigest.getInstance("SHA-256")
     val hashBytes = digest.digest(body.getBytes("UTF-8"))

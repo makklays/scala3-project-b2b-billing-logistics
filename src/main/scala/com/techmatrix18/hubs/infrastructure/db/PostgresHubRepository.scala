@@ -2,6 +2,7 @@ package com.techmatrix18.hubs.infrastructure.db
 
 import com.techmatrix18.hubs.application.out.HubRepository
 import com.techmatrix18.hubs.domain.{Hub, HubId, HubType, HubStatus}
+import com.techmatrix18.hubs.application.out.HubFilter
 import com.techmatrix18.companies.domain.CompanyId
 import java.util.UUID
 import java.time.Instant
@@ -84,25 +85,54 @@ class PostgresHubRepository @Inject()(
     }
   }
 
-  override def delete(id: HubId): Future[Unit] = Future {
+  override def delete(id: HubId): Future[Boolean] = Future {
     db.withConnection { implicit connection =>
-      SQL"""
-          DELETE FROM hubs
-          WHERE id = ${id.value}::uuid
-        """.executeUpdate()
-      ()
+      val rowsDeleted =
+        SQL"""
+            DELETE FROM hubs
+            WHERE id = ${id.value}::uuid
+          """.executeUpdate()
+
+      rowsDeleted > 0 // Возвращаем true, если строка действительно удалена
     }
   }
 
-  override def findAll(): Future[List[Hub]] = Future {
+  override def findAll(limit: Int, offset: Int): Future[List[Hub]] = Future {
     db.withConnection { implicit connection =>
       SQL"""
-          SELECT id, company_id as companyId, title, description, address_line as addressLine,
-                 postal_code as postalCode, latitude, longitude, hub_type as hubType, status,
-                 created_at as createdAt, updated_at as updatedAt
-          FROM hubs
-          LIMIT 100
-        """.as(HubRow.parser.*).map(_.toDomain)
+            SELECT id, company_id as companyId, title, description, country_code as countryCode, city,
+                   postal_code as postalCode, address_line as addressLine, latitude, longitude,
+                   hub_type as hubType, status, created_at as createdAt, updated_at as updatedAt
+            FROM hubs
+            LIMIT $limit OFFSET $offset
+          """.as(HubRow.parser.*).map(_.toDomain)
+    }
+  }
+
+  override def findByFilter(filter: HubFilter): Future[List[Hub]] = Future {
+    db.withConnection { implicit connection =>
+      SQL"""
+            SELECT id, company_id as companyId, title, description, country_code as countryCode, city,
+                   postal_code as postalCode, address_line as addressLine, latitude, longitude,
+                   hub_type as hubType, status, created_at as createdAt, updated_at as updatedAt
+            FROM hubs
+          """.as(HubRow.parser.*).map(_.toDomain)
+    }
+  }
+
+  override def findPage(page: Int): Future[List[Hub]] = Future {
+    db.withConnection { implicit connection =>
+      val pageSize = 10 // Задаем размер страницы (например, по 10 хабов на страницу)
+      val offset = Math.max(0, page - 1) * pageSize
+
+      SQL"""
+            SELECT id, company_id as companyId, title, description, country_code as countryCode, city,
+                   postal_code as postalCode, address_line as addressLine, latitude, longitude,
+                   hub_type as hubType, status, created_at as createdAt, updated_at as updatedAt
+            FROM hubs
+            ORDER BY created_at DESC
+            LIMIT $pageSize OFFSET $offset
+          """.as(HubRow.parser.*).map(_.toDomain)
     }
   }
 }
