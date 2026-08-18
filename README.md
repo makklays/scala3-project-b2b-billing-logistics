@@ -1,10 +1,7 @@
 # Project B2B Billing Logistics 🚢🚛📦🇪🇸💶️ Scala 3, Play Framework
 
 A high-performance, fault-tolerant reactive backend engine simulating automated multi-tenant warehouse provisioning, real-time yard management, and automated time-slot billing. The project is highly inspired by the complex supply chain challenges, toll systems, and high-throughput distribution hubs powering the Spanish logistics corridors 🇪🇸.
-
 The project is designed following the core principles of **Domain-Driven Design (DDD)** and **Hexagonal Architecture (Ports & Adapters)** using the modern **Play Framework (Pekko-based)** asynchronous web server and **Scala 3**.
-
----
 
 ## 🎯 Business Context & Objectives
 In modern B2B logistics and yard management platforms, key requirements include strict resource isolation, absolute pallet-balance auditing, and absolute resilience to hardware or network failures. This project simulates an enterprise warehouse core ledger, handling highly concurrent check-in/check-out events and automated billing requests across thousands of virtual storage zones per second without operating system thread blocking (Lock-free / Non-blocking asynchronous processing).
